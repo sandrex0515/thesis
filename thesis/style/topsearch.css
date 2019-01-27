@@ -1,0 +1,71 @@
+.topSearch{
+    margin:25px 0px;
+background: #fff;
+text-align: center;
+font-family: 'Bitter, serif';
+
+}
+.topSearch h1{
+    padding-bottom:10px;
+}
+.topSearch h1 a{
+    font-size: 16px;
+}
+.topSearch img{
+    width: auto;
+    height: auto;
+    border: none;
+}
+.topSearch ul li{
+    list-style: none;
+    float: left;
+    padding: 10px 10px;
+}
+.con-top-search{
+    width: 300px;
+    height: 280px;
+    background: #fff;
+
+    
+}
+
+.con-top-search:hover{
+   
+    border: 2px solid #ffffb6;
+    color: red;
+}
+.fa-eye{
+    border-radius: 150px;
+    -webkit-animation: color-change 3s infinite;
+    -moz-animation: color-change 3s infinite;
+    -o-animation: color-change 3s infinite;
+    -ms-animation: color-change 3s infinite;
+    animation: color-change 3s infinite;
+}
+@-webkit-keyframes color-change{
+    0%{background-color:#000;}
+        0%{background-color:#000;}
+
+    50%{background-color:inherit;}
+    100%{background-color:#000;}
+}
+@-moz-keyframes color-change{
+    0%{background-color:#000;}
+    50%{background-color:inherit;}
+    100%{background-color:#000;}
+}
+@-o-keyframes color-change{
+    0%{background-color:#000;}
+    50%{background-color:inherit;}
+    100%{background-color:#000;}
+}
+@-ms-keyframes color-change{
+    0%{background-color:#000;}
+    50%{background-color:inherit;}
+    100%{background-color:#000;}
+}
+@keyframes color-change{
+    0%{background-color: #000;}
+    50%{background-color: inherit;}
+    100%{background-color: #000;}
+}

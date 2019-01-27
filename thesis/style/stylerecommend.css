@@ -1,0 +1,49 @@
+.recommend{
+    width: auto;
+    background: #fff;
+    font-family: 'Bitter', serif;
+    border:none;
+
+
+}
+.recommend img{
+    border:none;
+}
+.recommend .items{
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    border:none;
+    
+}
+.recommend ul li{
+    border:none;
+    list-style: none;
+}
+h4{
+    font-family: 'Bitter', serif;
+    background: rgba(255, 255, 255, .1);
+    top:0%;
+    
+    border:none;
+}
+.recommenditems{
+    
+}
+
+.recommenditems .v1 img{
+width: 350px;
+height: 150px;
+border:none;
+
+}
+.recommenditems ul li{
+    list-style: none;
+    float: left;
+    padding-left: 5px;
+}
+
+
+
+
+
