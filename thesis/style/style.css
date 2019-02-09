@@ -54,7 +54,7 @@ box-sizing: border-box;
     
 }
 #log{
-    padding-left: 300px;
+    padding-left: 200px;
 }
 #blogin{
    border-left: #ffff66 solid 2px;
@@ -340,8 +340,8 @@ margin-left: 200px;
     width: 650px;
     vertical-align: middle;
     white-space: nowrap;
-  left: 30%;
- top:15%;
+    left: 30%;
+    top:15%;
    position: relative;
   }
   
@@ -745,6 +745,29 @@ background: #FFF;
         width:30px;
         float: left;
         right: 200px;
+    }
+    #searchDisplay{
+
+    vertical-align: middle;
+    white-space: nowrap;
+    left: 30.5%;
+    top:19.5%;
+    z-index: 99;
+    background: #faf7f7;
+    width: 605px;
+    position: absolute;
+    border-radius: 10px;
+    height: auto 370px;
+    display: none;
+    }
+    #searchDisplay ul li{
+        padding: 10px 20px;
+        margin: 0;
+
+    }
+    #searchDisplay li:hover{
+        background: #66ff99;
+        border-radius: 10px;
     }
 .footer{
     margin-top: auto;

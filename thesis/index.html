@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lan="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<html lan="en-US" xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
@@ -121,11 +121,11 @@
         <li><a href="#">Careers</a></li>
         <li><a href="#">About us</a></li>
         <li><a href="#">Contact</a></li>
-
+        
         <li><a href="#" id="log">My Order Status</a></li>
         <li></li>
-        <li id="blogin"><a href="userlogin.php" ><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Login</a></li>
-
+        <li id="blogin"><a href="#/login" ><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Login</a></li>
+        <li><a href="#/admin" ><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Register</a></li>
         </ul>
         </div>
         <div class="head-top">
@@ -138,13 +138,29 @@
                 </ul>
                 <div class="box">
                         <div class="container-4">
-                          <input type="search" id="search" placeholder="Search for products..." />
+                          <input type="search" ng-model="search" id="search" placeholder="Search for products..." />
                           <button type="submit" class="icon"><i class="fa fa-search"></i></button>
-                          
     
                         </div>
                         
                       </div>
+                      <div id="searchDisplay">
+                        <ul>
+                                <li class="displayHov">search 1</li>
+                                <li>search 5</li>
+                                <li>search 4</li>
+                                <li>search 3</li>
+                                <li>search 2</li>
+                                <li>search 3</li>
+                                <li>search 2</li>
+
+
+                        </ul>
+                        <center style="padding: 5px 0px;">
+                        <a href="#" style="text-align:center">Show all results</a>
+                </center>
+                      </div>
+
                      <div class="noti">
                          <p class="notif">0&nbsp;</p>
                         </div>
@@ -159,7 +175,7 @@
                             
                        
                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">All Categories</a>
+                                <a class="dropdown-item" href="categories.html">All Categories</a>
                                 <a class="dropdown-item" href="#">Category1</a>
                                 <a class="dropdown-item" href="#">Category2</a>
                                 <a class="dropdown-item" href="#">Category3</a>
@@ -187,289 +203,9 @@
    
     
 <div class="container-fluid maxWidth">
-<div class="container-fluid">
-    <div class="recommend">
-        <h1>For you&nbsp;<a style="font-size:16px;" href="#">see more</a></h1>
-
-        
-        <div class="swiper-container v1">
-                <div class="swiper-wrapper ">
-                        <div class="swiper-slide v1">
-                                
-                               <a href="#" target="_blank"> <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                               </a>
-                                                      
-                      </div>
-                      <div class="swiper-slide v1">
-                                
-                            <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                        
-                                                  
-                  </div>
-                  <div class="swiper-slide v1">
-                                
-                        <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                    
-                                              
-              </div>
-              <div class="swiper-slide v1">
-                                
-                    <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                
-                                          
-          </div>
-          <div class="swiper-slide v1">
-                                
-                <img class="img-thumbnail" src="media/lazada.png" alt="test">
-            
-                                      
-      </div>
-      <div class="swiper-slide v1">
-                                
-            <img class="img-thumbnail" src="media/lazada.png" alt="test">
-        
-                                  
-  </div>
-  <div class="swiper-slide v1">
-                                
-        <img class="img-thumbnail" src="media/lazada.png" alt="test">
-    
-                              
-</div>
-<div class="swiper-slide v1">
-                                
-        <img class="img-thumbnail" src="media/lazada.png" alt="test">
-    
-                              
-</div>
-<div class="swiper-slide v1">
-                                
-        <img class="img-thumbnail" src="media/lazada.png" alt="test">
-    
-                              
-</div>
-<div class="swiper-slide v1">
-                                
-        <img class="img-thumbnail" src="media/lazada.png" alt="test">
-    
-                              
-</div>
-              
+                <div class="messenger" id="msgMs"><i class="fa fa-comments fa-5x" aria-hidden="true"></i><p>0&nbsp;</p>
                 </div>
-                
-              <div class="swiper-button-next v1n"></div>
-              <div class="swiper-button-prev v1p"></div>
-                <div class="swiper-scrollbar v1pp"></div>
-              </div>
-
-
-          
-        
-</div>
-
-                
-
-
-                </div>
-<div class="messenger" id="msgMs"><i class="fa fa-comments fa-5x" aria-hidden="true"></i><p>0&nbsp;</p>
-</div>
-
-                <div class="container-fluid today">
-                  <h1>Today's Deal&nbsp;<a style="font-size:16px;" href="todaysdeal.html">see more</a></h1>
-
-
-                  <div class="swiper-container v2">
-                    <div class="swiper-wrapper">
-                            <div class="swiper-slide v2">
-                                    
-                                   <a href="#" target="_blank"> <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                                   </a>
-                              <h4 class="price">  </h4>   
-                                                          
-                          </div>
-                          <div class="swiper-slide v2">
-                                    
-                            <a href="#" target="_blank"> <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                            </a>
-                            <h4 class="price">   </h4>   
-                                                   
-                   </div>
-                   <div class="swiper-slide v2">
-                                    
-                    <a href="#" target="_blank"> <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                    </a>
-                    <h4 class="price">   </h4>   
-                                           
-           </div>
-           <div class="swiper-slide v2">
-                                    
-            <a href="#" target="_blank"> <img class="img-thumbnail" src="media/lazada.png" alt="test">
-            </a>
-            <h4 class="price">  </h4>   
-                                   
-   </div>
-
- 
-   
-
-                          </div>
-                          <div class="swiper-button-next v2n"></div>
-                          <div class="swiper-button-prev v2p"></div>                       
-                          </div>
-                       
-
-              <br><br>
-</div>
-
-<div class="container-fluid topSearch">
-  <h1>Top Search <a href="#">see more</a></h1>
-  <ul> <li>
-      
-      <div class="con-top-search">
-           <p style="float:left">#1</p><p style="float:left">:&nbsp;123,000&nbsp;<i class="fa fa-eye" aria-hidden="true"></i>
-           </p> 
-
-            <a href="#" target="_blank"> <img class="img-thumbnail" src="media/lazada.png" alt="test">
-            </a>
-
-      
-      </div>
-                     
-      </li>
-
-      <li>
-            <div class="con-top-search">
-                    <p style="float:left">#2</p><p style="float:left">:&nbsp;123,000&nbsp;<i class="fa fa-eye" aria-hidden="true"></i>
-                    </p> 
-                  <a href="#" target="_blank"> <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                  </a>
-      
-            
-            </div>
-                           
-            </li>
-
-            <li>
-                    <div class="con-top-search">
-                            <p style="float:left">#3</p><p style="float:left">:&nbsp;123,000&nbsp;<i class="fa fa-eye" aria-hidden="true"></i>
-                            </p> 
-
-                          <a href="#" target="_blank"> <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                          </a>
-              
-                    
-                    </div>
-                                   
-                    </li>
-                    <li>
-                            <div class="con-top-search">
-                                    <p style="float:left">#4</p><p style="float:left">:&nbsp;123,000&nbsp;<i class="fa fa-eye" aria-hidden="true"></i>
-                                    </p> 
-                                  <a href="#" target="_blank"> <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                                  </a>
-                      
-                            
-                            </div>
-                                           
-                            </li>
-                            <li>
-                                    <div class="con-top-search">
-                                            <p style="float:left">#5</p><p style="float:left">:&nbsp;123,000&nbsp;<i class="fa fa-eye" aria-hidden="true"></i>
-                                            </p> 
-                                          <a href="#" target="_blank"> <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                                          </a>
-                              
-                                    
-                                    </div>
-                                                   
-                                    </li>
-
-                                    <li>
-                                            <div class="con-top-search">
-                                                    <p style="float:left">#5</p><p style="float:left">:&nbsp;123,000&nbsp;<i class="fa fa-eye" aria-hidden="true"></i>
-                                                    </p> 
-                                                  <a href="#" target="_blank"> <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                                                  </a>
-                                      
-                                            
-                                            </div>
-                                                           
-                                            </li>
-                                            <li>
-                                                    <div class="con-top-search">
-                                                            <p style="float:left">#5</p><p style="float:left">:&nbsp;123,000&nbsp;<i class="fa fa-eye" aria-hidden="true"></i>
-                                                            </p> 
-                                                          <a href="#" target="_blank"> <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                                                          </a>
-                                              
-                                                    
-                                                    </div>
-                                                                   
-                                                    </li>
-                                                    <li>
-                                                            <div class="con-top-search">
-                                                                    <p style="float:left">#5</p><p style="float:left">:&nbsp;123,000&nbsp;<i class="fa fa-eye" aria-hidden="true"></i>
-                                                                    </p> 
-                                                                  <a href="#" target="_blank"> <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                                                                  </a>
-                                                      
-                                                            
-                                                            </div>
-                                                                           
-                                                            </li>
-                                                            <li>
-                                                                    <div class="con-top-search">
-                                                                            <p style="float:left">#5</p><p style="float:left">:&nbsp;123,000&nbsp;<i class="fa fa-eye" aria-hidden="true"></i>
-                                                                            </p> 
-                                                                          <a href="#" target="_blank"> <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                                                                          </a>
-                                                              
-                                                                    
-                                                                    </div>
-                                                                                   
-                                                                    </li>
-                                                                    <li>
-                                                                            <div class="con-top-search">
-                                                                                    <p style="float:left">#5</p><p style="float:left">:&nbsp;123,000&nbsp;<i class="fa fa-eye" aria-hidden="true"></i>
-                                                                                    </p> 
-                                                                                  <a href="#" target="_blank"> <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                                                                                  </a>
-                                                                      
-                                                                            
-                                                                            </div>
-                                                                                           
-                                                                            </li>
-                                                                            <li>
-                                                                                    <div class="con-top-search">
-                                                                                            <p style="float:left">#5</p><p style="float:left">:&nbsp;123,000&nbsp;<i class="fa fa-eye" aria-hidden="true"></i>
-                                                                                            </p> 
-                                                                                          <a href="#" target="_blank"> <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                                                                                          </a>
-                                                                              
-                                                                                    
-                                                                                    </div>
-                                                                                                   
-                                                                                    </li>
-                                                                                    <li>
-                                                                                            <div class="con-top-search">
-                                                                                                    <p style="float:left">#5</p><p style="float:left">:&nbsp;123,000&nbsp;<i class="fa fa-eye" aria-hidden="true"></i>
-                                                                                                    </p> 
-                                                                                         <a href="#" target="_blank"> <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                                                                                                  </a>
-                         
-                                                                                            
-                                                                                            </div>
-                                                                                                           
-                                                                                            </li>
-                                                                                            
-      </ul>               
-              
-                                           
-      
-  
-  
-</div>
-
+                <div ng-view=""></div>
 </div>
 
 
@@ -479,19 +215,37 @@
                 <br><br><br><br><br><br><br><br><br><br><br><br><hr>
             <div class="container-fluid"><p>this site was developed by sandrex cabrales</p></div>
             </div>
-    
-
-
-
-
-
+       
+       
 <script src="js/swiper.min.js"></script>
 <script src="js/recommend.js"></script>
 <script src="js/today.js"></script>
 <script src="js/eventListener.js"></script>
+<script src="angular/angular.min.js"></script>
+<script src="angular/angular-route.min.js"></script>
+<script src="js/module.js"></script>
+<script src="js/CONTROLLER/loginController.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
 
+$(document).ready(function(){
+     
+      $("#search").keyup(function(){
+              var inputID = $(this);
+
+
+              if(inputID.val() == ""){
+                $("#searchDisplay").css("display", "none");
+        }else{
+                $("#searchDisplay").css("display", "block");
+        }
+        });
+
+        
+         
+        });
+</script>
 </body>
 </html>
