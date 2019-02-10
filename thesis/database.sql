@@ -1,5 +1,7 @@
 create database thesis;
 
+grant usage, select on all sequences in schema public to sandrex;
+
 create table profile(
     id serial primary key,
     name varchar(255) NOT NULL,
@@ -32,7 +34,6 @@ create table item(
     id serial primary key,
     item varchar(255) NOT NULL,
     description varchar(255) NOT NULL,
-    stock numeric NOT NULL,
     price numeric NOT NULL,
     type varchar(255) NOT NULL
 );

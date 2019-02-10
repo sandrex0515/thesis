@@ -1,0 +1,60 @@
+<div class="main-content">
+        <section class="section">
+          <h1 class="section-header">
+            <div>Add Product</div>
+          </h1>
+          <div class="row" style="text-align: center;">
+            <div class="col-lg-12 center-block text-center">
+              <div class="card card-sm-3">
+                <div class="card-icon bg-primary">
+                  <i class="ion ion-pricetag"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>Out of Stock</h4>
+                  </div>
+                  <div class="card-body">
+                    10
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+            
+
+            <div class="col-lg-6">
+                <form>
+                <input type="text" class="form-control" placeholder="Product Name" ng-model="prodname" required><br>
+                <textarea class="form-control" rows="3" placeholder="Description" maxlength="795" ng-model="proddescript" required></textarea> <br>
+                <input type="number" class="form-control" placeholder="Price" ng-model="prodprice" required><br>
+                <select class="form-control" placeholder="Category" ng-model="prodcateg" required>
+                    <option disabled selected>Category</option>
+                    <option>category 1</option>
+                </select>           
+                <br>  
+                <input type="number" class="form-control" placeholder="Stock" ng-model="prodstock" required><br>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile" ng-model="prodfile" required>
+                    <label class="custom-file-label" for="customFile" required>Choose File</label>
+                </div>
+           
+
+            </div>
+            <div class="col-lg-6">
+<div class="container" syle="outline:none;border:none;">
+    <img src="../../media/slide.jpg" ng-if="prodfile != null" class="img-thumbnail"  style="width: 300px; height: 150px;outline:none;border:none;">
+            </div>
+            <p><h1 style="text-transform: capitalize;font-family: 'Bitter', serif;">{{prodname}}</h1></p>
+            <p style="text-transform: capitalize;font-family: 'Bitter', serif;">{{proddescript}}</p>
+            <p style="color:lightcoral;font-size: 32px;">{{prodprice | currency: "&#8369":0}}</p>
+            <p ng-if="prodstock != null">Stock:&nbsp;{{prodstock}}
+            </p>
+            <p style="text-transform: capitalize">{{prodcateg}} </p>
+            <button class="btn btn-primary" ng-click="prodsubmit()" type="submit"><i class="ion ion-checkmark"></i> Accept and Save Product</button>
+            <button class="btn btn-primary" type="reset"><i class="ion ion-close"></i> Cancel</button>
+        </form>
+        </div>
+
+            </div>
+          </section>
+            </div>
