@@ -23,20 +23,57 @@
             
 
             <div class="col-lg-6">
-                <form>
-                <input type="text" class="form-control" placeholder="Product Name" ng-model="prodname" required><br>
-                <textarea class="form-control" rows="3" placeholder="Description" maxlength="795" ng-model="proddescript" required></textarea> <br>
-                <input type="number" class="form-control" placeholder="Price" ng-model="prodprice" required><br>
+              
+                <input type="text" class="form-control" placeholder="Product Name" ng-model="prodname" required>
+                
+              <p class="text-danger" ng-if="prodname == null">
+                Required!
+              </p>
+              <p class="text-success" ng-if="prodname != null">
+                <i class="ion ion-checkmark"></i>
+              </p>
+                <textarea class="form-control" rows="3" placeholder="Description" maxlength="795" ng-model="proddescript" required></textarea> 
+                <p class="text-danger" ng-if="proddescript == null">
+                  Required!
+                </p>
+                <p class="text-success" ng-if="proddescript != null">
+                  <i class="ion ion-checkmark"></i>
+                </p>
+                <input type="number" class="form-control" placeholder="Price" ng-model="prodprice" required>
+                <p class="text-danger" ng-if="prodprice == null">
+                  Required!
+                </p>
+                <p class="text-success" ng-if="prodprice != null">
+                  <i class="ion ion-checkmark"></i>
+                </p>
                 <select class="form-control" placeholder="Category" ng-model="prodcateg" required>
                     <option disabled selected>Category</option>
                     <option>category 1</option>
-                </select>           
+                </select>
+                <p class="text-danger" ng-if="prodcateg == null">
+                  Required!
+                </p>
+                <p class="text-success" ng-if="prodcateg != null">
+                  <i class="ion ion-checkmark"></i>
+                </p>           
                 <br>  
-                <input type="number" class="form-control" placeholder="Stock" ng-model="prodstock" required><br>
+                <input type="number" class="form-control" placeholder="Stock" ng-model="prodstock" required>  
+                <p class="text-danger" ng-if="prodstock == null">
+                  Required!
+                </p>
+                <p class="text-success" ng-if="prodstock != null">
+                  <i class="ion ion-checkmark"></i>
+                </p>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="customFile" ng-model="prodfile" required>
                     <label class="custom-file-label" for="customFile" required>Choose File</label>
                 </div>
+                <p class="text-danger" ng-if="prodfile == null">
+                  Required!
+                </p>
+                <p class="text-success" ng-if="prodfile != null">
+                  <i class="ion ion-checkmark"></i>
+                </p>
            
 
             </div>
@@ -44,7 +81,8 @@
 <div class="container" syle="outline:none;border:none;">
     <img src="../../media/slide.jpg" ng-if="prodfile != null" class="img-thumbnail"  style="width: 300px; height: 150px;outline:none;border:none;">
             </div>
-            <p><h1 style="text-transform: capitalize;font-family: 'Bitter', serif;">{{prodname}}</h1></p>
+            <p><h1 style="text-transform: capitalize;font-family: 'Bitter', serif;">{{prodname}}</h1>
+            </p>
             <p style="text-transform: capitalize;font-family: 'Bitter', serif;">{{proddescript}}</p>
             <p style="color:lightcoral;font-size: 32px;">{{prodprice | currency: "&#8369":0}}</p>
             <p ng-if="prodstock != null">Stock:&nbsp;{{prodstock}}
@@ -52,9 +90,14 @@
             <p style="text-transform: capitalize">{{prodcateg}} </p>
             <button class="btn btn-primary" ng-click="prodsubmit()" type="submit"><i class="ion ion-checkmark"></i> Accept and Save Product</button>
             <button class="btn btn-primary" type="reset"><i class="ion ion-close"></i> Cancel</button>
-        </form>
         </div>
-
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Holy guacamole!</strong> 
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
             </div>
+
           </section>
             </div>
