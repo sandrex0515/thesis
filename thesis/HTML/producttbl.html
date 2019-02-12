@@ -1,0 +1,58 @@
+
+<div class="main-content">
+  
+        <section class="section">
+          <h1 class="section-header">
+            <div>Product</div>
+          </h1>
+          <div class="row">
+              <div class="col-lg-4">
+          <input type="text" class="form-control" placeholder="Search...">
+          <br>
+        </div>
+        <div class="col-lg-3">
+            <button class="btn btn-light" title="Table list"><ion-icon name="list" style="zoom:2.0"></ion-icon></button>          
+              <button class="btn btn-light" title="List"><ion-icon name="apps" style="zoom:2.0"></ion-icon></button>
+              <br>
+
+        </div>
+        <div class="col-lg-3">
+
+            <span>Select By:
+                <select class="form-control col-lg-8">
+                        <option>Large select</option>
+                      </select>
+                    
+                </span>
+                <br>
+        </div>
+   
+        <div class="col-sm-2">
+                <a href="#/addproduct" class="btn btn-primary">Add New</a>
+
+        </div>
+        </div>
+
+          <div class="row">
+                <div class="col-lg-3 prodlist" style="background:#fff;padding: 20px 20px;height: 350px;text-align: center;" ng-repeat="(key, value) in fetch track by $index">
+                        <img src="../../media/slide.jpg" class="img-thumbnail" width="auto" height="200px" alt="img">
+                        <p>{{value.item}} </p>
+                        <p>{{value.type}} </p>
+                        <p>{{value.price | currency:"&#8369":0}} </p>
+                        <p>{{value.created_at | date: 'medium' }} </p>
+                        
+                        <button type="button" class="btn btn-primary" title="Edit"><ion-icon name="create"></ion-icon></button>
+                        <button type="button" class="btn btn-primary" ng-click="proddel(value)" title="Delete"><ion-icon name="trash"></ion-icon></button>
+                    </div>
+          
+                                  
+                
+           
+                            
+            
+
+           
+
+</div>
+</section>
+</div>

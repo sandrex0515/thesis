@@ -32,7 +32,7 @@ create table userpic(
 
 create table item(
     id serial primary key,
-    item varchar(255) NOT NULL,
+    item varchar(255) unique NOT NULL,
     description varchar(255) NOT NULL,
     price numeric NOT NULL,
     type varchar(255) NOT NULL,

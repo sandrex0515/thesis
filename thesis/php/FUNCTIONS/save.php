@@ -10,11 +10,15 @@ $class = new addPod (
 );
 
 $data = $class->addProd();
-$data = $class->addStock();
+$data1 = $class->addStock();
 header("HTTP/1.1 404 Error");
 if($data['status']){
     header("HTTP/1.1 200 Ok");
+    if($data1['status']){
+        header("HTTP/1.1 200 Ok");
+    }
 }
+
 
 header("Content-Type:application/json");
 print_r(json_encode($data));

@@ -111,14 +111,21 @@
                   <span aria-hidden="true">&times;</span>
                 </button> -->
               </div>
-              <br>
+              
               <div class="alert alert-success alert-dismissible fade show fadefade" style="margin: auto;" role="alert" ng-if="message.successmsg">
-                  <strong>{{messsage.successmsg}}</strong> 
+                  <strong>{{message.successmsg}}</strong> 
                   <!-- <button type="button" class="close"  aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button> -->
                 </div>
-                <br>
+           
+                <div class="alert alert-danger alert-dismissible fade show fadefade" style="margin: auto;" role="alert" ng-if="message.msg">
+                    <strong>{{message.msg}}</strong> 
+                    <!-- <button type="button" class="close"  aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button> -->
+                  </div>
+                  <br>
             <button class="btn btn-primary" ng-click="prodsubmit()" type="submit"><i class="ion ion-checkmark"></i> Accept and Save Product</button>
             <button class="btn btn-primary" type="button" ng-click="reset()"><i class="ion ion-close"></i> Cancel</button>
         </div>
