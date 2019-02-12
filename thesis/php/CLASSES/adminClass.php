@@ -7,6 +7,7 @@ class addPod extends ClassParent{
     var $name = null;
     var $descript = null;
     var $price = null;
+    var $stock = null;
     var $category = null;
 
         public function __construct(
@@ -14,9 +15,12 @@ class addPod extends ClassParent{
             $name,
             $descript,
             $price,
+            $stock,
             $category
         ){
+            $stock_id = rand(1000000,9000000);
             $fields = get_defined_vars();
+            
             if(empty($fields)){
                 return(FALSE);
             }
@@ -29,14 +33,37 @@ class addPod extends ClassParent{
         public function addProd(){
             $sql = <<<EOT
             insert into item
-            
-                (item,description,price,type)
+             (
+                item,
+                description,
+                price,
+                type,
+                stock_id
+              )
             values(
-               '$this->name', 
+            '$this->name', 
             '$this->descript',
-            $this->price,
-            '$this->category'
+             $this->price,
+            '$this->category',
+            $this->stock_id
           )
+EOT;
+return ClassParent::insert($sql);
+
+ }
+        public function addStock(){ 
+
+            $sql = <<<EOT
+                insert into stock
+                ( 
+                    stock_id,
+                    quantity
+                )
+               values
+               (
+                   $this->stock_id,
+                   $this->stock
+                   )
 EOT;
         return ClassParent::insert($sql);
 }

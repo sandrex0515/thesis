@@ -35,7 +35,9 @@ create table item(
     item varchar(255) NOT NULL,
     description varchar(255) NOT NULL,
     price numeric NOT NULL,
-    type varchar(255) NOT NULL
+    type varchar(255) NOT NULL,
+    stock_id numeric unique NOT NULL,
+    create_at TIMESTAMPZ DEFAULT NOW();
 );
 
 create table itempic(
@@ -45,7 +47,8 @@ create table itempic(
 );
 
 create table stock(
-    id int references item(id),
+    -- id int references item(id),
+    stock_id numeric,
     quantity numeric
 );
 
