@@ -36,8 +36,8 @@ create table item(
     description varchar(255) NOT NULL,
     price numeric NOT NULL,
     type varchar(255) NOT NULL,
-    stock_id numeric unique NOT NULL,
-    create_at TIMESTAMPZ DEFAULT NOW();
+    item_id numeric unique NOT NULL,
+    create_at timestamp with time zone DEFAULT NOW();
 );
 
 create table itempic(

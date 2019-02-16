@@ -2,7 +2,7 @@
 require_once('connection.php');
 require_once('../../php/CLASSES/adminClass.php');
 $class = new addPod (
-               $_POST['stock_id']
+               $_POST['item_id']
                
 
 );

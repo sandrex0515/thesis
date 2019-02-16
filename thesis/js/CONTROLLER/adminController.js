@@ -8,15 +8,19 @@ app.controller('adminController', function(
     $scope.message = {};                                    
     $scope.fetch = {};
     $scope.filter = {};
+    $scope.modal = {};
+    $scope.pk = {};
     fetch();
-    console.log($scope.fetch);
+
+
+
     function fetch(){
         var promise = adminFactory.fetch();
             promise.then(function(data){
-                    var t = data.data.result[0].created_at.split(/[- :]/);
-                    var d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
-                    console.log(d);
+                    var t = data.data.result[0].created_at;
+                    var d = new Date(t.toLocaleString());
             $scope.fetch = data.data.result;
+       
             })
             .then(null, function(data){
 
@@ -59,8 +63,8 @@ app.controller('adminController', function(
             return false;
     } 
 
-        var promise = adminFactory.addProd($scope.prod);
-            promise.then(function(data){
+    var promise = adminFactory.addProd($scope.prod);
+        promise.then(function(data){
                 $scope.message = {successmsg:'Success'};
                 $scope.prodname = null;
                 $scope.proddescript = null;
@@ -76,7 +80,6 @@ app.controller('adminController', function(
 
     $scope.proddel = function(value){
         $scope.stock_id = value;
-        console.log($scope.stock_id);
         var promise = adminFactory.delprod($scope.stock_id);
             promise.then(function(data){
                 fetch();
@@ -86,6 +89,27 @@ app.controller('adminController', function(
             });
          
     };
+    $scope.prodedit = function(value){
+            $scope.modal = value;
+            console.log($scope.modal);
+    }
+    $scope.editmodal = function(){
+        $scope.pk.id = $scope.modal.id;
+        console.log($scope.pk);
+        // var promise = adminFactory.editprod($scope.pk);
+        // promise.then(function(data){
+        //         $scope.message = {successmsg:'Success'};
+        //         $scope.prodname = null;
+        //         $scope.proddescript = null;
+        //         $scope.prodcateg = null;
+        //         $scope.prodprice = null;
+        //         $scope.prodstock = null;
+        //         fetch();
+        //     })
+        //     .then(null, function(data){
+        //         $scope.message = {msg:'Error Title exist!'};
+        //     });
+    }
 
 
    
