@@ -11,6 +11,10 @@ class addPod extends ClassParent{
     var $category = null;
     var $stock_id = null;
     var $item_id = null;
+    var $id = null;
+    var $description = null;
+    var $item = null;
+    var $type = null;
         public function __construct(
 
             $name,
@@ -19,7 +23,12 @@ class addPod extends ClassParent{
             $stock,
             $category,
             $stock_id,
-            $item_id
+            $item_id,
+            $id,
+            $description,
+            $type,
+            $item
+
         ){
             $stock_id = rand(1000000,9000000);
             $fields = get_defined_vars();
@@ -86,21 +95,21 @@ EOT;
                 inner join stock
                 on item.item_id = stock.stock_id
                 ORDER BY created_at DESC
+               
 EOT;
+      
         return ClassParent::get($sql);
         }
-
-        public function delprod(){
+        public function fetchcount(){
             $sql = <<<EOT
-                delete  
-                from 
-                item
-                using stock
-                where item.item_id = $this->item_id
-                AND stock.stock_id = $this->item_id
+            select count(*) as bilang
+            from stock where quantity < 1;
 EOT;
-        return ClassParent::insert($sql);
+            return ClassParent::get($sql);
         }
+
+    
+  
 }
 
 

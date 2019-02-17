@@ -1,0 +1,175 @@
+
+<style>
+        .list{
+          -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, .13);
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, .13);
+        }
+        .list:hover,
+        .list:active,
+        .list:focus{
+          border-color: transparent !important;
+        }
+        .sample{
+          background-color: #574B90;
+          border-radius: 120px;
+          -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, .13);
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, .13);
+        }
+        
+        </style>
+        <div class="main-content">
+          
+                <section class="section">
+                  <h1 class="section-header">
+                    <div>Product</div>
+                  </h1>
+                  <div class="row">
+                      <div class="col-lg-4">
+                  <input type="text" class="form-control" placeholder="Search...">
+                  <br>
+                </div>
+                <div class="col-lg-3">
+                    <a href="#/productbl2" class="btn btn-light list" title="Table list"><ion-icon name="list" style="zoom:2.0"></ion-icon></a>          
+                      <a href="#/productbl" class="btn btn-light" title="List"><ion-icon name="apps" style="zoom:2.0"></ion-icon></a>
+                      <br>
+        
+                </div>
+                <div class="col-lg-3">
+        
+                    <span ng-click="Selectopt()">
+                      Select By:
+                        <select class="form-control col-lg-8" ng-model="viewTitle">
+                                <option selected disabled></option>
+                                <option>Title</option>
+                                <option>Date</option>
+                                <option>Price</option>
+                                <option>Category</option>
+                              </select>
+                        </span>
+                        <br>
+                </div>
+           
+                <div class="col-sm-2">
+                        <a href="#/addproduct" class="btn btn-primary"><ion-icon name="add"></ion-icon>Add New</a>
+        
+                </div>
+                </div>
+        
+                                <table class="table table-borderless">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Item</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">Stocks</th>
+                                            <th scope="col">Date added</th>
+                                            <th scope="col">Options</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr ng-repeat="(key, value) in fetch track by $index">
+                                            <th scope="row">{{$index + 1}}</th>
+                                            <td>{{value.item}}</td>
+                                            <td>{{value.price | currency: "&#8369":0}}</td>
+                                            <td>{{value.type}}</td>
+                                            <td>{{value.quantity}}</td>
+                                            <td>{{value.created_at}}</td>
+                                            <td> <button type="button" data-toggle="modal" data-target="#editModal" class="btn btn-primary" ng-click="prodedit(value)" title="Edit"><ion-icon name="create"></ion-icon></button>
+                                                <button type="button" class="btn btn-primary" ng-click="proddel(value)" title="Delete"><ion-icon name="trash"></ion-icon></button></td>
+                                          </tr>
+                                     
+                                        </tbody>
+                                      </table>
+                                      <br>
+                                      <nav aria-label="Page navigation example">
+                                              <ul class="pagination" style="justify-content:center">
+                                                <li class="page-item">
+                                                  <a class="page-link" href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                  </a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item">
+                                                  <a class="page-link" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                  </a>
+                                                </li>
+                                              </ul>
+                                            </nav>
+        
+        </section>
+        </div>
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">    
+                <div class="row">
+                  <div class="col">
+                    <span>
+                    Product Name:<input type="text" class="form-control" ng-model="modal.item">
+                  </span>
+                  </div>
+                </div>
+                  <div class="row">
+                      <div class="col">
+                        <span>
+                          Description:
+                  <textarea class="form-control" rows="3" maxlength="795" ng-model="modal.description"></textarea> 
+        
+                      </span>
+                      </div>
+        
+                </div>
+                <div class="row">
+                    <div class="col">
+                      <span>
+                      Price:<input type="number" class="form-control" ng-model="modal.price" value="{{modal.price}}">
+                    </span>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col">
+                        <span>
+                        Category<input type="text" class="form-control" ng-model="modal.type">
+                      </span>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                          <span>Picture:
+                                                <div class="custom-file">
+                                <input type="file" class="custom-file-input col-lg-10" id="customFile" ng-model="prodfile" required>
+                                <label class="custom-file-label" for="customFile" required>Choose File</label>
+                            </div>
+                          </span>
+        
+                        </div>
+                      
+                      </div>
+        
+                      <div class="row">
+                        <div class="alert alert-danger alert-dismissible fade show fadefade" style="margin: auto;" role="alert" ng-if="message.msg">
+                          <strong>{{message.msg}}</strong> 
+                          <!-- <button type="button" class="close"  aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button> -->
+                        </div>
+                        <br>
+                      </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" ng-click="editclose()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" ng-click="editmodal()" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>

@@ -1,0 +1,104 @@
+
+<style>
+        .list{
+          -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, .13);
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, .13);
+        }
+        .list:hover,
+        .list:active,
+        .list:focus{
+          border-color: transparent !important;
+        }
+        .sample3{
+          background-color: #574B90;
+          border-radius: 120px;
+          -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, .13);
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, .13);
+        }
+        
+        </style>
+        <div class="main-content">
+          
+                <section class="section">
+                  <h1 class="section-header">
+                    <div>For Delivery Orders</div>
+                  </h1>
+                  <div class="row">
+                      <div class="col-lg-3">
+                  <input type="text" class="form-control" placeholder="Search...">
+                  <br>
+                </div>
+                <div class="col-sm-2">
+                    <a href="#/fordelivery2" class="btn btn-sm btn-light list" title="Table list"><ion-icon name="list" style="zoom:2.0"></ion-icon></a>          
+                      <a href="#/fordelivery" class="btn btn-sm btn-light" title="List"><ion-icon name="apps" style="zoom:2.0"></ion-icon></a>
+                      <br>
+        
+                </div>
+                <div class="col-lg-2">
+        
+                    <span ng-click="Selectopt()">
+                      Select By:
+                      <select class="form-control col-sm-8" ng-model="viewTitle">
+                            <option selected disabled></option>
+                            <option>Name</option>
+                            <option>Date</option>
+                            <option>Place</option>
+                          </select>
+                        </span>
+                        <br>
+                </div>
+           
+                <div class="col-sm-4">
+                    <button class="btn btn-sm btn-primary">Export to PDF</button>
+                    <button class="btn btn-sm btn-primary">Export to Excel</button>
+                </div>
+                </div>
+        
+                                <table class="table table-borderless">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Item</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Customer</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Options</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr ng-repeat="(key, value) in fetch track by $index">
+                                            <th scope="row">{{$index + 1}}</th>
+                                            <td>{{value.item}}</td>
+                                            <td>{{value.price | currency: "&#8369":0}}</td>
+                                            <td>{{value.type}}</td>
+                                            <td>{{value.created_at}}</td>
+                                            <td>    <button type="button" class="btn btn-primary" ng-click="process(value)" title="Delivered"><ion-icon name="checkmark"></ion-icon></button>
+                                                <button type="button" class="btn btn-primary" ng-click="cancel(value)" title="Cancel"><ion-icon name="trash"></ion-icon></button>
+                        
+                                            </td>
+                                            </tr>
+                                     
+                                        </tbody>
+                                      </table>
+                                      <br>
+                                      <nav aria-label="Page navigation example">
+                                              <ul class="pagination" style="justify-content:center">
+                                                <li class="page-item">
+                                                  <a class="page-link" href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                  </a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item">
+                                                  <a class="page-link" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                  </a>
+                                                </li>
+                                              </ul>
+                                            </nav>
+        
+        </section>
+        </div>
+       

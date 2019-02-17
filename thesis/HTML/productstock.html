@@ -1,0 +1,118 @@
+
+<style>
+        .list{
+          -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, .13);
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, .13);
+        }
+        .list:hover,
+        .list:active,
+        .list:focus{
+          border-color: transparent !important;
+        }
+        .sample3{
+          background-color: #574B90;
+          border-radius: 120px;
+          -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, .13);
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, .13);
+        }
+        
+        </style>
+        <div class="main-content">
+          
+                <section class="section">
+                  <h1 class="section-header">
+                    <div>Stock</div>
+                  </h1>
+                  <div class="row">
+                      <div class="col-lg-4">
+                  <input type="text" class="form-control" placeholder="Search...">
+                  <br>
+                </div>
+                <div class="col-lg-3">
+                    <a href="#/stock2" class="btn btn-light list" title="Table list"><ion-icon name="list" style="zoom:2.0"></ion-icon></a>          
+                      <a href="#/stock" class="btn btn-light " title="List"><ion-icon name="apps" style="zoom:2.0"></ion-icon></a>
+                      <br>
+        
+                </div>
+                
+                
+           
+                
+                </div>
+        
+                <table class="table table-borderless">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Item</th>
+                            <th scope="col">Stocks</th>
+                            <th scope="col">Options</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="(key, value) in fetch track by $index">
+                            <th scope="row">{{$index + 1}}</th>
+                            <td>{{value.item}}</td>
+                            <td>{{value.quantity}}</td>
+                            <td> <button type="button" data-toggle="modal" data-target="#editModal" class="btn btn-primary" ng-click="prodedit(value)" title="Edit"><ion-icon name="create"></ion-icon></button>
+                               </td>
+                          </tr>
+                     
+                        </tbody>
+                      </table>
+        <br>
+        <nav aria-label="Page navigation example">
+                <ul class="pagination" style="justify-content:center">
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+        </section>
+        </div>
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Stock</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">    
+            
+                <div class="row">
+                    <div class="col">
+                      <span>
+                      Stock:<input type="number" class="form-control" ng-model="modal.quantity" value="{{modal.quantity}}">
+                    </span>
+                    </div>
+                  </div>
+                 
+                      <div class="row">
+                        <div class="alert alert-danger alert-dismissible fade show fadefade" style="margin: auto;" role="alert" ng-if="message.msg">
+                          <strong>{{message.msg}}</strong> 
+                          <!-- <button type="button" class="close"  aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button> -->
+                        </div>
+                        <br>
+                      </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" ng-click="editclose()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" ng-click="editmodal()" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>

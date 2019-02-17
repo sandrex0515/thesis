@@ -55,7 +55,8 @@ create table stock(
 create table cart(
     id int references profile(id),
     item varchar(255) NOT NULL,
-    price numeric NOT NULL    
+    price numeric NOT NULL,   
+    ord_id numeric unique NOT NULL
 );
 
 create table pending(
@@ -65,6 +66,8 @@ create table pending(
     address varchar(255) NOT NULL,
     contact varchar(255) NOT NULL
 );
+alter table pending add column date timestamp with time zone default now();
+alter table pending add column ord_id int references cart(ord_id);
 
 create table checked(
     name varchar(255) NOT NULL,
@@ -81,6 +84,9 @@ create table delivery(
     address varchar(255) NOT NULL,
     contact varchar(255) NOT NULL
 );
+    alter table delivery add column date timestamp with time zone default now();
+    alter table delivery add column ord_id numeric unique not null;    
+
 create table delivered(
     name varchar(255) NOT NULL,
     item varchar(255) NOT NULL,
@@ -88,6 +94,8 @@ create table delivered(
     address varchar(255) NOT NULL,
     contact varchar(255) NOT NULL
 );
+alter table delivered add column date timestamp with time zone default now();
+alter table delivered add column ord_id numeric unique not null;
 
 create table sales(
     id serial primary key,

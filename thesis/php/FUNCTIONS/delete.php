@@ -1,7 +1,8 @@
 <?php
 require_once('connection.php');
-require_once('../../php/CLASSES/adminClass.php');
-$class = new addPod (
+require_once('../../php/CLASSES/adminDelete.php');
+$class = new addPod(
+
                $_POST['item_id']
                
 

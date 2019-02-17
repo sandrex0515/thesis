@@ -1,0 +1,130 @@
+
+<style>
+        .list{
+          -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, .13);
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, .13);
+        }
+        .list:hover,
+        .list:active,
+        .list:focus{
+          border-color: transparent !important;
+        }
+        .sample{
+          background-color: #574B90;
+          border-radius: 120px;
+          -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, .13);
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, .13);
+        }
+        
+        </style>
+        <div class="main-content">
+          
+                <section class="section">
+                  <h1 class="section-header">
+                    <div>On-process Orders</div>
+                  </h1>
+                  <div class="row">
+                      <div class="col-lg-3">
+                  <input type="text" class="form-control" placeholder="Search...">
+                  <br>
+                </div>
+                <div class="col-sm-2">
+                    <a href="#/process2" class="btn btn-sm btn-light list" title="Table list"><ion-icon name="list" style="zoom:2.0"></ion-icon></a>          
+                      <a href="#/process" class="btn btn-sm btn-light" title="List"><ion-icon name="apps" style="zoom:2.0"></ion-icon></a>
+                      <br>
+        
+                </div>
+                <div class="col-lg-2">
+        
+                    <span ng-click="Selectopt()">
+                      Select By:
+                      <select class="form-control col-sm-8" ng-model="viewTitle">
+                            <option selected disabled></option>
+                            <option>Name</option>
+                            <option>Date</option>
+                            <option>Place</option>
+                          </select>
+                        </span>
+                        <br>
+                </div>
+           
+                <div class="col-sm-4">
+                    <button class="btn btn-sm btn-primary">Export to PDF</button>
+                    <button class="btn btn-sm btn-primary">Export to Excel</button>
+                </div>
+                </div>
+        
+                                <table class="table table-borderless">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Item</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Customer</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Options</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr ng-repeat="(key, value) in fetch track by $index">
+                                            <th scope="row">{{$index + 1}}</th>
+                                            <td>{{value.item}}</td>
+                                            <td>{{value.price | currency: "&#8369":0}}</td>
+                                            <td>{{value.type}}</td>
+                                            <td>{{value.created_at}}</td>
+                                            <td> <button type="button" data-toggle="modal" data-target="#editModal" class="btn btn-primary" ng-click="prodedit(value)" title="Edit"><ion-icon name="eye"></ion-icon></button>
+                                                <button type="button" class="btn btn-primary" ng-click="process(value)" title="Product Processed"><ion-icon name="checkmark"></ion-icon></button>
+
+                                            </td>
+                                            </tr>
+                                     
+                                        </tbody>
+                                      </table>
+                                      <br>
+                                      <nav aria-label="Page navigation example">
+                                              <ul class="pagination" style="justify-content:center">
+                                                <li class="page-item">
+                                                  <a class="page-link" href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                  </a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item">
+                                                  <a class="page-link" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                  </a>
+                                                </li>
+                                              </ul>
+                                            </nav>
+        
+        </section>
+        </div>
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" style="text-align:center;">    
+                    <img src="../../media/slide.jpg" class="img-thumbnail" width="200px" height="250px" style="border-radius:50%" alt="img">
+                   <br><br>
+                    <p>Item:&nbsp;{{value.item}} </p>
+                    <p>Price:&nbsp;{{value.price | currency:"&#8369":0}} </p>
+                    <p>Customer:&nbsp;{{value.type}} </p>
+                    <p>Address:&nbsp;{{value.quantity}}</p>
+                    <p>Contact:&nbsp;</p>
+                    <p>Email:&nbsp;</p>
+                    <p>Date added:&nbsp;{{value.created_at}}</p>
+                    <p>Reputation:&nbsp;</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" ng-click="editclose()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+          </div>
+        </div>

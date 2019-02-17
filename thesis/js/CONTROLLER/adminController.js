@@ -11,16 +11,32 @@ app.controller('adminController', function(
     $scope.modal = {};
     $scope.pk = {};
     fetch();
+    fetchcount();
 
 
 
     function fetch(){
+     
         var promise = adminFactory.fetch();
             promise.then(function(data){
                     var t = data.data.result[0].created_at;
                     var d = new Date(t.toLocaleString());
+                  
+                    
             $scope.fetch = data.data.result;
-       
+            })
+            .then(null, function(data){
+
+            });
+    }
+    function fetchcount(){
+     
+        var promise = adminFactory.fetchcount();
+            promise.then(function(data){
+                    
+                  
+                    
+            $scope.fetch.bilang = data.data.result[0].bilang;
             })
             .then(null, function(data){
 
@@ -72,6 +88,7 @@ app.controller('adminController', function(
                 $scope.prodprice = null;
                 $scope.prodstock = null;
                 fetch();
+                fetchcount();
             })
             .then(null, function(data){
                 $scope.message = {msg:'Error Product Title Exist!'};
@@ -91,24 +108,45 @@ app.controller('adminController', function(
     };
     $scope.prodedit = function(value){
             $scope.modal = value;
-            console.log($scope.modal);
+            fetch();
     }
     $scope.editmodal = function(){
-        $scope.pk.id = $scope.modal.id;
-        console.log($scope.pk);
-        // var promise = adminFactory.editprod($scope.pk);
-        // promise.then(function(data){
-        //         $scope.message = {successmsg:'Success'};
-        //         $scope.prodname = null;
-        //         $scope.proddescript = null;
-        //         $scope.prodcateg = null;
-        //         $scope.prodprice = null;
-        //         $scope.prodstock = null;
-        //         fetch();
-        //     })
-        //     .then(null, function(data){
-        //         $scope.message = {msg:'Error Title exist!'};
-        //     });
+       
+        var promise = adminFactory.editprod($scope.modal);
+        promise.then(function(data){
+                $scope.message = {successmsg:'Success'};
+                alert('success');
+                fetch();
+            })
+            .then(null, function(data){
+                $scope.message = {msg:'Error Title exist!'};
+            });
+    }
+    $scope.editclose = function(){
+        fetch();
+    }
+    $scope.Selectopt = function(){
+        if($scope.viewTitle == 'Title'){
+            $scope.viewTitle.item = 'item';
+        }
+        if($scope.viewTitle == 'Date'){
+            $scope.viewTitle.date = 'created_at';
+        }
+        if($scope.viewTitle == 'Price'){
+            $scope.viewTitle.price = 'price';
+        }
+        if($scope.viewTitle == 'Category'){
+            $scope.viewTitle.type = 'type';
+        }
+        fetch();
+            // var promise = adminFactory.selectprod($scope.viewTitle);
+            // promise.then(function(data){
+            //         fetch();
+            //     })
+            //     .then(null, function(data){
+            //         $scope.message = {msg:'Error Title exist!'};
+            //     });
+
     }
 
 
