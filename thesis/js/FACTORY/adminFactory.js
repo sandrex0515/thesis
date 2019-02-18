@@ -78,5 +78,20 @@ app.factory('adminFactory', function($http){
         });
         return promise;
     };
+    factory.recommend = function(data){
+        var promise = $http({
+            url: '../../php/FUNCTIONS/recommend.php',
+            method: 'POST',
+            headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
+            transformRequest: function(obj){
+                var str = [];
+                for(var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+                },
+                data: data  
+        });
+        return promise;
+    };
     return factory;
 });

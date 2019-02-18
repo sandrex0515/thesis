@@ -107,8 +107,21 @@ EOT;
 EOT;
             return ClassParent::get($sql);
         }
+        public function recommend(){
+            $sql = <<<EOT
+            insert into recommend
+            (
+                item_id
+            )
+            values
+            (
+                $this->item_id
+            )
+EOT;
+            return ClassParent::insert($sql);
 
-    
+        }
+
   
 }
 

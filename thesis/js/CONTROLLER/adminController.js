@@ -148,6 +148,16 @@ app.controller('adminController', function(
             //     });
 
     }
+    $scope.recommend = function(value){
+        $scope.val = value;
+        var promise = adminFactory.recommend($scope.val);
+            promise.then(function(data){
+                alert('success');
+            })
+            .then(null, function(data){
+                alert('error');
+            });
+    }
 
 
    

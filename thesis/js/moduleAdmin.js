@@ -64,6 +64,7 @@ app.config(function ($routeProvider){
         controller: 'adminController',
         templateUrl : '../../HTML/delivered2.html'
     })
+ 
     
     .otherwise({redirecTo: '/' });
 });

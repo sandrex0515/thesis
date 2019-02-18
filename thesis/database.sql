@@ -102,3 +102,9 @@ create table sales(
     sales numeric,
     year numeric
 );
+create table recommend(
+item_id int references item(item_id), 
+date timestamp with time zone default now()
+);  
+alter table recommend drop column item_id;
+alter table recommend add column item_id;

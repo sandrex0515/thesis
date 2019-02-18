@@ -75,7 +75,9 @@
                                             <td>{{value.type}}</td>
                                             <td>{{value.quantity}}</td>
                                             <td>{{value.created_at}}</td>
-                                            <td> <button type="button" data-toggle="modal" data-target="#editModal" class="btn btn-primary" ng-click="prodedit(value)" title="Edit"><ion-icon name="create"></ion-icon></button>
+                                            <td>
+                                                <button type="button" class="btn btn-primary" ng-click="recommend(value)" title="Add to recommend"><ion-icon name="flag"></ion-icon></button> 
+                                              <button type="button" data-toggle="modal" data-target="#editModal" class="btn btn-primary" ng-click="prodedit(value)" title="Edit"><ion-icon name="create"></ion-icon></button>
                                                 <button type="button" class="btn btn-primary" ng-click="proddel(value)" title="Delete"><ion-icon name="trash"></ion-icon></button></td>
                                           </tr>
                                      
