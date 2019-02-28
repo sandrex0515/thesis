@@ -1,5 +1,25 @@
+<!doctype html>
+<html lan="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="google-signin-client_id" content="659684437795-rfffpck4eac6cri9f4me2idmand3g18s.apps.googleusercontent.com">
+<link rel="stylesheet" type="text/css" href="../style/topsearch.css">
+<link rel="stylesheet" type="text/css" href="../style/style.css">
+<link rel="stylesheet" type="text/css" href="../style/stylerecommend.css">
+<link rel="stylesheet" type="text/css" href="../style/styletoday.css">
+<link rel="stylesheet" type="text/css" href="../style/swiper.min.css">
+<link rel="stylesheet" type="text/css" href="../style/swipercss.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+<link rel="stylesheet" href="style/font-awesome-4.7.0/css/font-awesome.min.css">
+<title>E-commerce</title>
 
-<div onload="loginLoader()" style="margin: 0;">
+
+</head>
+<body onload="loginLoader()" style="margin: 0;">
   <div id="loader">
   <div class="wrapper">
     <div class="circle circle-1"></div>
@@ -14,18 +34,34 @@
 
 
 <div class="userLogin" id="userLogin" style="display:none;">
-<p class="loginHead">Login</p>    
-<br>
-<div id="my-signin2"></div> 
-<p>-------------- OR --------------</p> 
 
+<p class="loginHead">Login</p>    
+<br><div class="row">
+  <div class="col-lg-7" style="border-right: 1px groove gray;padding-bottom: 5px" >
+  <input type="text" id="email" name="email" class="form-control" placeholder="Email"><br>
+  <input type="password" id="pass" name="pass" class="form-control" placeholder="Password">
+  <br>
+  <div id="div-message" class="text-danger" align="center"></div>
+<br>
+  <button type="submit" id="login" onclick="login()"class="btn btn-primary">Login</button>
+  <button type="button" class="btn btn-secondary">Cancel</button>
+
+  <br>
+  </div>
+  <br>
+<div class="col-lg-5">
+
+  <div id="my-signin2"></div> 
+<br>
 <div id="fb-root"></div>
 <div class="fb-login-button" data-width="240" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>
 
+</div>
+
+</div>
 <br>
 </div>
-</div>
-<script src="js/loader.js"></script>
+<script src="../js/loader.js"></script>
 <script>
 (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -47,7 +83,7 @@
       gapi.signin2.render('my-signin2', {
         'scope': 'profile email',
         'width': 240,
-        'height': 50,
+        'height': 45,
         'longtitle': true,
         'theme': 'dark',
         'onsuccess': onSuccess,
@@ -55,5 +91,76 @@
       });
     }
   </script>
+  <script>
 
+$(document).ready(function(){
+        checksession();
+
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_flat-aero',
+            radioClass: 'iradio_flat-aero'
+        });
+
+        $("#email, #pass, #login").on('keypress', function( event ) {
+            if ( event.which == 13 ) {
+                login();
+            }         
+        });
+    });
+
+    function checksession(){
+        $.ajax('./FUNCTIONS/session/getsession.php', {
+            type: "POST",
+            statusCode: {
+                404: function(response){
+                            //do nothing
+                        }
+                    },
+                    success: function(data){
+                        window.location = window.location.href.replace('login.html','');
+                    }
+                });
+    }
+
+  function login(){
+        var error = 0;
+        var empid = $('#email').val();
+        var pass = $('#pass').val();
+
+        if(empid.replace(/\s/g,'') == "" || pass.replace(/\s/g,'') == ""){
+            $('#div-message').empty().show().append("Incorrect Email and/or Password");
+
+            setTimeout(function(){
+                $('#div-message').empty().hide();
+            }, 5000);
+        }
+        else {
+            $.ajax('../php/FUNCTIONS/authentication.php', {
+                type: "POST",
+                data: { email : empid, password : pass },
+                statusCode: {
+                    404: function(response){
+                        $('#div-message').empty().show().append("Incorrect Employee ID and/or Password");
+
+                        setTimeout(function(){
+                            $('#div-message').empty().hide();
+                        }, 5000);
+                    }
+                },
+                success: function(data){
+                  alert('ok');
+                }
+            });
+        }
+
+    }
+
+  </script>
   <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+</body>
+</html>

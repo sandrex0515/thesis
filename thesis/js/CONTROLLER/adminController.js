@@ -13,11 +13,35 @@ app.controller('adminController', function(
     fetch();
     fetchcount();
 
-
-
+    $scope.show_fetch = function(){
+        fetch();
+        fetchcount();
+    }
+    $scope.show_fetch2 = function(){
+        fetch2();
+        fetchcount();
+    }
     function fetch(){
-     
-        var promise = adminFactory.fetch();
+        
+        var promise = adminFactory.fetch($scope.filter);
+            promise.then(function(data){
+                    var t = data.data.result[0].created_at;
+                    var d = new Date(t.toLocaleString());
+                  
+                    
+            $scope.fetch = data.data.result;
+            $scope.fetch.status = true;
+            })
+            .then(null, function(data){
+                $scope.fetch.status = false;
+
+            });
+    }
+    function fetch2(){
+        if($scope.viewTitle.length > 0){
+            $scope.filter.type = $scope.viewTitle;
+        }
+        var promise = adminFactory.fetch($scope.filter);
             promise.then(function(data){
                     var t = data.data.result[0].created_at;
                     var d = new Date(t.toLocaleString());
@@ -41,6 +65,11 @@ app.controller('adminController', function(
             .then(null, function(data){
 
             });
+    }
+
+    $scope.csv = function(){
+        window.open('../../php/FUNCTIONS/csv.php', '_blank');
+        console.log('sample');
     }
 
     $scope.reset = function(){

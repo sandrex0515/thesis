@@ -124,7 +124,7 @@
         
         <li><a href="#" id="log">My Order Status</a></li>
         <li></li>
-        <li id="blogin"><a href="#/login" ><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Login</a></li>
+        <li id="blogin"><a href="HTML/userlogin.html" ><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Login</a></li>
         <li><a href="#/admin" ><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Register</a></li>
         </ul>
         </div>
@@ -144,15 +144,11 @@
                         </div>
                         
                       </div>
+                      {{fetch.view}}
                       <div id="searchDisplay">
                         <ul>
-                                <li class="displayHov">search 1</li>
-                                <li>search 5</li>
-                                <li>search 4</li>
-                                <li>search 3</li>
-                                <li>search 2</li>
-                                <li>search 3</li>
-                                <li>search 2</li>
+                                <li class="displayHov" ng-repeat="(k, v) in fetch track by $index">{{v.view}}</li>
+                                
 
 
                         </ul>
@@ -217,14 +213,19 @@
             </div>
        
        
-<script src="js/swiper.min.js"></script>
-<script src="js/recommend.js"></script>
-<script src="js/today.js"></script>
+<!-- <script src="js/swiper.min.js"></script> -->
+<!-- <script src="js/recommend.js"></script> -->
+
+<!-- <script src="js/today.js"></script> -->
+
+
 <script src="js/eventListener.js"></script>
 <script src="angular/angular.min.js"></script>
 <script src="angular/angular-route.min.js"></script>
 <script src="js/module.js"></script>
 <script src="js/CONTROLLER/loginController.js"></script>
+<script src="js/FACTORY/adminFactory.js"></script>
+<script src="js/CONTROLLER/userController.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

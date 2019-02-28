@@ -11,11 +11,15 @@ $class = new addPod (
 
 $data = $class->addProd();
 $data1 = $class->addStock();
+$data2 = $class->Searchview();
 header("HTTP/1.1 404 Error");
 if($data['status']){
     header("HTTP/1.1 200 Ok");
     if($data1['status']){
         header("HTTP/1.1 200 Ok");
+        if($data2['status']){
+            header("HTTP/1.1 200 Ok");
+        }
     }
 }
 

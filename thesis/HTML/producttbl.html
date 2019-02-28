@@ -23,9 +23,25 @@
           <h1 class="section-header">
             <div>Product</div>
           </h1>
+       
           <div class="row">
+              <div class="col-lg-12 center-block text-center">
+                  <div class="card card-sm-3">
+                    <div class="card-icon bg-primary">
+                      <i class="ion ion-pricetag"></i>
+                    </div>
+                    <div class="card-wrap">
+                      <div class="card-header">
+                        <h4>Out of Stock</h4>
+                      </div>
+                      <div class="card-body">
+                        {{fetch.bilang}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               <div class="col-lg-4">
-          <input type="text" class="form-control" placeholder="Search...">
+          <input type="text" class="form-control" ng-model="filter.searchString" ng-change="show_fetch()" placeholder="Search...">
           <br>
         </div>
         <div class="col-lg-3">
@@ -38,7 +54,7 @@
 
             <span ng-click="Selectopt()">
               Select By:
-                <select class="form-control col-lg-8" ng-model="viewTitle">
+                <select class="form-control col-lg-8" ng-model="viewTitle" ng-change="show_fetch2()">
                         <option selected disabled></option>
                         <option>Title</option>
                         <option>Date</option>
@@ -56,7 +72,7 @@
         </div>
 
           <div class="row">
-                <div class="col-lg-3 prodlist" style="background:#fff;padding: 20px 20px;height: 350px;text-align: center;" ng-repeat="(key, value) in fetch track by $index">
+                <div class="col-lg-3 prodlist" style="background:#fff;padding: 20px 20px;height: 350px;text-align: center;" ng-repeat="(key, value) in fetch track by $index" ng-if="fetch.status">
                         <img src="../../media/slide.jpg" class="img-thumbnail" width="auto" height="200px" alt="img">
                         <p>Item:&nbsp;{{value.item}} </p>
                         <p>Category:&nbsp;{{value.type}} </p>
@@ -66,10 +82,11 @@
                         <button type="button" class="btn btn-primary" ng-click="recommend(value)" title="Add to recommend"><ion-icon name="flag"></ion-icon>                        </button> 
                         <button type="button" data-toggle="modal" data-target="#editModal" class="btn btn-primary" ng-click="prodedit(value)" title="Edit"><ion-icon name="create"></ion-icon></button>
                         <button type="button" class="btn btn-primary" ng-click="proddel(value)" title="Delete"><ion-icon name="trash"></ion-icon></button>
-                    </div>
+                      </div>
 </div>
 <br>
-<nav aria-label="Page navigation example">
+<center ng-if="!fetch.status"><h4 class="text-danger"><ion-icon name="alert"></ion-icon> <span>No item found</span></h4></center> 
+<nav aria-label="Page navigation example" ng-if="fetch.status">
         <ul class="pagination" style="justify-content:center">
           <li class="page-item">
             <a class="page-link" href="#" aria-label="Previous">

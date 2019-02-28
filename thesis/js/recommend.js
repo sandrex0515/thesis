@@ -1,3 +1,4 @@
+window.onload = function(){
 var swiper = new Swiper('.v1', {
     effect: 'coverflow',
     grabCursor: true,
@@ -27,3 +28,4 @@ var swiper = new Swiper('.v1', {
       disableOnInteraction:false,
     },
   });
+}

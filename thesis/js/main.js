@@ -16,8 +16,7 @@ $('.show-small-img').click(function () {
     }
   }
 })
-// 点击 '>' 下一张
-$('#next-img').click(function (){
+  $('#next-img').click(function (){
   $('#show-img').attr('src', $(".show-small-img[alt='now']").next().attr('src'))
   $('#big-img').attr('src', $(".show-small-img[alt='now']").next().attr('src'))
   $(".show-small-img[alt='now']").next().css({'border': 'solid 1px #951b25', 'padding': '2px'}).siblings().css({'border': 'none', 'padding': '0'})
@@ -32,8 +31,8 @@ $('#next-img').click(function (){
     }
   }
 })
-// 点击 '<' 上一张
-$('#prev-img').click(function (){
+
+  $('#prev-img').click(function (){
   $('#show-img').attr('src', $(".show-small-img[alt='now']").prev().attr('src'))
   $('#big-img').attr('src', $(".show-small-img[alt='now']").prev().attr('src'))
   $(".show-small-img[alt='now']").prev().css({'border': 'solid 1px #951b25', 'padding': '2px'}).siblings().css({'border': 'none', 'padding': '0'})

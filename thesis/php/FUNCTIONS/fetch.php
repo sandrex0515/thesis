@@ -1,18 +1,16 @@
 <?php
 require_once('connection.php');
 require_once('../../php/CLASSES/adminClass.php');
-$class = new addPod (
-               null,
-               null,
-               null,
-               null
+$data = array();
+foreach($_POST as $k=>$v){
+    $data[$k] = $v;
+}
+$class = new addPod ($data);
 
-);
-
-$data = $class->fetch();
+$datas = $class->fetch($data);
 $data1 = $class->fetchcount();
 header("HTTP/1.1 404 Error");
-if($data['status']){
+if($datas['status']){
     header("HTTP/1.1 200 Ok");
     if($data1['status']){
         header("HTTP/1.1 200 Ok");
@@ -23,5 +21,5 @@ if($data['status']){
 
 
 header("Content-Type:application/json");
-print_r(json_encode($data));
+print_r(json_encode($datas));
 ?>

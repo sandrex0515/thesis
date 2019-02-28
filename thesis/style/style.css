@@ -661,9 +661,11 @@ background: #FFF;
 }
 .userLogin{
     margin:0;
+    width: 640px;
+    height: auto;
     background: #fdf9f9;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);

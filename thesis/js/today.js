@@ -1,3 +1,6 @@
+window.onload = function() {
+
+
 var swiper2 = new Swiper('.v2', {
     
     centeredSlides: true,
@@ -19,3 +22,4 @@ autoplay:{
       disableOnInteraction:false,
 },
 });
+}

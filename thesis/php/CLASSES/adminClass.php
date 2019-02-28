@@ -79,7 +79,42 @@ return ClassParent::insert($sql);
 EOT;
         return ClassParent::insert($sql);
 }
-        public function fetch(){
+        public function Searchview(){
+            $sql = <<<EOT
+            insert into search
+            (
+                id,
+                views
+            )
+            values
+            (
+                $this->stock_id,
+                0
+            )
+EOT;
+        return ClassParent::insert($sql);
+        }
+
+        public function fetch($data){
+            $filter = $data['searchString'];
+            $type= $data['type'];
+            $where = "";
+            $where1 = "";
+            if($filter){
+                $where .= "AND item ILIKE '%".$filter."%'";
+            }
+            if($type == 'Date'){
+                $where1 .="ORDER BY created_at DESC";  
+            }else if($type == 'Title'){
+                $where1 .="ORDER BY item ASC";
+            }else if($type == 'Price'){
+                $where1 .="ORDER BY price DESC";
+            }else if($type == 'Category'){
+                $where1 .="ORDER BY type ASC";
+            }else{
+                $where1 .="ORDER BY created_at DESC";
+            }
+
             $sql = <<<EOT
                 select
                 id,
@@ -94,7 +129,10 @@ EOT;
                 item
                 inner join stock
                 on item.item_id = stock.stock_id
-                ORDER BY created_at DESC
+                where archived = false
+                $where
+                $where1
+
                
 EOT;
       

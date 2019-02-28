@@ -15,6 +15,10 @@
           -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, .13);
                     box-shadow: 0 10px 20px rgba(0, 0, 0, .13);
         }
+        .table-borderless>tbody>tr:nth-child(odd)>td,
+        .table-borderless>tbody>tr:nth-child(odd)>th,{
+          background-color: black;
+        }
         
         </style>
         <div class="main-content">
@@ -24,8 +28,23 @@
                     <div>Product</div>
                   </h1>
                   <div class="row">
+                      <div class="col-sm-12 center-block text-center">
+                          <div class="card card-sm-3">
+                            <div class="card-icon bg-primary">
+                              <i class="ion ion-pricetag"></i>
+                            </div>
+                            <div class="card-wrap">
+                              <div class="card-header">
+                                <h4>Out of Stock</h4>
+                              </div>
+                              <div class="card-body">
+                                {{fetch.bilang}}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       <div class="col-lg-4">
-                  <input type="text" class="form-control" placeholder="Search...">
+                  <input type="text" class="form-control" ng-model="filter.searchString" ng-change="show_fetch()" placeholder="Search..." >
                   <br>
                 </div>
                 <div class="col-lg-3">
@@ -38,7 +57,7 @@
         
                     <span ng-click="Selectopt()">
                       Select By:
-                        <select class="form-control col-lg-8" ng-model="viewTitle">
+                        <select class="form-control col-lg-8" ng-model="viewTitle" ng-change="show_fetch2()">
                                 <option selected disabled></option>
                                 <option>Title</option>
                                 <option>Date</option>
@@ -68,7 +87,7 @@
                                           </tr>
                                         </thead>
                                         <tbody>
-                                          <tr ng-repeat="(key, value) in fetch track by $index">
+                                          <tr ng-repeat="(key, value) in fetch track by $index" ng-if="fetch.status">
                                             <th scope="row">{{$index + 1}}</th>
                                             <td>{{value.item}}</td>
                                             <td>{{value.price | currency: "&#8369":0}}</td>
@@ -80,11 +99,14 @@
                                               <button type="button" data-toggle="modal" data-target="#editModal" class="btn btn-primary" ng-click="prodedit(value)" title="Edit"><ion-icon name="create"></ion-icon></button>
                                                 <button type="button" class="btn btn-primary" ng-click="proddel(value)" title="Delete"><ion-icon name="trash"></ion-icon></button></td>
                                           </tr>
+                                          <tr>
+                                          <th colspan="8" ng-if="!fetch.status">No items found</th>
+                                          </tr>
                                      
                                         </tbody>
                                       </table>
                                       <br>
-                                      <nav aria-label="Page navigation example">
+                                      <nav aria-label="Page navigation example" ng-if="fetch.status">
                                               <ul class="pagination" style="justify-content:center">
                                                 <li class="page-item">
                                                   <a class="page-link" href="#" aria-label="Previous">
