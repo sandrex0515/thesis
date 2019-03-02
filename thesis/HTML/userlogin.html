@@ -14,26 +14,21 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
-<link rel="stylesheet" href="style/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="style/font-awesome-4.7.0/css/font-awesome.min.css">  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
 <title>E-commerce</title>
 
 
 </head>
-<body onload="loginLoader()" style="margin: 0;">
-  <div id="loader">
-  <div class="wrapper">
-    <div class="circle circle-1"></div>
-    <div class="circle circle-1a"></div>
-    <div class="circle circle-2"></div>
-    <div class="circle circle-3"></div>
-  </div>
-  <h1 class="loadLoad">Loading&hellip;</h1>
-  </div>
+<body>
 
 
 
 
-<div class="userLogin" id="userLogin" style="display:none;">
+<div class="userLogin" id="userLogin" style="display:block;">
 
 <p class="loginHead">Login</p>    
 <br><div class="row">
@@ -61,7 +56,7 @@
 </div>
 <br>
 </div>
-<script src="../js/loader.js"></script>
+<script src="../js/loader2.js"></script>
 <script>
 (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -109,7 +104,7 @@ $(document).ready(function(){
     });
 
     function checksession(){
-        $.ajax('./FUNCTIONS/session/getsession.php', {
+      $.ajax('../php/FUNCTIONS/session.php', {
             type: "POST",
             statusCode: {
                 404: function(response){
@@ -117,7 +112,7 @@ $(document).ready(function(){
                         }
                     },
                     success: function(data){
-                        window.location = window.location.href.replace('login.html','');
+                      location.replace('../index.html');
                     }
                 });
     }
@@ -135,7 +130,7 @@ $(document).ready(function(){
             }, 5000);
         }
         else {
-            $.ajax('../php/FUNCTIONS/authentication.php', {
+            $.ajax('../php/FUNCTIONS/auth.php', {
                 type: "POST",
                 data: { email : empid, password : pass },
                 statusCode: {
@@ -157,10 +152,6 @@ $(document).ready(function(){
 
   </script>
   <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+
 </body>
 </html>

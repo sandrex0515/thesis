@@ -6,9 +6,11 @@ foreach($_POST as $k=>$v){
     $data[$k] = $v;
 }
 $class = new addPod ($data);
-$datas = $class->register($data);
+$datas = $class->login($data);
 header("HTTP/1.1 404 Error");
 if($datas['status']){
+    $pk = md5('pk'); 
+	setcookie($pk, md5($datas['result'][0]['pk']), time()+7200000, '/');
     header("HTTP/1.1 200 Ok");
 }
 

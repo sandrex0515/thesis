@@ -1,0 +1,245 @@
+<!doctype html>
+<html lan="en-US" xmlns="http://www.w3.org/1999/xhtml" id="ng-app" ng-app="app">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="google-signin-client_id" content="659684437795-rfffpck4eac6cri9f4me2idmand3g18s.apps.googleusercontent.com">
+<link rel="stylesheet" type="text/css" href="../style/topsearch.css">
+<link rel="stylesheet" type="text/css" href="../style/style.css">
+<link rel="stylesheet" type="text/css" href="../style/stylerecommend.css">
+<link rel="stylesheet" type="text/css" href="../style/styletoday.css">
+<link rel="stylesheet" type="text/css" href="../style/swiper.min.css">
+<link rel="stylesheet" type="text/css" href="../style/swipercss.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+<link rel="stylesheet" href="style/font-awesome-4.7.0/css/font-awesome.min.css">
+<title>E-commerce</title>
+<style>
+    .my-drop-zone { border: dotted 3px lightgray; }
+    .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+    .another-file-over-class { border: dotted 3px green; }
+
+    html, body { height: 100%; }
+</style>
+
+</head>
+<body ng-controller="AppController" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter" style="margin: 0;background-image: url('../media/123.jpg');background-repeat: no-repeat;background-size: cover;">
+
+
+
+
+<div class="userLogin" id="userLogin" style="display:block; width: 400px;background: rgba(255, 255, 255, 0.90)">
+
+<p class="loginHead">Register</p>    
+
+<br><div class="row">
+  <div class="col-lg" style="padding-bottom: 5px" >
+    <input type="text" id="name" name="name" class="form-control" style="background: rgba(255, 255, 255, 1);margin-bottom: 3px; " placeholder="Name" required>
+    <input type="date" id="date" name="name" class="form-control" style="background: rgba(255, 255, 255, 1);margin-bottom: 3px; " max="3000-12-31" required>
+    <input type="email" id="email" name="email" class="form-control" style="background: rgba(255, 255, 255, 1);margin-bottom: 3px; " placeholder="Email" required>
+  <input type="password" id="pass" name="pass" class="form-control" style="background: rgba(255, 255, 255, 1);margin-bottom: 3px; " placeholder="Password" required>
+  <input type="number" id="num" name="num" class="form-control" style="background: rgba(255, 255, 255, 1);margin-bottom: 3px; " placeholder="Contact no." required>
+  <input type="text" id="address" name="address" class="form-control" style="background: rgba(255, 255, 255, 1);margin-bottom: 3px; " placeholder="Address" required>
+ 
+  <select class="form-control" id="gender" style="background: rgba(255, 255, 255, 1) " required>
+    <option selected disabled>Select Gender</option>
+    <option>Male</option>
+    <option>Female</option>
+  </select>
+  <div class="custom-file" style="margin-top: 3px;">
+    <input type="file" class="custom-file-input col-lg-10" nv-file-select="" uploader="uploader" required>
+   
+    <div class="progress" style="padding-top: 10px; height: 45px; width: 90%;margin-left: 5%;margin-top: 10px;">
+        
+        <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }">{{uploader}} </div>
+    </div>
+    <img src="../uploads/{{response}} " id="respond" class="img-thumbnail" style="width: 100px;height: 100px;margin-bottom: 3px;" ng-if="response"><br>
+   
+    <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+        <span class="glyphicon glyphicon-upload"></span> Upload
+    </button>
+    
+    <label class="custom-file-label" for="customFile" required>Choose File</label>
+</div><br>
+  <div id="div-message" class="text-danger" align="center"></div>
+<br>
+  <button type="submit" id="login" onclick="register()"class="btn btn-primary">Register</button>
+
+  <button type="button" id="cancel" onclick="cancel()" class="btn btn-secondary">Cancel</button>
+
+  <br>
+  </div>
+  <br>
+
+</div>
+
+</div>
+</div>
+
+ 
+  <script>
+function cancel(){
+    $('#email').val('');
+    $('#pass').val('');
+    $('#address').val('');
+    $('#gender').val('');
+    $('#name').val('');
+    $('#date').val('Select Gender');
+    $('#num').val('');
+    $('#respond').removeAttr('src');
+    
+   
+     
+}
+
+$(document).ready(function(){
+        checksession();
+
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_flat-aero',
+            radioClass: 'iradio_flat-aero'
+        });
+
+        $("#email, #pass, #register, #address, #gender, #name, #date, #num").on('keypress', function( event ) {
+            if ( event.which == 13 ) {
+                register();
+            }         
+        });
+    });
+
+    function checksession(){
+        $.ajax('./FUNCTIONS/session/getsession.php', {
+            type: "POST",
+            statusCode: {
+                404: function(response){
+                            //do nothing
+                        }
+                    },
+                    success: function(data){
+                        window.location = window.location.href.replace('login.html','');
+                    }
+                });
+    }
+
+  function register(){
+        var profimg = $('#respond').attr('src');
+        console.log(profimg)
+        var error = 0;
+        var empid = $('#email').val();
+        var pass = $('#pass').val();
+        var addr = $('#address').val();
+        var gender = $('#gender').val();
+        var name = $('#name').val();
+        var date = $('#date').val();
+        var num = $('#num').val();
+        
+
+
+        if(empid.replace(/\s/g,'') == ""){
+            $('#div-message').empty().show().append("All Fields are Required");
+            $('#email').css('border', '1px solid red');
+
+            setTimeout(function(){
+                $('#div-message').empty().hide();
+            }, 5000);
+        }else{
+            $('#email').css('border', '1px solid green');
+        }
+        if(num.replace(/\s/g,'') == ""){
+            $('#div-message').empty().show().append("All Fields are Required");
+            $('#num').css('border', '1px solid red');
+
+            setTimeout(function(){
+                $('#div-message').empty().hide();
+            }, 5000);
+        }else{
+            $('#num').css('border', '1px solid green');
+        }
+        if(pass.replace(/\s/g,'') == ""){
+            $('#div-message').empty().show().append("All Fields are Required");
+            $('#pass').css('border', '1px solid red');
+
+            setTimeout(function(){
+                $('#div-message').empty().hide();
+            }, 5000);
+        }else{
+            $('#pass').css('border', '1px solid green');
+        }
+        if(date.replace(/\s/g,'') == ""){
+            $('#div-message').empty().show().append("All Fields are Required");
+            $('#date').css('border', '1px solid red');
+
+            setTimeout(function(){
+                $('#div-message').empty().hide();
+            }, 5000);
+        }else{
+            $('#date').css('border', '1px solid green');
+        }
+        if(name.replace(/\s/g,'') == ""){
+            $('#div-message').empty().show().append("All Fields are Required");
+            $('#name').css('border', '1px solid red');
+
+            setTimeout(function(){
+                $('#div-message').empty().hide();
+            }, 5000);
+        }else{
+            $('#name').css('border', '1px solid green');
+        }
+        if(gender.replace(/\s/g,'') == ""){
+            $('#div-message').empty().show().append("All Fields are Required");
+            $('#gender').css('border', '1px solid red');
+
+            setTimeout(function(){
+                $('#div-message').empty().hide();
+            }, 5000);
+        }else{
+            $('#gender').css('border', '1px solid green');
+        }
+        if(addr.replace(/\s/g,'') == ""){
+            $('#div-message').empty().show().append("All Fields are Required");
+            $('#address').css('border', '1px solid red');
+
+            setTimeout(function(){
+                $('#div-message').empty().hide();
+            }, 5000);
+        }
+        else {
+            $.ajax('../php/FUNCTIONS/authentication.php', {
+                type: "POST",
+                data: { email : empid, password : pass, address: addr, prof: profimg, num: num, gender: gender, name: name, bdate: date},
+                statusCode: {
+                    404: function(response){
+                        $('#div-message').empty().show().append("Name and/or Email is already taken");
+
+                        setTimeout(function(){
+                            $('#div-message').empty().hide();
+                        }, 5000);
+                    }
+                },
+                success: function(data){
+                    window.location = window.location.href.replace('loginLoader.html');
+                }
+            });
+        }
+
+    }
+
+  </script>
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="http://code.angularjs.org/1.2.0/angular.min.js"></script>
+
+  <script src="http://nervgh.github.io/js/es5-shim.min.js"></script>
+        <script src="http://nervgh.github.io/js/es5-sham.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+        <script src="../angular/console-sham.js"></script>
+        <script src="../angular/angular-file-upload.min.js"></script>
+        <script src="../angular/controllers.js"></script>
+</body>
+</html>

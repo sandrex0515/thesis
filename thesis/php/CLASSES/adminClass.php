@@ -159,8 +159,73 @@ EOT;
             return ClassParent::insert($sql);
 
         }
+        public function register($data){
+            $pass = $data['password'];
+        
+          
+         
+            $password = hash('sha256', $pass);
+          
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(trim(strip_tags($v)));
+            }
 
-  
+            $sql = <<<EOT
+            with tbluser as(
+                insert into tbluser
+                (
+                    name,
+                    bday,
+                    gender,
+                    email,
+                    password,
+                    contact,
+                    address
+                )
+                values
+                (
+                    '$this->name',
+                    '$this->bdate',
+                    '$this->gender',
+                    '$this->email',
+                    '$password',
+                    '$this->contact',
+                    '$this->address'
+                )
+                returning id
+                )
+                    insert into userpic
+                    (
+                        user_id,
+                        path
+                        )
+                        values(
+                            (select id from tbluser),
+                             '$this->prof'
+                             )            
+EOT;
+                return ClassParent::insert($sql);
+        }
+        public function login($data){
+            $pass = $data['password'];
+        
+          
+         
+            $password = hash('sha256', $pass);
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+            $sql = <<<EOT
+                select * 
+                from tbluser 
+                where
+                email = '$this->email' 
+                AND
+                password = '$password'
+EOT;
+    return ClassParent::get($sql);
+
+        }
 }
 
 

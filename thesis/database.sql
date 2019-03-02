@@ -29,6 +29,9 @@ create table userpic(
     id int references profile(id),
     path varchar(255) NOT NULL
 );
+alter table userpic drop column id;
+alter table userpic add column user_id numeric;
+alter table userpic owner to sandrex;
 
 create table item(
     id serial primary key,
@@ -98,7 +101,7 @@ create table delivered(
 alter table delivered add column date timestamp with time zone default now();
 alter table delivered add column ord_id numeric unique not null;
 
-create table tbluser(
+    create table tbluser(
     id serial primary key, 
     name text unique not null, 
     bday varchar, 
@@ -110,6 +113,8 @@ create table tbluser(
     alter table tbluser owner to sandrex;
     alter table tbluser add column created_at timestamp with time zone default now();
     alter table tbluser add column archived boolean default false;
+    create unique index constraint_name on tbluser (email);
+    alter table tbluser add column contact varchar not null;
 
 create table sales(
     id serial primary key,

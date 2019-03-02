@@ -165,67 +165,17 @@
 
             <div class="container-fluid searchContent">
                 
-                <ul><li>
+                <ul><li ng-repeat="(k,v) in search track by $index">
                 <div class="searchContentItem">
 
                 
                 <img class="img-thumbnail" src="media/lazada.png">  
-                    <p class="title">SAMPLE TITLE</p>
-                    <p class="price">&#8369; 100,000</p>
+                    <p class="title">{{v.title}}</p>
+                    <p class="price">&#8369; {{v.price}} </p>
         
             </div>
             </li>
-            <li>
-            <div class="searchContentItem">
-
-            
-                    <img class="img-thumbnail" src="media/lazada.png">  
-                    <p class="title">SAMPLE TITLE</p>
-                    <p class="price">&#8369; 100,000</p>
-            
-                </div>
-                </li>
-                <li>
-                <div class="searchContentItem">
-
-              
-                <img class="img-thumbnail" src="media/lazada.png">  
-                <p class="title">SAMPLE TITLE</p>
-                <p class="price">&#8369; 100,000</p>
-        
-            </div>
-            </li>
-            <li>
-                    <div class="searchContentItem">
-    
-                  
-                    <img class="img-thumbnail" src="media/lazada.png">  
-                    <p class="title">SAMPLE TITLE</p>
-                    <p class="price">&#8369; 100,000</p>
-            
-                </div>
-                </li>
-                <li>
-                        <div class="searchContentItem">
-        
-                      
-                        <img class="img-thumbnail" src="media/lazada.png">  
-                        <p class="title">SAMPLE TITLE</p>
-                        <p class="price">&#8369; 100,000</p>
-                
-                    </div>
-                    </li>
-                    <li>
-                            <div class="searchContentItem">
-            
-                          
-                            <img class="img-thumbnail" src="media/lazada.png">  
-                       
-                            <p class="title">SAMPLE TITLE</p>
-                            
-                            <p class="price">&#8369; 100,000</p>
-                        </div>
-                        </li>
+         
         </ul>
             
     

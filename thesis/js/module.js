@@ -15,6 +15,11 @@ app.config(function ($routeProvider){
         controller: 'loginController',
         templateUrl: './admin/page/index.html'
     })
+    .when('/search',
+    {
+        controller: 'userController',
+        templateUrl: './HTML/search.html'
+    })
     
     .otherwise({redirecTo: '/' });
 });

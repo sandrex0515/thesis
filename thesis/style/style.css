@@ -665,7 +665,7 @@ background: #FFF;
     height: auto;
     background: #fdf9f9;
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
@@ -734,7 +734,18 @@ background: #FFF;
 #loader{
     text-align: center;
 }
+#loader2{
+    text-align: center;
+}
     .loadLoad {
+        color: #222;
+        font-size: 15px;
+        font-weight: 400;
+        letter-spacing: 0.05em;
+        margin: 40px auto;
+        text-transform: uppercase;
+      }
+      .loadLoad2 {
         color: #222;
         font-size: 15px;
         font-weight: 400;

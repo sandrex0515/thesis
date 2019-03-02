@@ -20,7 +20,7 @@ app.factory('adminFactory', function($http){
     };
     factory.fetch = function(data){
         var promise = $http({
-            url: '../../php/FUNCTIONS/fetch.php',
+            url: 'php/FUNCTIONS/fetch.php',
             method: 'POST',
             headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
             transformRequest: function(obj){
