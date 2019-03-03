@@ -163,34 +163,19 @@
        </div>
        
 
-            <div class="container-fluid searchContent">
+            <div class="container-fluid searchContent" >
                 
-                <ul><li ng-repeat="(k,v) in search track by $index">
-                <div class="searchContentItem">
+                <ul><li ng-repeat="(k,v) in fetch track by $index">
+                <div class="searchContentItem"  style="height: 200px;width: 300px;margin-bottom: 80px;">
 
                 
                 <img class="img-thumbnail" src="media/lazada.png">  
                     <p class="title">{{v.title}}</p>
-                    <p class="price">&#8369; {{v.price}} </p>
-        
+                    <p class="price" style="font-size: 24px;padding:0;">&#8369; {{v.price}} </p>
             </div>
             </li>
-         
         </ul>
-            
-    
-        
 </div>
 
     </div>
    </div>
-
-    <div class="container-fluid footer">
-     
-    <div class="container-fluid">
-        <hr>
-        <p>this site was developed by sandrex cabrales</p></div>
-    </div>
-
-</body>
-    </html>

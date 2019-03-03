@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('app', ['ngRoute', 'angular-md5']);
 
 app.config(function ($routeProvider){
 

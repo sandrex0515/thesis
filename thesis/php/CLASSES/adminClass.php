@@ -124,11 +124,15 @@ EOT;
                 item_id,
                 created_at::timestamp(0),
                 item,
-                stock.quantity
+                stock.quantity,
+                itempic.path
                 from
                 item
                 inner join stock
                 on item.item_id = stock.stock_id
+                inner join itempic
+                on item.item_id = itempic.pic_id
+                
                 where archived = false
                 $where
                 $where1
@@ -165,7 +169,6 @@ EOT;
           
          
             $password = hash('sha256', $pass);
-          
             foreach($data as $k=>$v){
                 $this->$k = pg_escape_string(trim(strip_tags($v)));
             }
@@ -181,6 +184,7 @@ EOT;
                     password,
                     contact,
                     address
+
                 )
                 values
                 (
@@ -191,6 +195,7 @@ EOT;
                     '$password',
                     '$this->contact',
                     '$this->address'
+
                 )
                 returning id
                 )
@@ -210,7 +215,6 @@ EOT;
             $pass = $data['password'];
         
           
-         
             $password = hash('sha256', $pass);
             foreach($data as $k=>$v){
                 $this->$k = pg_escape_string(strip_tags(trim($v)));
@@ -225,6 +229,23 @@ EOT;
 EOT;
     return ClassParent::get($sql);
 
+        }
+        public function get_info($pk){
+            
+     
+            $sql = <<<EOT
+                    select * 
+
+                    from
+                    tbluser 
+                    inner join userpic
+                    on tbluser.id = userpic.user_id
+                    where
+                    pk = $pk
+                     
+                    
+EOT;
+            return ClassParent::get($sql);
         }
 }
 

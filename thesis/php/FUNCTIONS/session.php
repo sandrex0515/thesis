@@ -1,6 +1,6 @@
 <?php
 
-$_id = md5('pk');
+$_id = 'pk';
 
 if(isset($_COOKIE[$_id]) && !empty($_COOKIE[$_id])){
 	setcookie($_id, $_COOKIE[$_id], time()+7200000, '/');
@@ -14,14 +14,14 @@ if(isset($_COOKIE[$_id]) && !empty($_COOKIE[$_id])){
 							)
 					)
 		);
+
 }
 else{
 	header("HTTP/1.0 404 No active session");
 }
 // $data = array();
-$data = $_COOKIE[$_datas];
 // foreach($data as $k=>$v){
 //     $data[$k] = $v;
 // }
-print_r($data);
+
 ?>

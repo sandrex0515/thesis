@@ -54,7 +54,7 @@ box-sizing: border-box;
     
 }
 #log{
-    padding-left: 200px;
+    padding-left: 300px;
 }
 #blogin{
    border-left: #ffff66 solid 2px;
@@ -782,11 +782,106 @@ background: #FFF;
         background: #66ff99;
         border-radius: 10px;
     }
+
+    #userprof{
+
+        vertical-align: middle;
+        white-space: nowrap;
+        right: 80px;
+        top: 40px;
+        z-index: 99;
+        background: #faf7f7;
+        width: auto;
+        position: absolute;
+        border-radius: 10px;
+        height: auto 370px;
+        display:none;
+    
+        }
+        #userprof ul li{
+            padding: 10px 20px;
+            margin: 0;
+            float: left;
+            width: 100%;
+            cursor: pointer;
+    
+        }
+        #userprof li:hover{
+            background: #66ff99;
+            border-radius: 10px;
+        }
 .footer{
     margin-top: auto;
     background: inherit;
    
 }
+
+
+  
+  @-webkit-keyframes scroll {
+    0% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+    100% {
+      -webkit-transform: translateX(calc(-250px * 7));
+              transform: translateX(calc(-250px * 7));
+    }
+  }
+  
+  @keyframes scroll {
+    0% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+    100% {
+      -webkit-transform: translateX(calc(-250px * 7));
+              transform: translateX(calc(-250px * 7));
+    }
+  }
+  .slider {
+    background: white;
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
+    height: 100px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    width: 900px;
+  
+  }
+  .slider img{
+    padding-left: 50px;
+  }
+  .slider::before, .slider::after {
+    background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
+    content: "";
+    height: 100px;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+  }
+  .slider::after {
+    right: 0;
+    top: 0;
+    -webkit-transform: rotateZ(180deg);
+            transform: rotateZ(180deg);
+  }
+  .slider::before {
+    left: 0;
+    top: 0;
+  }
+  .slider .slide-track {
+    -webkit-animation: scroll 15s linear infinite;
+            animation: scroll 15s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+  .slider .slide {
+    height: 100px;
+    width: 250px;
+  }
+  
+
 .footer hr{
 color:#ffff00;
 background-color: #ffff00;
@@ -795,3 +890,39 @@ border-color:#ffff00;
 .footer p{
     float:left;
 }
+
+/* progress bar */
+.carousel-progress-bar-timer {
+    display: block;
+    height: 5px;
+    background-color: #039be5;
+    width: 0%;
+    margin: 0;
+    border: none;
+    z-index: 11;
+    position: fixed;
+    top: 0px;
+  }
+  
+  .carousel-progress-bar-timer.animate {
+    /* We make the transition time shorter to avoid the slide transitioning
+      before the timer bar is "full" - change the 4.25s here to fit your
+      carousel's transition time */
+    -webkit-transition: width 8s linear;
+    -moz-transition: width 8s linear;
+    -ms-transition: width 8s linear;
+    -o-transition: width 8s linear;
+    transition: width 8s linear;
+  }
+  
+  .carousel
+    .transition-timer-carousel-left-progress-bar.stopanimation,
+  .carousel
+    .transition-timer-carousel-progress-bar.stopanimation {
+    /* class to fix IE bug that make transition continue even when you remove the class .animate */
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+  }
+  

@@ -2,15 +2,17 @@
 require_once('connection.php');
 require_once('../../php/CLASSES/adminClass.php');
 $data = array();
+
 foreach($_POST as $k=>$v){
     $data[$k] = $v;
 }
-$class = new addPod ($data);
-$datas = $class->login($data);
+$pk = $data['pk'];
+$class = new addPod ($pk);
+
+$datas = $class->get_info($pk);
+
 header("HTTP/1.1 404 Error");
 if($datas['status']){
-    $pk = 'pk'; 
-	setcookie($pk, $datas['result'][0]['pk'], time()+7200000, '/');
     header("HTTP/1.1 200 Ok");
 }
 

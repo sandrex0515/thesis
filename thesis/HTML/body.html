@@ -102,13 +102,28 @@
                 <li><a href="#">About us</a></li>
                 <li><a href="#">Contact</a></li>
                 
-                <li><a href="#" id="log">My Order Status</a></li>
+                <li><a href="#" id="log" style="color:#ffff66;">a</a></li>
                 <li></li>
-                <li id="blogin"><a href="HTML/userlogin.html" ><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Login</a></li>
-                <li><a href="HTML/registerloader.html" ><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Register</a></li>
-                </ul>
+                <div ng-if="info.status">
+                       
+                       <a onclick="show()" style="text-transform: capitalize;  font-size: 22px;cursor:pointer;line-height: 50px">Hi, {{info.name}} <i class="fa fa-caret-down" aria-hidden="true"></i>
+                       </a>
+                       <div id="userprof">
+                               <ul style="list-style: none;float:left;">
+                                       <li data-toggle="modal" data-target="#ordhModal">Order History</li><br>
+                                       <li data-toggle="modal" data-target="#editModal">Account Information</li><br>
+                                       <li><i class="fa fa-power-off" aria-hidden="true"></i> Logout</li>
+                               </ul>
+
+                       </div>
                 </div>
-                <div class="head-top">
+                <div ng-if="!info.status">
+                <li id="blogin"><a href="HTML/userlogin.html" ><i class="fa fa-sign-in" aria-hidden="true" ></i>&nbsp;Login</a></li>
+                <li><a href="HTML/registerloader.html" ><i class="fa fa-sign-in" aria-hidden="true" ></i>&nbsp;Register</a></li>
+        </div>        
+        </ul>
+                </div>
+                <div class="head-top" >
                   
                     <div class="logo">
                         <ul>
@@ -128,8 +143,8 @@
                               
                               <div id="searchDisplay" style="cursor:pointer">
                                 <ul>
-                                        <li class="displayHov" ng-repeat="(k, v) in fetch track by $index"><h6 style="text-decoration: none;" ng-click="searchres(v)" ng-if="fetch.status">{{v.item}}</h6></li>
-                                        
+                                        <a ng-click="searchres(v)" href="#/search"  ng-repeat="(k, v) in fetch track by $index"  ng-if="fetch.status"> <li class="displayHov"><h6 style="text-decoration: none;" >{{v.item}}</h6></li>
+                                        </a>
         
         
                                 </ul>
@@ -166,8 +181,7 @@
         
                                        
                                         </li>
-                                     <li class="nav-item dropdown"> <a id="a-submenu" href="todaysdeal.html">Today's deal</a>
-                                  </li >    <li class="nav-item dropdown"> <a id="a-submenu" href="#">Hot deals</a>
+                                  </li >    <li class="nav-item dropdown"> <a id="a-submenu" href="#">Recommended</a>
                                    </li>   <li class="nav-item dropdown">  <a id="a-submenu" href="#">Best sales</a>
                                      </li>  <li class="nav-item dropdown"> <a id="a-submenu" href="#">Top products</a>
                                         </li></ul>
@@ -186,94 +200,32 @@
                         </div>
 <div class="container-fluid">
         <div class="recommend">
-            <h1>For you&nbsp;<a style="font-size:16px;" href="#">see more</a></h1>
+            <h1>&nbsp;</h1>
     
-            <swiper>
-                        <slides>slide1</slides><slides>slide2</slides>
+       
 
-            </swiper>
-
-
-
-            <div class="swiper-container v1">
-                    <div class="swiper-wrapper ">
-                            <div class="swiper-slide v1">
-                                    
-                                   <a href="#" target="_blank"> <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                                   </a>
-                                                          
-                          </div>
-                          <div class="swiper-slide v1">
-                                    
-                                <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                            
-                                                      
-                      </div>
-                      <div class="swiper-slide v1">
-                                    
-                            <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                        
-                                                  
-                  </div>
-                  <div class="swiper-slide v1">
-                                    
-                        <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                    
-                                              
-              </div>
-              <div class="swiper-slide v1">
-                                    
-                    <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                
-                                          
-          </div>
-          <div class="swiper-slide v1">
-                                    
-                <img class="img-thumbnail" src="media/lazada.png" alt="test">
-            
-                                      
-      </div>
-      <div class="swiper-slide v1">
-                                    
-            <img class="img-thumbnail" src="media/lazada.png" alt="test">
-        
-                                  
-    </div>
-    <div class="swiper-slide v1">
-                                    
-            <img class="img-thumbnail" src="media/lazada.png" alt="test">
-        
-                                  
-    </div>
-    <div class="swiper-slide v1">
-                                    
-            <img class="img-thumbnail" src="media/lazada.png" alt="test">
-        
-                                  
-    </div>
-    <div class="swiper-slide v1">
-                                    
-            <img class="img-thumbnail" src="media/lazada.png" alt="test">
-        
-                                  
-    </div>
-                  
-                    </div>
-                    
-                  <div class="swiper-button-next v1n"></div>
-                  <div class="swiper-button-prev v1p"></div>
-                    <div class="swiper-scrollbar v1pp"></div>
-                  </div>
-    
+            <div class="slider">
+                        <div class="slide-track">
+                                <div class="slide">
+                                        <img src="media/lazada.png" height="100" width="250" alt="" />
+                                </div>
+                                <div class="slide">
+                                                <img src="media/lazada.png" height="100" width="250" alt="" />
+                                        </div>
+                                        <div class="slide">
+                                                        <img src="media/lazada.png" height="100" width="250" alt="" />
+                                                </div>
+                                  <div class="slide">
+                                        <img src="media/lazada.png" height="100" width="250" alt="" />
+                                </div>
+                                
+                        </div>
+                </div>
     
               
             
     </div>
-    
-                    
-    
-    
-                    </div>
+          </div>
    
     
                     <div class="container-fluid today">
@@ -330,15 +282,75 @@
           <div class="con-top-search">
                <p style="float:left">#{{$index + 1}}</p><p style="float:left">:&nbsp;{{v.view}}&nbsp;<i class="fa fa-eye" aria-hidden="true"></i>
                  </p> 
-                <a href="#" target="_blank"> <img class="img-thumbnail" src="media/lazada.png" alt="test">
+                <a href="#/search" ng-click ="topsearch(v)" > <img class="img-thumbnail" src="media/lazada.png" alt="test">
                 </a>
          </div>
         </li>                                                                                            
        </ul>               
     </div>
 
-<script>
 
+              
+              <div class="modal fade" id="ordhModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">My order history</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body" style="max-height: 450px;overflow-y:auto ">
+                      <ul style="list-style: none;">
+                              <li ng-repeat="(k, v) in fetch track by $index">{{v}} </li>
+                      </ul>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Account Information</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body" style="max-height: 450px;overflow-y:auto ">
+                           <label>Name:</label>
+                              <input class="form-control" type="text" ng-model="info.name" placeholder="name">
+                              <br><label>Email:</label>
+                              <input class="form-control" type="email" ng-model="info.email" placeholder="name">
+                              <br><label>Contact:</label>
+                              <input class="form-control" type="text" ng-model="info.contact" placeholder="contact">
+                              <br><label>Address:</label>
+                              <input class="form-control" type="text" ng-model="info.address" placeholder="name">
+                            <br>
+                              <button type="button" class="btn btn-primary" >Change Password</button>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary" >Save Changes</button>
+    
+                        </div>
+                          </div>
+                        </div>
+                      </div>
+<script>
+        function show(){
+var x = document.getElementById("userprof");
+
+if(x.style.display === "none"){
+        x.style.display = "block";
+}else{
+        x.style.display = "none";
+}
+}
                 $(document).ready(function(){
                      
                       $("#search").keyup(function(){
@@ -355,4 +367,5 @@
                         
                          
                         });
+                        $()
                 </script>
