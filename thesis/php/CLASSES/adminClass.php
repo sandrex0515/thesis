@@ -163,6 +163,29 @@ EOT;
             return ClassParent::insert($sql);
 
         }
+        public function temp($data){
+                foreach($data as $k=>$v){
+                    $this->$k = pg_escape_string(strip_tags(trim($v)));
+                }
+            $sql = <<<EOT
+            with a as (
+                    delete from temp where pk = $this->pk
+             )
+           ,b as (
+                    insert into temp(
+                        pk,
+                        search
+                        )
+                        values(
+                            $this->pk,
+                            '$this->searchString'
+                            )
+                            )
+                            select * from temp where pk = $this->pk
+                    
+EOT;
+                return ClassParent::insert($sql);
+        }
         public function register($data){
             $pass = $data['password'];
         
@@ -244,6 +267,35 @@ EOT;
                     pk = $pk
                      
                     
+EOT;
+            return ClassParent::get($sql);
+        }
+
+        public function fetchsearch($data){
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+            $sql = <<<EOT
+            select
+            id,
+            description,
+            price,
+            type,
+            item_id,
+            created_at::timestamp(0),
+            item,
+            stock.quantity,
+            (select search from temp where pk = $this->pk) as search,
+            itempic.path
+            from
+            item
+            inner join stock
+            on item.item_id = stock.stock_id
+            inner join itempic
+            on item.item_id = itempic.pic_id
+           
+            where item = (select search from temp where pk = $this->pk)
+                
 EOT;
             return ClassParent::get($sql);
         }

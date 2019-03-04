@@ -54,6 +54,7 @@ alter table itempic drop column date;
 alter table itempic add column pic_id numeric;
 alter table itempic add column date timestamp with time zone default now();
 alter table itempic owner to sandrex;
+alter table itempic add column main text;
 
 create table stock(
     -- id int references item(id),
@@ -144,7 +145,11 @@ alter table search drop column id;
 alter table search add column id numeric unique;
 alter table search add column id_search numeric unique;
 
-
+create table temp(
+    pk numeric, 
+    search varchar
+    );
+    alter table temp owner to sandrex;
 
 
     $scope.export_pdf = function () {

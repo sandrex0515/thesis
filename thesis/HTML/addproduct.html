@@ -1,143 +1,141 @@
 <style>
-.sample2{
-  background-color: #574B90;
-  border-radius: 120px;
-
-}
-</style>
-<div class="main-content">
-  
-        <section class="section">
-          <h1 class="section-header">
-            <div>Add Product</div>
-          </h1>
-          <div class="row" style="text-align: center;">
-            <div class="col-lg-12 center-block text-center">
-              <div class="card card-sm-3">
-                <div class="card-icon bg-primary">
-                  <i class="ion ion-pricetag"></i>
-                </div>
-                <div class="card-wrap">
-                  <div class="card-header">
-                    <h4>Out of Stock</h4>
+  .sample2{
+    background-color: #574B90;
+    border-radius: 120px;
+  }
+  </style>
+  <div class="main-content">
+    
+          <section class="section">
+            <h1 class="section-header">
+              <div>Add Product</div>
+            </h1>
+            <div class="row" style="text-align: center;">
+              <div class="col-lg-12 center-block text-center">
+                <div class="card card-sm-3">
+                  <div class="card-icon bg-primary">
+                    <i class="ion ion-pricetag"></i>
                   </div>
-                  <div class="card-body">
-                    {{fetch.bilang}}
+                  <div class="card-wrap">
+                    <div class="card-header">
+                      <h4>Out of Stock</h4>
+                    </div>
+                    <div class="card-body">
+                      {{fetch.bilang}}
+                    </div>
                   </div>
                 </div>
+               
               </div>
              
-            </div>
-           
-            
-
-            <div class="col-lg-6">
-              <div class="input-group">
-                <input type="text" class="form-control col-lg-10" placeholder="Product Name" ng-model="prodname" required>
-              <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="prodname == null">
-                Required!
-              </p>
-              <p class="text-success col-lg-2" ng-if="prodname != null" large>
-                <i class="ion ion-checkmark" style="zoom:2.0;" ></i>
-              </p>
-            </div>
-            <br>
-            <div class="input-group">
-                <textarea class="form-control col-lg-10" rows="3" placeholder="Description" maxlength="795" ng-model="proddescript" required></textarea> 
-                <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="proddescript == null">
-                  Required!
-                </p>
-                <p class="text-success col-lg-2" ng-if="proddescript != null" large>
-                  <i class="ion ion-checkmark" style="zoom:2.0;" ></i>
-                </p>
-            </div>
-            <br>
-                <div class="input-group">
-                <input type="number" class="form-control col-lg-10" placeholder="Price" ng-model="prodprice" required>
-                <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="prodprice == null">
-                  Required!
-                </p>
-                <p class="text-success col-lg-2" ng-if="prodprice != null" large>
-                  <i class="ion ion-checkmark" style="zoom:2.0;" ></i>
-                </p>
-                </div>
-                <br>
-                <div class="input-group">
-                <select class="form-control col-lg-10" placeholder="Category" ng-model="prodcateg" required>
-                    <option disabled>Category</option>
-                    <option>category 1</option>
-                </select>
-                <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="prodcateg == null">
-                  Required!
-                </p>
-                <p class="text-success col-lg-2" ng-if="prodcateg != null" large>
-                  <i class="ion ion-checkmark" style="zoom:2.0;" ></i>
-                </p> 
-                </div>    
-                <br>     
-                <div class="input-group"> 
-                <input type="number" class="form-control col-lg-10" placeholder="Stock" ng-model="prodstock" required>  
-                <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="prodstock == null">
-                  Required!
-                </p>
-                <p class="text-success col-lg-2" ng-if="prodstock != null" large>
-                  <i class="ion ion-checkmark" style="zoom:2.0;" ></i>
-                </p>
-                </div>
-                <br>
-                <div class="input-group">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input col-lg-10" id="customFile" ng-model="prodfile" required>
-                    <label class="custom-file-label" for="customFile" required>Choose File</label>
-                </div>
-                <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="prodfile == null">
-                  Required!
-                </p>
-                <p class="text-success col-lg-2" ng-if="prodfile != null" large>
-                  <i class="ion ion-checkmark" style="zoom:2.0;" ></i>
-                </p>
-                </div>
-           
-
-            </div>
-            <div class="col-lg-6">
-<div class="container" syle="outline:none;border:none;">
-    <img src="../../media/slide.jpg" ng-if="prodfile != null" class="img-thumbnail"  style="width: 300px; height: 150px;outline:none;border:none;">
-            </div>
-            <p><h1 style="text-transform: capitalize;font-family: 'Bitter', serif;">{{prodname}}</h1>
-            </p>
-            <p style="text-transform: capitalize;font-family: 'Bitter', serif;">{{proddescript}}</p>
-            <p style="color:lightcoral;font-size: 32px;">{{prodprice | currency: "&#8369":0}}</p>
-            <p ng-if="prodstock != null">Stock:&nbsp;{{prodstock}}
-            </p>
-            <p style="text-transform: capitalize">{{prodcateg}} </p>
-            <div class="alert alert-danger alert-dismissible fade show fadefade" style="margin: auto;" role="alert" ng-if="message.nullmsg">
-                <strong>{{message.nullmsg}}</strong> 
-                <!-- <button type="button" class="close"  aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button> -->
-              </div>
               
-              <div class="alert alert-success alert-dismissible fade show fadefade" style="margin: auto;" role="alert" ng-if="message.successmsg">
-                  <strong>{{message.successmsg}}</strong> 
+  
+              <div class="col-lg-6">
+                <div class="input-group">
+                  <input type="text" class="form-control col-lg-10" placeholder="Product Name" ng-model="prodname" required>
+                <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="prodname == null">
+                  Required!
+                </p>
+                <p class="text-success col-lg-2" ng-if="prodname != null" large>
+                  <i class="ion ion-checkmark" style="zoom:2.0;" ></i>
+                </p>
+              </div>
+              <br>
+              <div class="input-group">
+                  <textarea class="form-control col-lg-10" rows="3" placeholder="Description" maxlength="795" ng-model="proddescript" required></textarea> 
+                  <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="proddescript == null">
+                    Required!
+                  </p>
+                  <p class="text-success col-lg-2" ng-if="proddescript != null" large>
+                    <i class="ion ion-checkmark" style="zoom:2.0;" ></i>
+                  </p>
+              </div>
+              <br>
+                  <div class="input-group">
+                  <input type="number" class="form-control col-lg-10" placeholder="Price" ng-model="prodprice" required>
+                  <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="prodprice == null">
+                    Required!
+                  </p>
+                  <p class="text-success col-lg-2" ng-if="prodprice != null" large>
+                    <i class="ion ion-checkmark" style="zoom:2.0;" ></i>
+                  </p>
+                  </div>
+                  <br>
+                  <div class="input-group">
+                  <select class="form-control col-lg-10" placeholder="Category" ng-model="prodcateg" required>
+                      <option disabled>Category</option>
+                      <option>category 1</option>
+                  </select>
+                  <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="prodcateg == null">
+                    Required!
+                  </p>
+                  <p class="text-success col-lg-2" ng-if="prodcateg != null" large>
+                    <i class="ion ion-checkmark" style="zoom:2.0;" ></i>
+                  </p> 
+                  </div>    
+                  <br>     
+                  <div class="input-group"> 
+                  <input type="number" class="form-control col-lg-10" placeholder="Stock" ng-model="prodstock" required>  
+                  <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="prodstock == null">
+                    Required!
+                  </p>
+                  <p class="text-success col-lg-2" ng-if="prodstock != null" large>
+                    <i class="ion ion-checkmark" style="zoom:2.0;" ></i>
+                  </p>
+                  </div>
+                  <br>
+                  <div class="input-group">
+                  <div class="custom-file">
+                      <input type="file" class="custom-file-input col-lg-10" id="customFile" ng-model="prodfile" required>
+                      <label class="custom-file-label" for="customFile" required>Choose File</label>
+                  </div>
+                  <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="prodfile == null">
+                    Required!
+                  </p>
+                  <p class="text-success col-lg-2" ng-if="prodfile != null" large>
+                    <i class="ion ion-checkmark" style="zoom:2.0;" ></i>
+                  </p>
+                  </div>
+             
+  
+              </div>
+              <div class="col-lg-6">
+  <div class="container" syle="outline:none;border:none;">
+      <img src="../../media/slide.jpg" ng-if="prodfile != null" class="img-thumbnail"  style="width: 300px; height: 150px;outline:none;border:none;">
+              </div>
+              <p><h1 style="text-transform: capitalize;font-family: 'Bitter', serif;">{{prodname}}</h1>
+              </p>
+              <p style="text-transform: capitalize;font-family: 'Bitter', serif;">{{proddescript}}</p>
+              <p style="color:lightcoral;font-size: 32px;">{{prodprice | currency: "&#8369":0}}</p>
+              <p ng-if="prodstock != null">Stock:&nbsp;{{prodstock}}
+              </p>
+              <p style="text-transform: capitalize">{{prodcateg}} </p>
+              <div class="alert alert-danger alert-dismissible fade show fadefade" style="margin: auto;" role="alert" ng-if="message.nullmsg">
+                  <strong>{{message.nullmsg}}</strong> 
                   <!-- <button type="button" class="close"  aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button> -->
                 </div>
-           
-                <div class="alert alert-danger alert-dismissible fade show fadefade" style="margin: auto;" role="alert" ng-if="message.msg">
-                    <strong>{{message.msg}}</strong> 
+                
+                <div class="alert alert-success alert-dismissible fade show fadefade" style="margin: auto;" role="alert" ng-if="message.successmsg">
+                    <strong>{{message.successmsg}}</strong> 
                     <!-- <button type="button" class="close"  aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button> -->
                   </div>
-                  <br>
-            <button class="btn btn-primary" ng-click="prodsubmit()" type="submit"><i class="ion ion-checkmark"></i> Accept and Save Product</button>
-            <button class="btn btn-primary" type="button" ng-click="reset()"><i class="ion ion-close"></i> Cancel</button>
-        </div>
-        
-            </div>
-           
-          </section>
-            </div>
+             
+                  <div class="alert alert-danger alert-dismissible fade show fadefade" style="margin: auto;" role="alert" ng-if="message.msg">
+                      <strong>{{message.msg}}</strong> 
+                      <!-- <button type="button" class="close"  aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button> -->
+                    </div>
+                    <br>
+              <button class="btn btn-primary" ng-click="prodsubmit()" type="submit"><i class="ion ion-checkmark"></i> Accept and Save Product</button>
+              <button class="btn btn-primary" type="button" ng-click="reset()"><i class="ion ion-close"></i> Cancel</button>
+          </div>
           
+              </div>
+             
+            </section>
+              </div>

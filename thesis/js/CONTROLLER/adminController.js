@@ -10,9 +10,10 @@ app.controller('adminController', function(
     $scope.filter = {};
     $scope.modal = {};
     $scope.pk = {};
+    $scope.prodfiles = {};
+    $scope.prodfiles.file = "";
     fetch();
     fetchcount();
-
     $scope.show_fetch = function(){
         fetch();
         fetchcount();
@@ -81,6 +82,8 @@ app.controller('adminController', function(
         $scope.message = null;
     }
     $scope.prodsubmit = function(){
+        console.log($scope.prodfiles);
+
         $scope.prod.name = $scope.prodname;
         $scope.prod.descript = $scope.proddescript;
         $scope.prod.price = $scope.prodprice;

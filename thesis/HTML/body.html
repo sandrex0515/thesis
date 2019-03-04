@@ -1,4 +1,18 @@
+<style>
+.product {
+  width: 30%;
+  margin: 30px;
+}
 
+.form-group {
+  width: 30%;
+  margin: 30px;
+}
+.form-group .glyphicon {
+  color: #95d7fc;
+}
+
+</style>
 <body style="background:#f7f7f7;">
                 <div id="messengerBox">
                         <div class="container">
@@ -160,7 +174,7 @@
                                 </div>
                                   <i  data-toggle="modal" data-target="#cartModal" style="cursor:pointer;" class="fa fa-shopping-basket fa-3x" aria-hidden="true"></i>
                           <div class="drp">
-                                  <ul>
+                                  <ul> 
                                   <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle nav-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                           Categories
@@ -278,12 +292,13 @@
     <div class="container-fluid topSearch">
       <h1>Top Search <a href="#">see more</a></h1>
       <ul> 
-        <li ng-repeat="(k, v) in fetch track by $index">
-          <div class="con-top-search">
+        <li ng-repeat="(k, v) in fetch track by $index" ng-click="top(v)" data-toggle="modal" data-target="#orderModal">
+          <div class="con-top-search" style="cursor:pointer" ng-click="order(v)">
                <p style="float:left">#{{$index + 1}}</p><p style="float:left">:&nbsp;{{v.view}}&nbsp;<i class="fa fa-eye" aria-hidden="true"></i>
                  </p> 
-                <a href="#/search" ng-click ="topsearch(v)" > <img class="img-thumbnail" src="media/lazada.png" alt="test">
-                </a>
+               
+                  <img class="img-thumbnail" src="media/lazada.png" alt="test">
+         
          </div>
         </li>                                                                                            
        </ul>               
@@ -360,8 +375,7 @@
                     </div>
                     <div class="col-lg-2 text-danger" style="font-size: 22px">
                         <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                        
-                                          </div>
+                    </div>
                   </div>
                   <hr>
                   <div class="row">
@@ -405,20 +419,16 @@
             </ul>
           </div>
           <div class="modal-footer">
-             
                   <div class="col-lg-5 text-danger" style="font-size: 22px">
                   Total Price
                   </div>
                   <div class="col-lg-3 text-danger" style="font-size: 22px">
                     &#8369;&nbsp;1,234
-                  </div>
-                
-              
+                  </div> 
                 <hr>
                 <br>
                 <div class="col-lg-4">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Order now</button>
-
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Order now</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
           </div>
@@ -439,6 +449,52 @@
                       <ul style="list-style: none;">
                               <li ng-repeat="(k, v) in fetch track by $index">{{v}} </li>
                       </ul>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" style="max-width: 1280px;" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel"></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body" style="max-height: 450px;overflow-y:auto ">
+                    <div class="row">
+                    <div class="col-lg-3">
+                      dsad
+                        <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none">
+                    </div>  
+                    <div class="col-lg-5">
+                      <h4 style="font-size: 23px;text-transform: capitalize">{{t.item}}</h4><br>
+                      <h4 style="font-size: 18px;text-transform: capitalize">{{t.description}}</h4>
+<center>
+                      <div class="form-group" style="text-align: center">
+                        <label>Quantity: </label>
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button id="down" class="btn btn-default" ng-click="minus()"><span class="fa fa-minus"></span></button>
+                            </div>
+                            <input type="number" id="myNumber" ng-model="quantity" class="form-control input-number"/>
+                            <div class="input-group-btn">
+                                <button id="up" class="btn btn-default" ng-click="plus(t)" ng-keyup="plus($event,quantity)"><span  ng-model="quantity"  ng-change="show_fetch()" class="fa fa-plus" ></span></button>
+                            </div>
+                            <h3 class="text-danger" style="font-size: 24px;padding-top: 20px;">Total{{t.price * quantity| currency:"&#8369":0}}</h3>
+                        </div>
+                    </div>
+                  </center>
+                    </div>
+                    <div class="col-lg-4">
+                      info
+                    </div>
+                    </div>
+
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -476,7 +532,22 @@
                           </div>
                         </div>
                       </div>
+
+
 <script>
+  function up(max) {
+    document.getElementById("myNumber").value = parseInt(document.getElementById("myNumber").value) + 1;
+    if (document.getElementById("myNumber").value >= parseInt(max)) {
+        document.getElementById("myNumber").value = max;
+    }
+}
+function down(min) {
+    document.getElementById("myNumber").value = parseInt(document.getElementById("myNumber").value) - 1;
+    if (document.getElementById("myNumber").value <= parseInt(min)) {
+        document.getElementById("myNumber").value = min;
+    }
+}
+
         function show(){
 var x = document.getElementById("userprof");
 
