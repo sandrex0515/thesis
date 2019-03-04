@@ -60,7 +60,12 @@ app.controller('userController', function(
             $scope.fetch.status = true;
             $rootScope = $scope.fetch;
             console.log($scope.fetch);
-
+//ready function calculate the sum
+// var total = 0;
+// for(var i = 0; i < $scope.cart.item.length;i++){
+//     var product = $scope.cart.item[i];
+//     total += (product.price * product.quantity);
+// }
             })
             .then(null, function(data){
                 $scope.fetch.status = false;
