@@ -170,9 +170,10 @@
                               </div>
         
                              <div class="noti">
-                                 <p class="notif">0&nbsp;</p>
+                                 <p class="notif" ng-if="!newl.status">0&nbsp;</p>
+                                 <p class="notif" ng-if="newl.status">{{newl.count}} &nbsp;</p>
                                 </div>
-                                  <i  data-toggle="modal" data-target="#cartModal" style="cursor:pointer;" class="fa fa-shopping-basket fa-3x" aria-hidden="true"></i>
+                                  <i data-toggle="modal" data-target="#cartModal" style="cursor:pointer;" class="fa fa-shopping-basket fa-3x" aria-hidden="true"></i>
                           <div class="drp">
                                   <ul> 
                                   <li class="nav-item dropdown">
@@ -315,118 +316,41 @@
             </button>
           </div>
           <div class="modal-body" style="max-height: 450px;overflow-y:auto ">
-            <div class="row">
+       
+            <div class="row" ng-if="!newl.status">
+                <h4 style="padding-left:35%;padding-top:10%;padding-bottom:10%;font-size:24px">Your Basket is Empty</h4>
+   
+        </div>
+
+            <div class="row" ng-repeat="(k,v) in newl track by $index" ng-if="newl.status">
               <div class="col-lg-2" style="border: none;outline: none">
                 <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none">
               </div>
-              <div class="col-lg-6" style="font-size: 22px">
-                sample title
+              <div class="col-lg-4" style="font-size: 22px">
+                {{v.item}}
               </div>
               <div class="col-lg-2 text-danger" style="font-size: 22px">
-                &#8369;&nbsp;1,234
+               x {{v.quantity}}
               </div>
               <div class="col-lg-2 text-danger" style="font-size: 22px">
-                  <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                &nbsp;{{v.price * v.quantity | currency:"&#8369":0}}
+              </div>
+              <div class="col-lg-2 text-danger" style="font-size: 22px">
+                  <button type="button" ng-click="deletecart(v)" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                   
                                     </div>
             </div>
-            <hr>
-            <div class="row">
-                <div class="col-lg-2" style="border: none;outline: none">
-                  <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none">
-                </div>
-                <div class="col-lg-6" style="font-size: 22px">
-                  sample title
-                </div>
-                <div class="col-lg-2 text-danger" style="font-size: 22px">
-                  &#8369;&nbsp;1,234
-                </div>
-                <div class="col-lg-2 text-danger" style="font-size: 22px">
-                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                    
-                                      </div>
-              </div>
-              <hr>
-              <div class="row">
-                  <div class="col-lg-2" style="border: none;outline: none">
-                    <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none">
-                  </div>
-                  <div class="col-lg-6" style="font-size: 22px">
-                    sample title
-                  </div>
-                  <div class="col-lg-2 text-danger" style="font-size: 22px">
-                    &#8369;&nbsp;1,234
-                  </div>
-                  <div class="col-lg-2 text-danger" style="font-size: 22px">
-                      <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                      
-                                        </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-lg-2" style="border: none;outline: none">
-                      <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none">
-                    </div>
-                    <div class="col-lg-6" style="font-size: 22px">
-                      sample title
-                    </div>
-                    <div class="col-lg-2 text-danger" style="font-size: 22px">
-                      &#8369;&nbsp;1,234
-                    </div>
-                    <div class="col-lg-2 text-danger" style="font-size: 22px">
-                        <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                      <div class="col-lg-2" style="border: none;outline: none">
-                        <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none">
-                      </div>
-                      <div class="col-lg-6" style="font-size: 22px">
-                        sample title
-                      </div>
-                      <div class="col-lg-2 text-danger" style="font-size: 22px">
-                        &#8369;&nbsp;1,234
-                      </div>
-                      <div class="col-lg-2 text-danger" style="font-size: 22px">
-                          <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                          
-                                            </div>
-                    </div>
-                    <hr>
-            <div class="row">
-                <div class="col-lg-2" style="border: none;outline: none">
-                  <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none">
-                </div>
-                <div class="col-lg-6" style="font-size: 22px">
-                  sample title
-                </div>
-                <div class="col-lg-2 text-danger" style="font-size: 22px">
-                  &#8369;&nbsp;1,234
-                </div>
-                <div class="col-lg-2 text-danger" style="font-size: 22px">
-<button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-
-                  </div>
-              
-              </div>
-      
-
-
-            <ul style="list-style: none;">
-                    <!-- <li ng-repeat="(k, v) in fetch track by $index">{{v}} </li> -->
-                    
-            </ul>
+       
+                  
+                            
           </div>
           <div class="modal-footer">
-                  <div class="col-lg-5 text-danger" style="font-size: 22px">
-                  Total Price
-                  </div>
-                  <div class="col-lg-3 text-danger" style="font-size: 22px">
-                    &#8369;&nbsp;1,234
-                  </div> 
-                <hr>
-                <br>
+              <div class="col-lg-2 text-danger" style="font-size: 22px">
+                 Total
+                </div>
+            <div class="col-lg-2 text-danger" style="font-size: 22px">
+              &nbsp;{{v.price  | currency:"&#8369":0}}
+            </div>
                 <div class="col-lg-4">
               <button type="button" class="btn btn-primary" data-dismiss="modal">Order now</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -465,15 +389,18 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <div class="modal-body" style="max-height: 450px;overflow-y:auto ">
+                    <div class="modal-body" style="max-height: 500px;overflow-y:auto">
                     <div class="row">
-                    <div class="col-lg-3">
-                      dsad
-                        <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none">
+                    <div class="col-lg-3" style="background:#f8f5f5">
+                      <br>
+                        <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none"><br>
+
                     </div>  
-                    <div class="col-lg-5">
+                    <div class="col-lg-5" style="background: #f8f5f5">
                       <h4 style="font-size: 23px;text-transform: capitalize">{{t.item}}</h4><br>
                       <h4 style="font-size: 18px;text-transform: capitalize">{{t.description}}</h4>
+                      <h3 class="text-danger" style="font-size: 32px;padding-top: 20px;">{{t.price | currency:"&#8369":0}}</h3>
+
 <center>
                       <div class="form-group" style="text-align: center">
                         <label>Quantity: </label>
@@ -485,13 +412,28 @@
                             <div class="input-group-btn">
                                 <button id="up" class="btn btn-default" ng-click="plus(t)" ng-keyup="plus($event,quantity)"><span  ng-model="quantity"  ng-change="show_fetch()" class="fa fa-plus" ></span></button>
                             </div>
-                            <h3 class="text-danger" style="font-size: 24px;padding-top: 20px;">Total{{t.price * quantity| currency:"&#8369":0}}</h3>
-                        </div>
+                            <h3 class="text-danger" style="font-size: 24px;padding-top: 20px;">Total{{t.price * quantity | currency:"&#8369":0}}</h3>
+                       
+                          </div>
+                          
                     </div>
+                    <button type="button" class="btn btn-success">ORDER NOW</button>
+                    <button type="button" class="btn btn-success" ng-click="cart(t)">ADD CART</button>
                   </center>
+             
+
                     </div>
-                    <div class="col-lg-4">
-                      info
+                    <div class="col-lg-4" style="background:#f8f5f5">
+                      <label><i class="fa fa-motorcycle" aria-hidden="true"></i> Delivery Address</label>
+                      <h5 style="font-size: 18px;text-transform: none;">{{info.address}} </h5>
+                      <label><i class="fa fa-money" aria-hidden="true"></i> Payment</label>
+                      <h5 style="font-size: 18px;text-transform: none;"><i class="fa fa-calendar-o" aria-hidden="true"></i> Cash on Delivery</h5>
+                      <label>Delivery Date</label>
+                      <h5 style="font-size: 18px;text-transform: none;">Expected Delivery</h5>
+                      <label><i class="fa fa-battery-empty" aria-hidden="true"></i> Warranty</label>
+                      <h5 style="font-size: 18px;text-transform: none;">Defect</h5>
+
+
                     </div>
                     </div>
 

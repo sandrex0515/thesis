@@ -299,6 +299,63 @@ EOT;
 EOT;
             return ClassParent::get($sql);
         }
+
+        public function cart($data){
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+            $sql = <<<EOT
+
+                insert into cart(
+                    ord_id,
+                    quantity,
+                    pk
+                    )
+                    values(
+                        $this->item_id,
+                        $this->quantity,
+                        $this->pk
+                        )
+
+EOT;
+            return ClassParent::insert($sql);
+        }
+
+        public function cartfetch($data){
+            foreach($data as $k => $v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+
+            $sql = <<<EOT
+                    select 
+                    *
+                    from cart
+                    inner join item
+                    on cart.ord_id = item.item_id
+                    inner join itempic
+                    on itempic.pic_id = item.item_id
+                    where pk = $this->pk
+                    order by cdate desc
+                    
+EOT;
+            return ClassParent::get($sql);
+        }
+
+        public function delcart($data){
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+            $sql = <<<EOT
+
+            delete from
+            cart 
+            where
+            cartpk = $this->cartpk
+
+EOT;
+            return ClassParent::insert($sql);
+        }
+       
 }
 
 

@@ -63,11 +63,22 @@ create table stock(
 );
 
 create table cart(
-    id int references profile(id),
+    id serial primary key,
     item varchar(255) NOT NULL,
     price numeric NOT NULL,   
-    ord_id numeric unique NOT NULL
+    ord_id numeric  NOT NULL
 );
+alter table cart drop column price;
+alter table cart drop column item;
+alter table cart add column quantity numeric;
+alter table cart add column date time default now();
+alter table cart drop column id;
+alter table cart add column pk numeric;
+alter table cart rename column "date" to "cdate";
+alter table cart add column id serial primary key;
+alter table cart rename column "id" to "cartpk";
+alter table cart owner to sandrex;
+
 
 create table pending(
     name varchar(255) NOT NULL,

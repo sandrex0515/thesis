@@ -28,10 +28,11 @@ app.controller('adminController', function(
             promise.then(function(data){
                     var t = data.data.result[0].created_at;
                     var d = new Date(t.toLocaleString());
-                  
                     
             $scope.fetch = data.data.result;
             $scope.fetch.status = true;
+            console.log($scope.fetch);
+
             })
             .then(null, function(data){
                 $scope.fetch.status = false;

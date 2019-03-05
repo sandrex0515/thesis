@@ -18,15 +18,23 @@ app.controller('userController', function(
     $scope.topsearch = {};
     $scope.t = {};
     $scope.quantity = 1;
+    $scope.cart = {};
+    $scope.holder = {};
     init();
     fetch();
     fetchsearch();
- 
+    cartfetch();
+    // $scope.newl = {};
+
+    console.log($scope.newl);
+
 
 
     $scope.show_fetch = function(){
         fetch();
-        fetchsearch(); 
+        fetchsearch();
+        cartfetch();
+ 
     }
     
     function numberWithCommas(count) {
@@ -69,6 +77,7 @@ app.controller('userController', function(
             $scope.pk = data.data[_id];  
             get_prof();
             fetchsearch();
+            cartfetch();
 
     })
         .then(null, function (data) {
@@ -85,6 +94,38 @@ app.controller('userController', function(
             })
             .then(null, function (data){
                 $scope.info.status = false;
+            })
+    }
+
+    function cartfetch(){
+        $scope.holder.pk = $scope.pk;
+        $scope.holder.sa = 9382;
+        var promise = userFactory.cartfetch($scope.holder);
+            promise.then(function (data){
+                
+                $scope.newl = data.data.result;
+                $scope.newl.item = data.data.result.item;
+                for(var total = 0; total < data.data.result.length;total++);
+                $scope.newl.count = total;
+                
+
+                // for(var i in data.data.result){
+                // $scope.newl.item = data.data.result[i].item
+                // console.log(i);
+                // }
+                // var total =  $scope.newl;
+                // for(var i in total){
+                //   var newl1 = total[i];
+                // $scope.newl2 = newl1;
+                // console.log($scope.newl2);
+
+                // }
+                $scope.newl.status = true;
+                console.log($scope.newl);
+            })
+            .then(null, function (data){
+                $scope.newl.status = false;
+                $scope.newl.count = 0;
             })
     }
  function fetch(){
@@ -109,6 +150,23 @@ app.controller('userController', function(
                 $scope.fetch.status = false;
             });
     }
+    // $scope.cartItem = function(newl){
+      
+    //       console.log(newl);
+
+    // }
+    $scope.deletecart = function(v){
+        
+        var promise = userFactory.delcart(v)
+            promise.then(function(data){
+                alert('Item Has been removed');
+                cartfetch();
+            })
+            .then(null, function(data){
+                //
+            });
+      
+    }
     $scope.topsearch = function(v){
         console.log(v);
         $scope.topsearch = v;
@@ -130,6 +188,22 @@ app.controller('userController', function(
         if($scope.quantity < 0){
             $scope.quantity = 1;
         }
+    }
+    $scope.cart = function(t){
+        $scope.cart.item_id = t.item_id;
+        $scope.cart.pk =  $scope.pk;
+        $scope.cart.quantity = $scope.quantity;
+        
+        var promise = userFactory.cart($scope.cart);
+            promise.then(function(data){
+                alert('Item added to cart');
+                fetchsearch();
+                cartfetch();
+            })
+            .then(null, function(data){
+                alert('Error connection error');
+            })
+
     }
     $scope.searchres = function(){
         
