@@ -81,14 +81,51 @@ alter table cart owner to sandrex;
 
 
 create table pending(
-    name varchar(255) NOT NULL,
-    item varchar(255) NOT NULL,
-    price varchar(255) NOT NULL,
-    address varchar(255) NOT NULL,
-    contact varchar(255) NOT NULL
+    pending_id serial primary key,
+    pending_pk numeric, item_id numeric,
+    quantity numeric, ord_date timestamp, 
+    pending_pic varchar, 
+    archived boolean default false
 );
-alter table pending add column date timestamp with time zone default now();
-alter table pending add column ord_id int references cart(ord_id);
+alter table pending owner to sandrex;
+alter table pending drop column ord_date;
+alter table pending drop column pending_pic;
+alter table pending add column ord_date timestamp default now();
+alter table pending rename column "item_id" to "p_id";
+alter table pending rename column "archived" to "arv";
+
+create table delivery
+(
+    delivery_id numeric,
+    delivery_date timestamp default now()
+    );
+    alter table delivery owner to sandrex;
+    alter table delivery add column arc boolean default false;
+    alter table delivery add column delivery_pk numeric;
+    alter table delivery add column delivery_pic varchar;
+    alter table delivery drop column delivery_pic;
+    alter table delivery add column delivery_pic numeric;
+    alter table delivery add column d_id serial primary key;
+    alter table delivery add column quantity numeric;
+
+
+
+
+create table delivered
+(
+    delivered_id numeric,
+    delivered_date timestamp default now()
+    );
+    alter table delivered owner to sandrex;
+    alter table delivered add column arc boolean default false;
+    alter table delivered add column delivery_pk numeric;
+    alter table delivered add column delivery_pic varchar;
+    alter table delivered drop column delivery_pic;
+    alter table delivered add column delivery_pic numeric;
+    alter table delivered add column d_id serial primary key;
+    alter table delivered rename column "delivery_pk" to "delivered_pk";
+    alter table delivered rename column "delivery_pic" to "delivered_pic";
+    alter table delivered add column quantity numeric;
 
 create table checked(
     name varchar(255) NOT NULL,
@@ -97,16 +134,7 @@ create table checked(
     address varchar(255) NOT NULL,
     contact varchar(255) NOT NULL
 );
-
-create table delivery(
-    name varchar(255) NOT NULL,
-    item varchar(255) NOT NULL,
-    price varchar(255) NOT NULL,
-    address varchar(255) NOT NULL,
-    contact varchar(255) NOT NULL
-);
-    alter table delivery add column date timestamp with time zone default now();
-    alter table delivery add column ord_id numeric unique not null;    
+   
 
 create table delivered(
     name varchar(255) NOT NULL,

@@ -25,8 +25,8 @@
                   </h1>
                   <div class="row">
                       <div class="col-lg-3">
-                  <input type="text" class="form-control" placeholder="Search...">
-                  <br>
+                          <input type="text" class="form-control" ng-model="filter.searchString" ng-change="show_fetch()" placeholder="Search...">
+                          <br>
                 </div>
                 <div class="col-lg-2">
                     <a href="#/fordelivery2" class="btn btn-sm btn-light" title="Table list"><ion-icon name="list" style="zoom:2.0"></ion-icon></a>          
@@ -38,8 +38,8 @@
         
                         <span ng-click="Selectopt()">
                           Select By:
-                            <select class="form-control col-sm-8" ng-model="viewTitle">
-                                    <option selected disabled></option>
+                          <select class="form-control col-sm-8" ng-model="viewTitle" ng-change="show_fetch2()">
+                              <option selected disabled></option>
                                     <option>Name</option>
                                     <option>Date</option>
                                     <option>Place</option>
@@ -49,20 +49,20 @@
                     </div>
                
                     <div class="col-sm-4">
-                        <button class="btn btn-sm btn-primary">Export to PDF</button>
-                        <button class="btn btn-sm btn-primary">Export to Excel</button>
+                        <!-- <button class="btn btn-sm btn-primary" ng-click="pdf()">Export pdf</button> -->
+                        <button class="btn btn-sm btn-primary" ng-click="csv()">Export csv</button>
                     </div>
                     </div>
         
                   <div class="row">
-                        <div class="col-lg-3 prodlist" style="background:#fff;padding: 20px 20px;height: 350px;text-align: center;">
+                  <h3 ng-if="!fetchdelivery.status" style="padding-left: 37%">No data found</h3>
+                        <div class="col-lg-3 prodlist" ng-repeat="(k,v) in fetchdelivery track by $index" ng-if="fetchdelivery.status" style="background:#fff;padding: 20px 20px;height: 350px;text-align: center;">
                                 <img src="../../media/slide.jpg" class="img-thumbnail" width="auto" height="200px" alt="img">
-                                <p>Item:&nbsp;{{value.item}} </p>
-                                <p>Price:&nbsp;{{value.price | currency:"&#8369":0}} </p>
-                                <p>Customer:&nbsp;{{value.type}}</p>
-                                <p>Date:&nbsp;{{value.created_at}}</p>
-                        <button type="button" class="btn btn-primary" ng-click="process(value)" title="Delivered"><ion-icon name="checkmark"></ion-icon></button>
-                        <button type="button" class="btn btn-primary" ng-click="cancel(value)" title="Cancel"><ion-icon name="trash"></ion-icon></button>
+                                <p>Name:&nbsp;{{v.name}} </p>
+                                <p>Date:&nbsp;{{v.delivery_date}} </p>
+                                <p>Address:&nbsp;{{v.address}}</p>
+                        <button type="button" class="btn btn-primary" ng-click="delivery(v)" title="Delivered"><ion-icon name="checkmark"></ion-icon></button>
+                        <button type="button" class="btn btn-primary" ng-click="cancel(v)" title="Cancel"><ion-icon name="trash"></ion-icon></button>
 
                     </div>
         </div>

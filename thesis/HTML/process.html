@@ -24,17 +24,17 @@
                     <div>On-process Orders</div>
                   </h1>
                   <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-6">
                   <input type="text" class="form-control" ng-model="filter.searchString" ng-change="show_fetch()" placeholder="Search...">
                   <br>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-3">
                     <a href="#/process2" class="btn btn-sm btn-light" title="Table list"><ion-icon name="list" style="zoom:2.0"></ion-icon></a>          
                       <a href="#/process" class="btn btn-sm btn-light list" title="List"><ion-icon name="apps" style="zoom:2.0"></ion-icon></a>
                       <br>
         
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-3">
         
                         <span ng-click="Selectopt()">
                           Select By:
@@ -48,21 +48,18 @@
                             <br>
                     </div>
                
-                    <div class="col-sm-4">
-                        <button class="btn btn-sm btn-primary">Export to PDF</button>
-                        <button class="btn btn-sm btn-primary" ng-click="csv()">Export to Excel</button>
-                    </div>
-                    </div>
-        
-                  <div class="row">
-                        <div class="col-lg-3 prodlist" style="background:#fff;padding: 20px 20px;height: 350px;text-align: center;">
+              
+
+                    <div class="row">
+                        <h3 ng-if="!pending.status" style="padding-left: 30%">No data found</h3>
+                        <div class="col-lg-3 prodlist" ng-repeat="(k,v) in pending track by $index" ng-if="pending.status" style="background:#fff;padding: 20px 20px;height: 350px;text-align: center;" >
                                 <img src="../../media/slide.jpg" class="img-thumbnail" width="auto" height="200px" alt="img">
-                                <p>Item:&nbsp;{{value.item}} </p>
-                                <p>Price:&nbsp;{{value.price | currency:"&#8369":0}} </p>
-                                <p>Customer:&nbsp;{{value.type}}</p>
-                                <p>Date:&nbsp;{{value.created_at}}</p>
-                        <button type="button" data-toggle="modal" data-target="#editModal" class="btn btn-primary" ng-click="prodedit(value)" title="View"><ion-icon name="eye"></ion-icon></button>
-                        <button type="button" class="btn btn-primary" ng-click="process(value)" title="Product Processed"><ion-icon name="checkmark"></ion-icon></button>
+                                <p>Name:&nbsp;{{v.name}} </p>
+                                <p>Date:&nbsp;{{v.ord_date}} </p>
+                                <p>Address:&nbsp;{{v.address}}</p>
+                                
+                        <button type="button" data-toggle="modal" data-target="#editModal" class="btn btn-primary" ng-click="prodedit(v)" title="View"><ion-icon name="eye"></ion-icon></button>
+                        <button type="button" class="btn btn-primary" ng-click="process(v)" title="Product Processed"><ion-icon name="checkmark"></ion-icon></button>
        
                     </div>
         </div>
@@ -98,13 +95,14 @@
               <div class="modal-body" style="text-align: center">    
                     <img src="../../media/slide.jpg" class="img-thumbnail" width="200px" height="250px" style="border-radius:50%" alt="img">
                    <br><br>
-                    <p>Item:&nbsp;{{value.item}} </p>
-                    <p>Price:&nbsp;{{value.price | currency:"&#8369":0}} </p>
-                    <p>Customer:&nbsp;{{value.type}} </p>
-                    <p>Address:&nbsp;{{value.quantity}}</p>
-                    <p>Contact:&nbsp;</p>
-                    <p>Email:&nbsp;</p>
-                    <p>Date added:&nbsp;{{value.created_at}}</p>
+                    <p>Item:&nbsp;{{modal.item}} </p>
+                    <p>Quantity:&nbsp;{{modal.quantity}}</p>
+                    <p>Total:&nbsp;{{modal.price * modal.quantity | currency:"&#8369":0}} </p>
+                    <p>Customer:&nbsp;{{modal.name}} </p>
+                    <p>Address:&nbsp;{{modal.address}}</p>
+                    <p>Contact:&nbsp;{{modal.contact}} </p>
+                    <p>Email:&nbsp;{{modal.email}} </p>
+                    <p>Date added:&nbsp;{{modal.ord_date}}</p>
                     <p>Reputation:&nbsp;</p>
                      
               </div>

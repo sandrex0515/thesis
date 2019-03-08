@@ -1,9 +1,91 @@
-<style>
-  .sample2{
-    background-color: #574B90;
-    border-radius: 120px;
-  }
-  </style>
+
+
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" name="viewport">
+  <title>Dashboard</title>
+
+  <link rel="stylesheet" href="../admin/dist/modules/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../admin/dist/modules/ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="../admin/dist/modules/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
+
+  <link rel="stylesheet" href="../admin/dist/modules/summernote/summernote-lite.css">
+  <link rel="stylesheet" href="../admin/dist/modules/flag-icon-css/css/flag-icon.min.css">
+  <link rel="stylesheet" href="../admin/dist/css/demo.css">
+  <link rel="stylesheet" href="../admin/dist/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+</head>
+
+<body  ng-controller="AppController" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter" style="margin: 0;">
+  <div id="app">
+    <div class="main-wrapper">
+      <div class="navbar-bg"></div>
+      
+      <div class="main-sidebar">
+        <aside id="sidebar-wrapper">
+         
+          <div class="sidebar-user">
+            <div class="sidebar-user-picture">
+              <img alt="image" src="../media/49161279_2166964706687471_7974348225228308480_n.jpg">
+            </div>
+            <div class="sidebar-user-details">
+              <div class="user-name">Sandrex Cabrales</div>
+              <div class="user-role">
+                Administrator
+              </div>
+            </div>
+          </div>
+          <ul class="sidebar-menu">
+            <li class="menu-header">Dashboard</li>
+            <li class="active">
+              <a href="#/"><i class="ion ion-speedometer"></i><span>Dashboard</span></a>
+            </li>
+
+            <li class="menu-header">Components</li>
+           
+           
+            <li>
+              <a href="#" class="has-dropdown"><i class="ion ion-ios-albums-outline"></i><span>Order</span></a>
+              <ul class="menu-dropdown">
+                <li><a href="#/process"><i class="ion ion-ios-circle-outline sample"></i>On-process</a></li>
+                <li><a href="#/fordelivery"><i class="ion ion-ios-circle-outline sample3"></i>For delivery</a></li>
+                <li><a href="#/delivered"><i class="ion ion-ios-circle-outline sample4"></i>Delivered</a></li>
+              </ul>
+            </li>
+         
+            
+            <li>
+              <a href="#" class="has-dropdown"><i class="ion ion-ios-albums-outline"></i><span>Product</span></a>
+              <ul class="menu-dropdown">
+                <li><a href="#/productbl"><i class="ion ion-ios-circle-outline sample"></i>Product Table</a></li>
+                <li><a href="#/stock"><i class="ion ion-ios-circle-outline sample3" ></i>Stock</a></li>
+              </ul>
+            </li>    
+            <li>
+              <a href="#" class="has-dropdown"><i class="ion ion-ios-albums-outline"></i><span>Product Analytics</span></a>
+              <ul class="menu-dropdown">
+                <li><a href="#"><i class="ion ion-ios-circle-outline"></i>Top Search Product</a></li>
+                <li><a href="#"><i class="ion ion-ios-circle-outline"></i>Top Selling Product</a></li>
+                <li><a href="#"><i class="ion ion-ios-circle-outline"></i>Low Sales Product</a></li>
+                
+              </ul>
+            </li>
+            
+            
+        
+            <li> 
+              <a href="#"><i class="ion ion-stats-bars"></i><span>Careers</span></a>
+            </li>
+            
+
+       
+          
+        </aside>
+      </div>
+     
+
   <div class="main-content">
     
           <section class="section">
@@ -32,7 +114,7 @@
   
               <div class="col-lg-6">
                 <div class="input-group">
-                  <input type="text" class="form-control col-lg-10" placeholder="Product Name" ng-model="prodname" required>
+                  <input type="text" class="form-control col-lg-10" id="item" placeholder="Product Name" ng-model="prodname" required>
                 <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="prodname == null">
                   Required!
                 </p>
@@ -42,7 +124,7 @@
               </div>
               <br>
               <div class="input-group">
-                  <textarea class="form-control col-lg-10" rows="3" placeholder="Description" maxlength="795" ng-model="proddescript" required></textarea> 
+                  <textarea class="form-control col-lg-10" id="descript" rows="3" placeholder="Description" maxlength="795" ng-model="proddescript" required></textarea> 
                   <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="proddescript == null">
                     Required!
                   </p>
@@ -52,7 +134,7 @@
               </div>
               <br>
                   <div class="input-group">
-                  <input type="number" class="form-control col-lg-10" placeholder="Price" ng-model="prodprice" required>
+                  <input type="number" class="form-control col-lg-10" id="price" placeholder="Price" ng-model="prodprice" required>
                   <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="prodprice == null">
                     Required!
                   </p>
@@ -62,7 +144,7 @@
                   </div>
                   <br>
                   <div class="input-group">
-                  <select class="form-control col-lg-10" placeholder="Category" ng-model="prodcateg" required>
+                  <select class="form-control col-lg-10" id="category" placeholder="Category" ng-model="prodcateg" required>
                       <option disabled>Category</option>
                       <option>category 1</option>
                   </select>
@@ -75,7 +157,7 @@
                   </div>    
                   <br>     
                   <div class="input-group"> 
-                  <input type="number" class="form-control col-lg-10" placeholder="Stock" ng-model="prodstock" required>  
+                  <input type="number" class="form-control col-lg-10" id="stock" placeholder="Stock" ng-model="prodstock" required>  
                   <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="prodstock == null">
                     Required!
                   </p>
@@ -84,11 +166,20 @@
                   </p>
                   </div>
                   <br>
-                  <div class="input-group">
-                  <div class="custom-file">
-                      <input type="file" class="custom-file-input col-lg-10" id="customFile" ng-model="prodfile" required>
-                      <label class="custom-file-label" for="customFile" required>Choose File</label>
-                  </div>
+                  <div class="custom-file" style="margin-top: 3px;">
+                    <input type="file" class="custom-file-input col-lg-10" nv-file-select="" uploader="uploader" required>
+                   
+                    <div class="progress" style="padding-top: 10px; height: 45px; width: 90%;margin-left: 5%;margin-top: 10px;">
+                        
+                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }">{{uploader}} </div>
+                    </div>
+                   
+                    <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                        <span class="glyphicon glyphicon-upload"></span> Upload
+                    </button>
+                    
+                    <label class="custom-file-label" for="customFile" required>Choose File</label>
+
                   <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="prodfile == null">
                     Required!
                   </p>
@@ -96,13 +187,15 @@
                     <i class="ion ion-checkmark" style="zoom:2.0;" ></i>
                   </p>
                   </div>
-             
+
   
               </div>
               <div class="col-lg-6">
   <div class="container" syle="outline:none;border:none;">
-      <img src="../../media/slide.jpg" ng-if="prodfile != null" class="img-thumbnail"  style="width: 300px; height: 150px;outline:none;border:none;">
-              </div>
+    <img src="../uploads/{{response}} " id="respond" class="img-thumbnail" style="width: 100px;height: 100px;margin-bottom: 3px;" ng-if="response"><br>
+    <img src="uploads/{{response}}" id="respond2" class="img-thumbnail" style="display:none;width: 100px;height: 100px;margin-bottom: 3px;" ng-if="response">
+  </div>
+              
               <p><h1 style="text-transform: capitalize;font-family: 'Bitter', serif;">{{prodname}}</h1>
               </p>
               <p style="text-transform: capitalize;font-family: 'Bitter', serif;">{{proddescript}}</p>
@@ -131,11 +224,106 @@
                       </button> -->
                     </div>
                     <br>
-              <button class="btn btn-primary" ng-click="prodsubmit()" type="submit"><i class="ion ion-checkmark"></i> Accept and Save Product</button>
+              <button class="btn btn-primary" ng-click="prodsubmit()" onclick="addprod()" type="submit"><i class="ion ion-checkmark"></i> Accept and Save Product</button>
               <button class="btn btn-primary" type="button" ng-click="reset()"><i class="ion ion-close"></i> Cancel</button>
           </div>
           
               </div>
              
             </section>
+          </div>
+
               </div>
+              <br><br><br><br><br><br><br><br><br><br><br><br>
+              <footer class="main-footer">
+                <div class="footer-left">
+               
+                  Copyright &copy; 2019 <div class="bullet"></div> Design By <a href="http://sandrexsaveurl.ga/">Sandrex Cabrales</a>
+                </div>
+                <div class="footer-right"></div>
+              </footer>
+            </div>
+          </div>
+          <script src="../admin/dist/modules/jquery.min.js"></script>
+          <script src="../admin/dist/modules/popper.js"></script>
+          <script src="../admin/dist/modules/tooltip.js"></script>
+          <script src="../admin/dist/modules/bootstrap/js/bootstrap.min.js"></script>
+          <script src="../admin/dist/modules/nicescroll/jquery.nicescroll.min.js"></script>
+          <script src="../admin/dist/modules/scroll-up-bar/dist/scroll-up-bar.min.js"></script>
+          <script src="../admin/dist/js/sa-functions.js"></script>
+          <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+          <script src="../angular/angular-file-upload.min.js"></script>
+          <script src="../angular/directive.js"></script>
+          <script src="../admin/dist/modules/chart.min.js"></script>
+          <script src="../admin/dist/modules/summernote/summernote-lite.js"></script>
+        
+          <script src="../admin/dist/js/scripts.js"></script>
+          <script src="../admin/dist/js/custom.js"></script>
+          <script src="../admin/dist/js/demo.js"></script>
+          <script src="../angular/angular.min.js"></script>
+          <script src="../angular/angular-route.min.js"></script>
+          <script src="../js/moduleAdmin.js"></script>
+          <script src="../js/CONTROLLER/adminController.js"></script>
+          <script src="../js/FACTORY/adminFactory.js"></script>
+
+          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="http://code.angularjs.org/1.2.0/angular.min.js"></script>
+
+  <script src="http://nervgh.github.io/js/es5-shim.min.js"></script>
+        <script src="http://nervgh.github.io/js/es5-sham.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+        <script src="../angular/console-sham.js"></script>
+        <script src="../angular/angular-file-upload.min.js"></script>
+        <script src="../angular/controllers.js"></script>
+
+
+<script>
+
+function addprod(){
+        var profimg = $('#respond2').attr('src');
+        console.log(profimg)
+        var error = 0;
+        var item = $('#item').val();
+        var descript = $('#descript').val();
+        var price = $('#price').val();
+        var category = $('#category').val();
+        var stock = $('#stock').val();
+        
+
+
+       
+        if(profimg.replace(/\s/g,'') == ""){
+          alert('image is required');
+
+            setTimeout(function(){
+                $('#div-message').empty().hide();
+            }, 5000);
+        }
+        else {
+            $.ajax('../php/FUNCTIONS/save.php', {
+                type: "POST",
+                data: { name : item, descript : descript, price: price, stock: stock, stock: stock, category: category, profimg: profimg},
+                statusCode: {
+                    404: function(response){
+                        alert('')
+                        setTimeout(function(){
+                            $('#div-message').empty().hide();
+                        }, 5000);
+                    }
+                },
+                success: function(data){
+                    alert('Success');
+                }
+            });
+        }
+
+    }
+
+</script>
+
+        </body>
+          </html>

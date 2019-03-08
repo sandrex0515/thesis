@@ -104,9 +104,11 @@ app.controller('userController', function(
             promise.then(function (data){
                 
                 $scope.newl = data.data.result;
-                $scope.newl.item = data.data.result.item;
+               
                 for(var total = 0; total < data.data.result.length;total++);
+                // $scope.newl.total =  $scope.newl.price.reduce((partial_sum, a) => partial_sum + a);
                 $scope.newl.count = total;
+
                 
 
                 // for(var i in data.data.result){
@@ -189,10 +191,29 @@ app.controller('userController', function(
             $scope.quantity = 1;
         }
     }
+    $scope.ord = function(newl){
+        for(var i = 0; i < newl.length;i++){
+            var filter = newl[i];
+            
+            var promise = userFactory.ord(filter);
+        }
+                promise.then(function(data){
+                    alert('Succes');
+                })
+                .then(null, function(data){
+                    alert('error');
+                });
+         
+    }
     $scope.cart = function(t){
         $scope.cart.item_id = t.item_id;
         $scope.cart.pk =  $scope.pk;
         $scope.cart.quantity = $scope.quantity;
+
+        if($scope.cart.quantity === 0){
+            $scope.msg = 'Add Atleast 1 Quantity';
+            return false;
+        }
         
         var promise = userFactory.cart($scope.cart);
             promise.then(function(data){

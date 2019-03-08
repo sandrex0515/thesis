@@ -54,16 +54,17 @@ app.config(function ($routeProvider){
         controller: 'adminController',
         templateUrl : '../../HTML/delivery2.html'
     })
-    .when('/delivered',
-    {
-        controller: 'adminController',
-        templateUrl : '../../HTML/delivered.html'
-    })
     .when('/delivered2',
     {
         controller: 'adminController',
         templateUrl : '../../HTML/delivered2.html'
     })
+    .when('/delivered',
+    {
+        controller: 'adminController',
+        templateUrl : '../../HTML/delivered.html'
+    })
+    
  
     
     .otherwise({redirecTo: '/' });

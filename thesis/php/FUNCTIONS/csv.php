@@ -1,43 +1,64 @@
 <?php
 require_once('connection.php');
 require_once('../../php/CLASSES/adminClass.php');
-$class = new addPod (
-               null,
-               null,
-               null,
-               null
 
-);
-
-$data = $class->fetch();
-
-header("HTTP/1.1 404 Error");
-
-
-$delimited = ",";
-$filename = "Order_" . date('Y-m-d') . ".csv";
-
-$f = fopen('php://memory', 'w');
-
-$fields = array('Item', 'Price', 'Customer', 'Address', 'Contact', 'Signature');
-fputcsv($f, $fields, $delimeted);
-
-// foreach($class as $k=>$v){
-//     $type = $v['type'];
-//     $lineData = array($type);
-//     fputcsv($f, $lineData, $delimeted);
-// }
-fseek($f, 0);
-header('Content-Type: text/csv');
-header('Content-Disposition: attachment; filename="' . $filename . '"; ');
-fpassthru($f);
-
-if($data['status']){
-    header("HTTP/1.1 200 Ok");
+$data = array();
+foreach($_GET as $k=>$v){
+	$data[$k]= $v;
 }
+$class = new addPod(
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL
+);
+$datas = $class->csv();
+$titlehead = ', , , Delivery Order , , ,';
+$sal = '=sum(d6:d92732)';
+$sa = 'Total Sales';
+$header = '#, Item, Quantity , Total, Customer, Address, Contact, Date , ';
+$subheader = ' , , , , , ';
+$count = 1;
+$body = '';
+$total = '';
+foreach($datas['result'] as $k => $v) {
+	
+        $salary = $v['price'];
+        $quan = $v['quantity'];
+        $total = $salary * $quan;
+
+	    $empdate = date("M j, Y", strtotime($v['delivery_date']));
+        $empdate1 = strtotime($empdate);
+	$body .= $count.','
+	        .$v['item'].','
+	        .$quan.','
+			.$cirr.round($total,2). ','
+            .$v['name'].','
+			.$v['address'].','
+            .$v['contact'].','
+            .$empdate.','."\n";
+			
+            $count++;
+            
+            $sales = $salary++; 
+}
+	// $body1 .= $count1.',' 
+	// 		.$count3.','
+	// 		.$count1.','
+	// 		.$data['emp'].','
+	// 		.$data['empno'].','
+	// 		.$data['empadd'].','
+	// 		.$data['empadd']."\n";
 
 
 
-header("Content-Type:application/json");
-exit;
+
+$filename = "Order".date('Ymd_His').".csv";
+header ("Content-type: application/octet-stream");
+header ("Content-Disposition: attachment; filename=".$filename);
+echo $titlehead."\n \n".", , , , , , , , ,".$sa.",".$sal."\n".$header."\n".$subheader."\n".$body;
+
 ?>

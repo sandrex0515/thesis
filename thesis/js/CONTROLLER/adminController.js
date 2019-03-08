@@ -1,6 +1,7 @@
 app.controller('adminController', function(
                                     $scope,
                                     adminFactory
+                        
                                         
                                     
                                     ){
@@ -12,15 +13,30 @@ app.controller('adminController', function(
     $scope.pk = {};
     $scope.prodfiles = {};
     $scope.prodfiles.file = "";
+    $scope.currentPage = 0;
+    $scope.pageSize = 10;
+    $scope.data = [];
+    $scope.q = '';
     fetch();
     fetchcount();
+    pending();
+    fetchdelivery();
+    fetchdelivered();
+
     $scope.show_fetch = function(){
         fetch();
-        fetchcount();
+        fetchcount();   
+        pending();
+        fetchdelivery();
+        fetchdelivered();
     }
     $scope.show_fetch2 = function(){
         fetch2();
         fetchcount();
+        pending2();
+        fetchdelivery2();
+        fetchdelivered2();
+
     }
     function fetch(){
         
@@ -69,10 +85,142 @@ app.controller('adminController', function(
             });
     }
 
+    function pending(){
+
+    var promise = adminFactory.pending($scope.filter);
+        promise.then(function(data){
+                var t = data.data.result[0].created_at;
+                var d = new Date(t.toLocaleString());
+
+        $scope.pending = data.data.result;
+        $scope.pending.status = true;
+
+        })
+        .then(null, function(data){
+            $scope.pending.status = false;
+
+        });
+}
+
+function pending2(){
+    if($scope.viewTitle.length > 0){
+        $scope.filter.type = $scope.viewTitle;
+    }
+    var promise = adminFactory.pending($scope.filter);
+        promise.then(function(data){
+                var t = data.data.result[0].created_at;
+                var d = new Date(t.toLocaleString());
+
+        $scope.pending = data.data.result;
+        $scope.pending.status = true;
+
+        })
+        .then(null, function(data){
+            $scope.pending.status = false;
+
+        });
+}
+
+function fetchdelivered(){
+
+    var promise = adminFactory.fetchdelivered($scope.filter);
+        promise.then(function(data){
+                var t = data.data.result[0].created_at;
+                var d = new Date(t.toLocaleString());
+
+        $scope.fetchdelivered = data.data.result;
+        $scope.fetchdelivered.status = true;
+
+        })
+        .then(null, function(data){
+            $scope.fetchdelivered.status = false;
+
+        });
+}
+function fetchdelivered2(){
+    if($scope.viewTitle.length > 0){
+        $scope.filter.type = $scope.viewTitle;
+    }
+    var promise = adminFactory.fetchdelivered($scope.filter);
+        promise.then(function(data){
+                var t = data.data.result[0].created_at;
+                var d = new Date(t.toLocaleString());
+
+        $scope.fetchdelivered = data.data.result;
+        $scope.fetchdelivered.status = true;
+
+        })
+        .then(null, function(data){
+            $scope.fetchdelivered.status = false;
+
+        });
+}
+
+
+function fetchdelivery(){
+
+    var promise = adminFactory.fetchdelivery($scope.filter);
+        promise.then(function(data){
+                var t = data.data.result[0].created_at;
+                var d = new Date(t.toLocaleString());
+
+        $scope.fetchdelivery = data.data.result;
+        $scope.fetchdelivery.status = true;
+
+        })
+        .then(null, function(data){
+            $scope.fetchdelivery.status = false;
+
+        });
+}
+function fetchdelivery2(){
+    if($scope.viewTitle.length > 0){
+        $scope.filter.type = $scope.viewTitle;
+    }
+    var promise = adminFactory.fetchdelivery($scope.filter);
+        promise.then(function(data){
+                var t = data.data.result[0].created_at;
+                var d = new Date(t.toLocaleString());
+
+        $scope.fetchdelivery = data.data.result;
+        $scope.fetchdelivery.status = true;
+
+        })
+        .then(null, function(data){
+            $scope.fetchdelivery.status = false;
+
+        });
+}
+
     $scope.csv = function(){
         window.open('../../php/FUNCTIONS/csv.php', '_blank');
-        console.log('sample');
     }
+    $scope.csv2 = function(){
+        window.open('../../php/FUNCTIONS/csv2.php', '_blank');
+    }
+
+    // $scope.pdf = function(){
+    //     window.open('../../php/FUNCTIONS/pdf.php', '_blank');
+    // }
+
+
+    // $scope.getData = function () {
+    //     return $filter('filter')($scope.fetchdelivered, $scope.q)
+    //   }
+      
+    //   $scope.numberOfPages=function(){
+    //       return Math.ceil($scope.getData().length/$scope.pageSize);
+    //   }
+      
+    //   for (var i=0; i<65; i++) {
+    //       $scope.fetchdelivered.push("Item "+i);
+    //   }
+  
+    //   $scope.$watch('q', function(newValue,oldValue){        
+    //                      if(oldValue!=newValue){
+    //       $scope.currentPage = 0;
+    //     }
+    //   },true);
 
     $scope.reset = function(){
         $scope.prodname = null;
@@ -139,10 +287,30 @@ app.controller('adminController', function(
             });
          
     };
-    $scope.prodedit = function(value){
-            $scope.modal = value;
+    $scope.prodedit = function(v){
+            $scope.modal = v;
             fetch();
+            fetchcount();
+            pending();
+            fetchdelivery();
+            fetchdelivered();
+           
     }
+    $scope.process = function(v){
+            var promise = adminFactory.process(v);
+                promise.then(function(data){
+                    alert('Success item now on delivery process');
+                    fetch();
+                    fetchcount();
+                    pending();
+                })
+                .then(null, function(data){
+                    //
+                })
+
+    }
+
+
     $scope.editmodal = function(){
        
         var promise = adminFactory.editprod($scope.modal);
@@ -189,6 +357,32 @@ app.controller('adminController', function(
             })
             .then(null, function(data){
                 alert('error');
+            });
+    }
+    $scope.cancel = function(v){
+        var promise = adminFactory.deliverydelete(v);
+            promise.then(function(data){
+                alert("Item has been removed");
+                fetch();
+                 fetchcount();   
+                  pending();
+                 fetchdelivery();
+            })
+            promise.then(null, function(data){
+                alert('Error Connection');
+            });
+    }
+    $scope.delivery = function(v){
+        var promise = adminFactory.delivery(v);
+            promise.then(function(data){
+                alert("Success item Delivered'");
+                fetch();
+                 fetchcount();   
+                  pending();
+                 fetchdelivery();
+            })
+            promise.then(null, function(data){
+                alert('Error Connection');
             });
     }
 

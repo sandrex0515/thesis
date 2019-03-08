@@ -25,7 +25,7 @@
                   </h1>
                   <div class="row">
                       <div class="col-lg-3">
-                  <input type="text" class="form-control" placeholder="Search...">
+                          <input type="text" class="form-control" ng-model="filter.searchString" ng-change="show_fetch()" placeholder="Search...">
                   <br>
                 </div>
                 <div class="col-lg-2">
@@ -38,7 +38,7 @@
         
                         <span ng-click="Selectopt()">
                           Select By:
-                            <select class="form-control col-sm-8" ng-model="viewTitle">
+                      <select class="form-control col-sm-8" ng-model="viewTitle" ng-change="show_fetch2()">
                                     <option selected disabled></option>
                                     <option>Name</option>
                                     <option>Date</option>
@@ -49,24 +49,22 @@
                     </div>
                
                     <div class="col-sm-4">
-                        <button class="btn btn-sm btn-primary">Export to PDF</button>
-                        <button class="btn btn-sm btn-primary">Export to Excel</button>
+                        <!-- <button class="btn btn-sm btn-primary">Export to PDF</button> -->
+                        <button class="btn btn-sm btn-primary" ng-click="csv2()">Export to Excel</button>
                     </div>
                     </div>
         
                   <div class="row">
-                        <div class="col-lg-3 prodlist" style="background:#fff;padding: 20px 20px;height: 350px;text-align: center;">
+                  <h3 ng-if="!fetchdelivered.status" style="padding-left: 37%">No data found</h3>
+                        <div class="col-lg-3 prodlist" ng-repeat="(k,v) in fetchdelivered track by $index" ng-if="fetchdelivered.status" style="background:#fff;padding: 20px 20px;height: 350px;text-align: center;">
                                 <img src="../../media/slide.jpg" class="img-thumbnail" width="auto" height="200px" alt="img">
-                                <p>Item:&nbsp;{{value.item}} </p>
-                                <p>Price:&nbsp;{{value.price | currency:"&#8369":0}} </p>
-                                <p>Customer:&nbsp;{{value.type}}</p>
-                                <p>Date:&nbsp;{{value.created_at}}</p>
-                                <button type="button" data-toggle="modal" data-target="#editModal" class="btn btn-primary" ng-click="prodedit(value)" title="View"><ion-icon name="eye"></ion-icon></button>
-
-                    </div>
+                                <p>Name:&nbsp;{{v.name}} </p>
+                                <p>Date:&nbsp;{{v.delivered_date}} </p>
+                                <p>Address:&nbsp;{{v.address}}</p>
+                                <button type="button" data-toggle="modal" data-target="#editModal" class="btn btn-primary" ng-click="prodedit(v)" title="View"><ion-icon name="eye"></ion-icon></button>
+                              </div>
         </div>
         <br>
-        
         <nav aria-label="Page navigation example">
                 <ul class="pagination" style="justify-content:center">
                   <li class="page-item">
@@ -87,30 +85,33 @@
         </section>
         </div>
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body" style="text-align: center">    
-                    <img src="../../media/slide.jpg" class="img-thumbnail" width="200px" height="250px" style="border-radius:50%" alt="img">
-                   <br><br>
-                    <p>Item:&nbsp;{{value.item}} </p>
-                    <p>Price:&nbsp;{{value.price | currency:"&#8369":0}} </p>
-                    <p>Customer:&nbsp;{{value.type}} </p>
-                    <p>Address:&nbsp;{{value.quantity}}</p>
-                    <p>Contact:&nbsp;</p>
-                    <p>Email:&nbsp;</p>
-                    <p>Date added:&nbsp;{{value.created_at}}</p>
-                    <p>Reputation:&nbsp;</p>
-                     
-              </div>
-              <div class="modal-footer">
-                <button type="button" ng-click="editclose()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Details</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body" style="text-align: center">    
+                      <img src="../../media/slide.jpg" class="img-thumbnail" width="200px" height="250px" style="border-radius:50%" alt="img">
+                     <br><br>
+                      <p>Item:&nbsp;{{modal.item}} </p>
+                      <p>Quantity:&nbsp;{{modal.quantity}}</p>
+                      <p>Total:&nbsp;{{modal.price * modal.quantity | currency:"&#8369":0}} </p>
+                      <p>Customer:&nbsp;{{modal.name}} </p>
+                      <p>Address:&nbsp;{{modal.address}}</p>
+                      <p>Contact:&nbsp;{{modal.contact}} </p>
+                      <p>Email:&nbsp;{{modal.email}} </p>
+                      <p>Date added:&nbsp;{{modal.delivered_date}}</p>
+                      <p>Reputation:&nbsp;</p>
+                       
+                </div>
+                <div class="modal-footer">
+                  <button type="button" ng-click="editclose()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+
+          

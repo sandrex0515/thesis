@@ -11,6 +11,12 @@
 .form-group .glyphicon {
   color: #95d7fc;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+  width: 0px;
+}
 
 </style>
 <body style="background:#f7f7f7;">
@@ -298,7 +304,7 @@
                <p style="float:left">#{{$index + 1}}</p><p style="float:left">:&nbsp;{{v.view}}&nbsp;<i class="fa fa-eye" aria-hidden="true"></i>
                  </p> 
                
-                  <img class="img-thumbnail" src="media/lazada.png" alt="test">
+                  <img class="img-thumbnail" src="{{v.path}}" alt="test" style="width: 230px" height="200px">
          
          </div>
         </li>                                                                                            
@@ -310,7 +316,7 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">My cart</h5>
+            <h5 class="modal-title" id="exampleModalLabel">My Basket</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -352,7 +358,7 @@
               &nbsp;{{v.price  | currency:"&#8369":0}}
             </div>
                 <div class="col-lg-4">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Order now</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#orModal" data-dismiss="modal">Order menu</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
           </div>
@@ -380,6 +386,63 @@
                   </div>
                 </div>
               </div>
+
+              <div class="modal fade" id="orModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" style="max-width: 1280px;" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Order</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body" style="max-height: 450px;overflow-y:auto ">
+                    <div class="row">
+                      <div class="col-lg-8">
+                        <div class="row" ng-repeat="(k,v) in newl track by $index" ng-if="newl.status">
+                          <div class="col-lg-2" style="border: none;outline: none">
+                            <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none">
+                          </div>
+                          <div class="col-lg-4" style="font-size: 22px">
+                            {{v.item}}
+                          </div>
+                          <div class="col-lg-2 text-danger" style="font-size: 22px">
+                           x {{v.quantity}}
+                          </div>
+                          <div class="col-lg-2 text-danger" style="font-size: 22px">
+                            &nbsp;{{v.price * v.quantity | currency:"&#8369":0}}
+                          </div>
+                          <div class="col-lg-2 text-danger" style="font-size: 22px">
+                              <button type="button" ng-click="deletecart(v)" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                              
+                                                </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <label><i class="fa fa-motorcycle" aria-hidden="true"></i> Delivery Address</label>
+                        <h5 style="font-size: 18px;text-transform: none;">{{info.address}} </h5>
+                        <label><i class="fa fa-envelope" aria-hidden="true"></i> Email Address</label>
+                        <h5 style="font-size: 18px;text-transform: none;">{{info.email}} </h5>
+                        <label><i class="fa fa-address-book" aria-hidden="true"></i> Contact</label>
+                        <h5 style="font-size: 18px;text-transform: none;">{{info.contact}} </h5>
+                        <label><i class="fa fa-money" aria-hidden="true"></i> Payment</label>
+                        <h5 style="font-size: 18px;text-transform: none;"> Cash on Delivery</h5>
+                        <br>
+                        <h4 class="text-success">Item QTY {{newl.count}}</h4>
+                        <h3 class="text-danger" class="font-size: 40px;">Total &#8369;{{newl.total}}</h3>
+                  
+                      </div>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" ng-click="ord(newl)" class="btn btn-primary" data-dismiss="modal">Order now</button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" style="max-width: 1280px;" role="document">
                   <div class="modal-content">
@@ -393,9 +456,9 @@
                     <div class="row">
                     <div class="col-lg-3" style="background:#f8f5f5">
                       <br>
-                        <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none"><br>
+                        <img src="{{t.path}}" class="img-thumbnail" style="border: none;outline: none"><br>
 
-                    </div>  
+                      </div>  
                     <div class="col-lg-5" style="background: #f8f5f5">
                       <h4 style="font-size: 23px;text-transform: capitalize">{{t.item}}</h4><br>
                       <h4 style="font-size: 18px;text-transform: capitalize">{{t.description}}</h4>
@@ -408,7 +471,7 @@
                             <div class="input-group-btn">
                                 <button id="down" class="btn btn-default" ng-click="minus()"><span class="fa fa-minus"></span></button>
                             </div>
-                            <input type="number" id="myNumber" ng-model="quantity" class="form-control input-number"/>
+                            <input type="number" id="myNumber" style="width:90px;" ng-model="quantity" class="form-control input-number col-lg-4"/>
                             <div class="input-group-btn">
                                 <button id="up" class="btn btn-default" ng-click="plus(t)" ng-keyup="plus($event,quantity)"><span  ng-model="quantity"  ng-change="show_fetch()" class="fa fa-plus" ></span></button>
                             </div>
@@ -417,8 +480,9 @@
                           </div>
                           
                     </div>
-                    <button type="button" class="btn btn-success">ORDER NOW</button>
-                    <button type="button" class="btn btn-success" ng-click="cart(t)">ADD CART</button>
+                    <h3 class="text-danger" style="font-size: 24px;padding-top: -5px;">{{msg}}</h3>
+                    <!-- <button type="button" class="btn btn-success">ORDER NOW</button> -->
+                    <button type="button" class="btn btn-success" ng-click="cart(t)">ADD BASKET</button>
                   </center>
              
 

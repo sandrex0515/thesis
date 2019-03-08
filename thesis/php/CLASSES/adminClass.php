@@ -42,8 +42,32 @@ class addPod extends ClassParent{
             return(TRUE);
         }
         
-        public function addProd(){
+        public function addProd($data){
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+
             $sql = <<<EOT
+            with at as (
+                insert into itempic
+                (
+                    path,
+                    pic_id
+                    )
+                    values(
+                        '$this->profimg',
+                        $this->stock_id
+                        )
+                    ), b as(
+                        insert into stock(
+                        stock_id,
+                        quantity
+                        )
+                        values(
+                            $this->stock_id,
+                            $this->stock
+                            )
+                            )
             insert into item
              (
                 item,
@@ -63,22 +87,22 @@ EOT;
 return ClassParent::insert($sql);
 
  }
-        public function addStock(){ 
+//         public function addStock(){ 
 
-            $sql = <<<EOT
-                insert into stock
-                ( 
-                    stock_id,
-                    quantity
-                )
-               values
-               (
-                   $this->stock_id,
-                   $this->stock
-                   )
-EOT;
-        return ClassParent::insert($sql);
-}
+//             $sql = <<<EOT
+//                 insert into stock
+//                 ( 
+//                     stock_id,
+//                     quantity
+//                 )
+//                values
+//                (
+//                    $this->stock_id,
+//                    $this->stock
+//                    )
+// EOT;
+//         return ClassParent::insert($sql);
+// }
         public function Searchview(){
             $sql = <<<EOT
             insert into search
@@ -346,7 +370,6 @@ EOT;
                 $this->$k = pg_escape_string(strip_tags(trim($v)));
             }
             $sql = <<<EOT
-
             delete from
             cart 
             where
@@ -354,6 +377,249 @@ EOT;
 
 EOT;
             return ClassParent::insert($sql);
+        }
+
+        public function ord($data){
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+            $sql = <<<EOT
+            with a as(
+                delete from 
+                cart where
+                cartpk = $this->cartpk
+                )
+                insert into pending
+                (
+                pending_pk,
+                p_id,
+                quantity
+                )
+                values
+                (
+                $this->pk,
+                $this->item_id,
+                $this->quantity
+                )
+EOT;
+            return ClassParent::insert($sql);
+        }
+        public function pending($data){
+            $filter = $data['searchString'];
+            $type= $data['type'];
+            $where = "";
+            $where1 = "";
+            if($filter){
+                $where .= "AND tbluser.name ILIKE '%".$filter."%'";
+            }
+            if($type == 'Date'){
+                $where1 .="ORDER BY ord_date ASC";  
+            }else if($type == 'Name'){
+                $where1 .="ORDER BY tbluser.name ASC";
+            }else if($type == 'Place'){
+                $where1 .="ORDER BY tbluser.address ASC";
+            }else{
+                $where1 .="ORDER BY ord_date DESC";
+            }
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+
+            $sql = <<<EOT
+                select * from
+                pending 
+                inner join tbluser
+                on pending.pending_pk = tbluser.pk
+                inner join itempic 
+                on pending.p_id = itempic.pic_id
+                inner join item
+                on pending.p_id = item.item_id
+                where arv = false
+                $where
+                $where1
+                
+EOT;
+            return ClassParent::get($sql);
+
+        }
+
+        public function delivery($data){
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+            $sql = <<<EOT
+            with a as(
+                insert into delivery
+                (
+                    delivery_id,
+                    delivery_pk,
+                    delivery_pic,
+                    quantity
+                )
+                values
+                (
+                    $this->pending_id,
+                    $this->pk,
+                    $this->pic_id,
+                    $this->quantity
+                    )
+                )
+                delete from pending where 
+                pending_id = $this->pending_id
+EOT;
+            return CLassParent::insert($sql);
+        }
+        public function fetchdelivery($data){
+            $filter = $data['searchString'];
+            $type= $data['type'];
+            $where = "";
+            $where1 = "";
+            if($filter){
+                $where .= "AND tbluser.name ILIKE '%".$filter."%'";
+            }
+            if($type == 'Date'){
+                $where1 .="ORDER BY delivery_date ASC";  
+            }else if($type == 'Name'){
+                $where1 .="ORDER BY tbluser.name ASC";
+            }else if($type == 'Place'){
+                $where1 .="ORDER BY tbluser.address ASC";
+            }else{
+                $where1 .="ORDER BY delivery_date DESC";
+            }
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+
+            $sql = <<<EOT
+                select * from
+                delivery 
+                inner join tbluser
+                on delivery.delivery_pk = tbluser.pk
+                inner join itempic 
+                on delivery.delivery_pic = itempic.pic_id
+                inner join item
+                on delivery.delivery_pic = item.item_id
+                where arc = false
+                $where
+                $where1
+                
+EOT;
+            return ClassParent::get($sql);
+
+        }
+
+        public function deliverydelete($data){
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+            $sql = <<<EOT
+                delete from 
+                delivery
+                where 
+                delivery_id = $this->delivery_id
+EOT;
+            return ClassParent::insert($sql);
+        }
+
+        public function delivered($data){
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+            $sql = <<<EOT
+            with a as(
+                insert into delivered
+                (
+                    delivered_id,
+                    delivered_pk,
+                    delivered_pic,
+                    quantity
+                )
+                values
+                (
+                    $this->delivery_id,
+                    $this->delivery_pk,
+                    $this->pic_id,
+                    $this->quantity
+                    )
+                ), b as(
+                    update stock set quantity = 
+                    (select quantity from stock where stock_id = $this->delivery_pic) - 1 
+                    where stock_id = $this->delivery_pic
+                    )
+
+                delete from delivery where 
+                d_id = $this->d_id
+EOT;
+            return CLassParent::insert($sql);
+        }
+        public function fetchdelivered($data){
+            $filter = $data['searchString'];
+            $type= $data['type'];
+            $where = "";
+            $where1 = "";
+            if($filter){
+                $where .= "AND tbluser.name ILIKE '%".$filter."%'";
+            }
+            if($type == 'Date'){
+                $where1 .="ORDER BY delivered_date ASC";  
+            }else if($type == 'Name'){
+                $where1 .="ORDER BY tbluser.name ASC";
+            }else if($type == 'Place'){
+                $where1 .="ORDER BY tbluser.address ASC";
+            }else{
+                $where1 .="ORDER BY delivered_date DESC";
+            }
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+
+            $sql = <<<EOT
+                select * from
+                delivered 
+                inner join tbluser
+                on delivered.delivered_pk = tbluser.pk
+                inner join itempic 
+                on delivered.delivered_pic = itempic.pic_id
+                inner join item
+                on delivered.delivered_pic = item.item_id
+                where arc = false
+                $where
+                $where1
+                
+EOT;
+            return ClassParent::get($sql);
+
+        }
+        public function csv(){
+            $sql = <<<EOT
+                select * from delivery
+                inner join tbluser
+                on delivery.delivery_pk = tbluser.pk
+                inner join item
+                on delivery.delivery_pic = item_id
+EOT;
+            return ClassParent::get($sql);
+        }
+        public function csv2(){
+            $sql = <<<EOT
+                select * from delivered
+                inner join tbluser
+                on delivered.delivered_pk = tbluser.pk
+                inner join item
+                on delivered.delivered_pic = item_id
+EOT;
+            return ClassParent::get($sql);
+        }
+
+        public function pdf(){
+            $sql = <<<EOT
+                select * from delivery
+                inner join tbluser
+                on delivery.delivery_pk = tbluser.pk
+                inner join item
+                on delivery.delivery_pic = item_id
+EOT;
+            return ClassParent::get($sql);
         }
        
 }

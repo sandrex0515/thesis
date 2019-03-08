@@ -24,17 +24,17 @@
                     <div>On-process Orders</div>
                   </h1>
                   <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-6">
                   <input type="text" class="form-control" ng-model="filter.searchString" ng-change="show_fetch()" placeholder="Search...">
                   <br>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     <a href="#/process2" class="btn btn-sm btn-light list" title="Table list"><ion-icon name="list" style="zoom:2.0"></ion-icon></a>          
                       <a href="#/process" class="btn btn-sm btn-light" title="List"><ion-icon name="apps" style="zoom:2.0"></ion-icon></a>
                       <br>
         
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-3">
         
                     <span ng-click="Selectopt()">
                       Select By:
@@ -48,10 +48,7 @@
                         <br>
                 </div>
            
-                <div class="col-sm-4">
-                    <button class="btn btn-sm btn-primary">Export to PDF</button>
-                    <button class="btn btn-sm btn-primary">Export to Excel</button>
-                </div>
+              
                 </div>
         
                                 <table class="table table-borderless">
@@ -59,6 +56,7 @@
                                           <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Item</th>
+                                            <th scope="col">Qty</th>
                                             <th scope="col">Price</th>
                                             <th scope="col">Customer</th>
                                             <th scope="col">Date</th>
@@ -66,17 +64,20 @@
                                           </tr>
                                         </thead>
                                         <tbody>
-                                          <tr ng-repeat="(key, value) in fetch track by $index">
+                                          <tr ng-repeat="(k,v) in pending track by $index" ng-if="pending.status">
                                             <th scope="row">{{$index + 1}}</th>
-                                            <td>{{value.item}}</td>
-                                            <td>{{value.price | currency: "&#8369":0}}</td>
-                                            <td>{{value.type}}</td>
-                                            <td>{{value.created_at}}</td>
-                                            <td> <button type="button" data-toggle="modal" data-target="#editModal" class="btn btn-primary" ng-click="prodedit(value)" title="Edit"><ion-icon name="eye"></ion-icon></button>
-                                                <button type="button" class="btn btn-primary" ng-click="process(value)" title="Product Processed"><ion-icon name="checkmark"></ion-icon></button>
+                                            <td>{{v.item}}</td>
+                                            <td>{{v.quantity}}</td>
+                                            <td>{{v.price | currency: "&#8369":0}}</td>
+                                            <td>{{v.name}}</td>
+                                            <td>{{v.ord_date}}</td>
+                                            <td> <button type="button" data-toggle="modal" data-target="#editModal" class="btn btn-primary" ng-click="prodedit(v)" title="Edit"><ion-icon name="eye"></ion-icon></button>
+                                                <button type="button" class="btn btn-primary" ng-click="process(v)" title="Product Processed"><ion-icon name="checkmark"></ion-icon></button>
 
                                             </td>
                                             </tr>
+                                            <tr ng-if="!pending.status" style="text-align:center">
+                                              <td scope="row" style="text-align:center" >No data found</td></tr>
                                      
                                         </tbody>
                                       </table>
@@ -113,13 +114,14 @@
               <div class="modal-body" style="text-align:center;">    
                     <img src="../../media/slide.jpg" class="img-thumbnail" width="200px" height="250px" style="border-radius:50%" alt="img">
                    <br><br>
-                    <p>Item:&nbsp;{{value.item}} </p>
-                    <p>Price:&nbsp;{{value.price | currency:"&#8369":0}} </p>
-                    <p>Customer:&nbsp;{{value.type}} </p>
-                    <p>Address:&nbsp;{{value.quantity}}</p>
-                    <p>Contact:&nbsp;</p>
-                    <p>Email:&nbsp;</p>
-                    <p>Date added:&nbsp;{{value.created_at}}</p>
+                    <p>Item:&nbsp;{{modal.item}} </p>
+                    <p>Quantity:&nbsp;{{modal.quantity}} </p>
+                    <p>Price:&nbsp;{{modal.price * modal.quantity | currency:"&#8369":0}} </p>
+                    <p>Customer:&nbsp;{{modal.name}} </p>
+                    <p>Address:&nbsp;{{modal.address}}</p>
+                    <p>Contact:&nbsp;{{modal.contact}} </p>
+                    <p>Email:&nbsp;{{modal.email}} </p>
+                    <p>Date added:&nbsp;{{modal.ord_date}}</p>
                     <p>Reputation:&nbsp;</p>
               </div>
               <div class="modal-footer">
