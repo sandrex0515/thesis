@@ -19,6 +19,8 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 </style>
+
+
 <body style="background:#f7f7f7;">
                 <div id="messengerBox">
                         <div class="container">
@@ -114,13 +116,12 @@ input[type=number]::-webkit-outer-spin-button {
                 </div>
             <div class="upper">
                 
-                <ul>
-                <li><p>Follow us on &nbsp;&nbsp;<i class="fa fa-facebook-square fa-2x" id="fb" aria-hidden="true"></i></p> 
+                <ul style="color: #fff">
+                <li><p style="color: #fff">Follow us on &nbsp;&nbsp;<i class="fa fa-facebook-square fa-2x" id="fb" aria-hidden="true"></i></p> 
                 </li>
-                <li><a href="#">Customer support</a></li>
-                <li><a href="#">Careers</a></li>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Contact</a></li>
+              
+                <li><a href="#" style="color: #fff">About us</a></li>
+                <li><a href="#" style="color: #fff">Contact</a></li>
                 
                 <li><a href="#" id="log" style="color:#ffff66;">a</a></li>
                 <li></li>
@@ -129,7 +130,7 @@ input[type=number]::-webkit-outer-spin-button {
                        <a onclick="show()" style="text-transform: capitalize;  font-size: 22px;cursor:pointer;line-height: 50px">Hi, {{info.name}} <i class="fa fa-caret-down" aria-hidden="true"></i>
                        </a>
                        <div id="userprof">
-                               <ul style="list-style: none;float:left;">
+                               <ul style="list-style: none;float:left;color:#000">
                                        <li data-toggle="modal" data-target="#ordhModal">Order History</li><br>
                                        <li data-toggle="modal" data-target="#editModal">Account Information</li><br>
                                        <li><i class="fa fa-power-off" aria-hidden="true"></i> Logout</li>
@@ -149,6 +150,7 @@ input[type=number]::-webkit-outer-spin-button {
                         <ul>
                         <li>  
                             <img src="media/lazada.png" >
+                           
                         </li>
                         </ul>
                         <div class="box">
@@ -163,7 +165,7 @@ input[type=number]::-webkit-outer-spin-button {
                               
                               <div id="searchDisplay" style="cursor:pointer">
                                 <ul>
-                                        <a ng-click="searchres(v)" href="#/search"  ng-repeat="(k, v) in fetch track by $index"  ng-if="fetch.status"> <li class="displayHov"><h6 style="text-decoration: none;" >{{v.item}}</h6></li>
+                                        <a ng-click="searchres(v)" ng-repeat="(k, v) in fetch track by $index"  ng-if="fetch.status"> <li class="displayHov"><h6 style="text-decoration: none;" >{{v.item}}</h6></li>
                                         </a>
         
         
@@ -179,26 +181,39 @@ input[type=number]::-webkit-outer-spin-button {
                                  <p class="notif" ng-if="!newl.status">0&nbsp;</p>
                                  <p class="notif" ng-if="newl.status">{{newl.count}} &nbsp;</p>
                                 </div>
-                                  <i data-toggle="modal" data-target="#cartModal" style="cursor:pointer;" class="fa fa-shopping-basket fa-3x" aria-hidden="true"></i>
+                                  <i data-toggle="modal" data-target="#cartModal" style="cursor:pointer; color:#fff" class="fa fa-shopping-basket fa-3x" aria-hidden="true"></i>
                           <div class="drp">
                                   <ul> 
                                   <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle nav-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown-toggle nav-dark" style="color: #fff" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                           Categories
                                         </a>
                                     </button>
                                     
                                
                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="categories.html">All Categories</a>
-                                        <a class="dropdown-item" href="#">Category1</a>
-                                        <a class="dropdown-item" href="#">Category2</a>
-                                        <a class="dropdown-item" href="#">Category3</a>
-                                        <a class="dropdown-item" href="#">Category4</a>
-                                        <a class="dropdown-item" href="#">Category5</a>
-                                        <a class="dropdown-item" href="#">Category6</a>
-                                        <a class="dropdown-item" href="#">Category7</a>
-                                        <a class="dropdown-item" href="#">Category8</a>
+                                     
+                                    <a class="dropdown-item" href="#/categories">Wheels</a>
+                                        <!-- <a class="dropdown-item" href="categories.html">All Categories</a> -->                                      
+                                        <!-- <a class="dropdown-item" href="#">57 Motorsport</a>
+                                        
+                                        
+                                        
+
+                                          
+                                          <a class="dropdown-item" href="#">Black Feet</a>
+                                        <a class="dropdown-item" href="#">Daytona</a>
+                                        <a class="dropdown-item" href="#">Garcia</a>
+                                        <a class="dropdown-item" href="#">Gramlights</a>
+                                        <a class="dropdown-item" href="#">Hfullcross</a>
+                                        <a class="dropdown-item" href="#">Homura</a>
+                                        <a class="dropdown-item" href="#">Sebring</a>
+                                        <a class="dropdown-item" href="#">Versus</a>
+                                        <a class="dropdown-item" href="#">Volkracing</a>
+                                        <a class="dropdown-item" href="#">Waltz</a> -->
+
+
+
         
                                        
                                         </li>
@@ -227,18 +242,10 @@ input[type=number]::-webkit-outer-spin-button {
 
             <div class="slider">
                         <div class="slide-track">
-                                <div class="slide">
-                                        <img src="media/lazada.png" height="100" width="250" alt="" />
+                                <div class="slide" ng-repeat="(k,v) in fetchcateg track by $index" ng-if="fetchcateg.status">
+                                        <img src="{{v.cat_path}}" height="100" width="250" alt="" />
                                 </div>
-                                <div class="slide">
-                                                <img src="media/lazada.png" height="100" width="250" alt="" />
-                                        </div>
-                                        <div class="slide">
-                                                        <img src="media/lazada.png" height="100" width="250" alt="" />
-                                                </div>
-                                  <div class="slide">
-                                        <img src="media/lazada.png" height="100" width="250" alt="" />
-                                </div>
+                              
                                 
                         </div>
                 </div>
@@ -250,7 +257,7 @@ input[type=number]::-webkit-outer-spin-button {
    
     
                     <div class="container-fluid today">
-                      <h1>Today's Deal&nbsp;<a style="font-size:16px;" href="todaysdeal.html">see more</a></h1>
+                      <!-- <h1>Today's Deal&nbsp;<a style="font-size:16px;" href="todaysdeal.html">see more</a></h1> -->
     
     
                       <div class="swiper-container v2">
@@ -297,7 +304,7 @@ input[type=number]::-webkit-outer-spin-button {
     </div>
     
     <div class="container-fluid topSearch">
-      <h1>Top Search <a href="#">see more</a></h1>
+      <!-- <h1>Top Search <a href="#">see more</a></h1> -->
       <ul> 
         <li ng-repeat="(k, v) in fetch track by $index" ng-click="top(v)" data-toggle="modal" data-target="#orderModal">
           <div class="con-top-search" style="cursor:pointer" ng-click="order(v)">

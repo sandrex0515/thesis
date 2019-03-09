@@ -13,7 +13,43 @@ angular
         });
 
         // FILTERS
-      
+      dd();
+
+      function dd(){
+        $.ajax({
+            type: 'POST',
+            url: '../php/FUNCTIONS/getcat.php',
+            dataType: 'json',
+         
+            success:function(data){
+        
+                    //     var dd = "";
+                    //     for(var i = 0; i < data.result.length;i++){
+                    // //   var dd = data.result[i].name;
+                    // //   $('#cat').text(data.result[i].name);
+                    //   $scope.dd = data.result[i];
+                    //   $scope.dd.name = data.result[i].name;
+                    //             console.log($scope.dd.name);
+                    // }
+        
+                    $scope.dd = data.result;
+
+                    
+              
+            }
+              
+        
+          });
+    }
+    $scope.reset = function(){
+        $scope.prodname = null;
+        $scope.proddescript = null;
+        $scope.prodcateg = null;
+        $scope.prodprice = null;
+        $scope.prodstock = null;
+        $scope.message = null;
+        
+    }
         // a sync filter
         uploader.filters.push({
             name: 'syncFilter',
@@ -73,4 +109,7 @@ angular
 
         // console.log($scope.response);
         // console.info('uploader', uploader);
+
+
+     
     }]);

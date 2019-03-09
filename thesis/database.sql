@@ -184,6 +184,35 @@ alter table search drop column id;
 alter table search add column id numeric unique;
 alter table search add column id_search numeric unique;
 
+create table brand(
+    rand_id numeric, 
+    brand_name varchar unique
+    );
+alter table brand owner to sandrex;
+
+create table categories(
+    cat_id serial primary key, 
+    cat_name varchar, 
+    cat_sub jsonb
+    );
+    alter table categories owner to sandrex;
+    alter table categories add column date timestamp default now();
+    alter table categories add column cat_path varchar;
+    alter table categories rename column "cat_name" to "name";
+
+
+    create table categories_item(
+        cat_item_id numeric, 
+        cat_name varchar
+        );
+        alter table categories_item owner to sandrex;
+        alter table categories_item add column path varchar;
+        alter table categories_item add column cat_date timestamp default now();
+        alter table categories_item drop column cat_item_id;
+        alter table categories_item add column cat_subitem_id serial primary key;
+        alter table categories_item add column cat_subitem varchar;
+
+        
 create table temp(
     pk numeric, 
     search varchar

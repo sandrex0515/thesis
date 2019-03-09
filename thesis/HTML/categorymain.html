@@ -1,0 +1,190 @@
+
+
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" name="viewport">
+  <title>Dashboard</title>
+
+  <link rel="stylesheet" href="../admin/dist/modules/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../admin/dist/modules/ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="../admin/dist/modules/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
+
+  <link rel="stylesheet" href="../admin/dist/modules/summernote/summernote-lite.css">
+  <link rel="stylesheet" href="../admin/dist/modules/flag-icon-css/css/flag-icon.min.css">
+  <link rel="stylesheet" href="../admin/dist/css/demo.css">
+  <link rel="stylesheet" href="../admin/dist/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+</head>
+
+<body  ng-controller="AppController" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter" style="margin: 0;">
+  <div id="app">
+    <div class="main-wrapper">
+     
+
+  <div class="main-content">
+    
+          <section class="section">
+            <h1 class="section-header">
+              <div>Add Category</div>
+            </h1>
+            <div class="row" style="text-align: center;">
+             
+             
+              
+  
+              <div class="col-lg-6">
+                <div class="input-group">
+                  <input type="text" class="form-control col-lg-10" id="category" placeholder="Category Name" ng-model="prodname" required>
+                <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="prodname == null">
+                  Required!
+                </p>
+                <p class="text-success col-lg-2" ng-if="prodname != null" large>
+                  <i class="ion ion-checkmark" style="zoom:2.0;" ></i>
+                </p>
+              </div>
+              <br>
+             
+                  <br>
+                  <div class="custom-file" style="margin-top: 3px;">
+                    <input type="file" class="custom-file-input col-lg-10" nv-file-select="" uploader="uploader" required>
+                   
+                    <div class="progress" style="padding-top: 10px; height: 45px; width: 90%;margin-left: 5%;margin-top: 10px;">
+                        
+                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }">{{uploader}} </div>
+                    </div>
+                   
+                    <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                        <span class="glyphicon glyphicon-upload"></span> Upload
+                    </button>
+                    
+                    <label class="custom-file-label" for="customFile" required>Choose File</label>
+
+                  <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="uploader == null">
+                    Required!
+                  </p>
+                  <p class="text-success col-lg-2" ng-if="uploader != null" large>
+                    <i class="ion ion-checkmark" style="zoom:2.0;" ></i>
+                  </p>
+                  </div>
+
+  
+              </div>
+              <div class="col-lg-6">
+                    <p><h1 style="text-transform: capitalize;font-family: 'Bitter', serif;">{{prodname}}</h1>
+
+                    <p style="text-transform: capitalize">{{prodcateg}} </p>
+
+  <div class="container" syle="outline:none;border:none;">
+      
+    <img src="../uploads/{{response}} " id="respond" class="img-thumbnail" style="width: 100px;height: 100px;margin-bottom: 3px;" ng-if="response"><br>
+    <img src="uploads/{{response}}" id="respond2" class="img-thumbnail" style="display:none;width: 100px;height: 100px;margin-bottom: 3px;" ng-if="response">
+  </div>
+              
+              
+            
+              <button class="btn btn-primary" ng-click="prodsubmit()" onclick="addprod()" type="submit"><i class="ion ion-checkmark"></i> Accept and Save Category</button>
+              <button class="btn btn-primary" type="button" ng-click="reset()"><i class="ion ion-close"></i> Cancel</button>
+          </div>
+          
+              </div>
+             
+            </section>
+          </div>
+
+              </div>
+              <br><br><br><br><br><br><br><br><br><br><br><br>
+              <footer class="main-footer">
+                <div class="footer-left">
+               
+                  Copyright &copy; 2019 <div class="bullet"></div> Design By <a href="http://sandrexsaveurl.ga/">Sandrex Cabrales</a>
+                </div>
+                <div class="footer-right"></div>
+              </footer>
+            </div>
+          </div>
+          <script src="../admin/dist/modules/jquery.min.js"></script>
+          <script src="../admin/dist/modules/popper.js"></script>
+          <script src="../admin/dist/modules/tooltip.js"></script>
+          <script src="../admin/dist/modules/bootstrap/js/bootstrap.min.js"></script>
+          <script src="../admin/dist/modules/nicescroll/jquery.nicescroll.min.js"></script>
+          <script src="../admin/dist/modules/scroll-up-bar/dist/scroll-up-bar.min.js"></script>
+          <script src="../admin/dist/js/sa-functions.js"></script>
+          <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+          <script src="../angular/angular-file-upload.min.js"></script>
+          <script src="../angular/directive.js"></script>
+          <script src="../admin/dist/modules/chart.min.js"></script>
+          <script src="../admin/dist/modules/summernote/summernote-lite.js"></script>
+        
+          <script src="../admin/dist/js/scripts.js"></script>
+          <script src="../admin/dist/js/custom.js"></script>
+          <script src="../admin/dist/js/demo.js"></script>
+          <script src="../angular/angular.min.js"></script>
+          <script src="../angular/angular-route.min.js"></script>
+          <script src="../js/moduleAdmin.js"></script>
+          <script src="../js/CONTROLLER/adminController.js"></script>
+          <script src="../js/FACTORY/adminFactory.js"></script>
+
+          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="http://code.angularjs.org/1.2.0/angular.min.js"></script>
+
+  <script src="http://nervgh.github.io/js/es5-shim.min.js"></script>
+        <script src="http://nervgh.github.io/js/es5-sham.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+        <script src="../angular/console-sham.js"></script>
+        <script src="../angular/angular-file-upload.min.js"></script>
+        <script src="../angular/controllers.js"></script>
+        <script src="../angular/factory.js"></script>
+
+
+<script>
+//  $(document).ready(function(){
+  
+// });
+function addprod(){
+        var profimg = $('#respond2').attr('src');
+        console.log(profimg)
+        var error = 0;
+        var item = $('#category').val();
+     
+
+
+       
+        if(profimg.replace(/\s/g,'') == ""){
+          alert('image is required');
+
+            setTimeout(function(){
+                $('#div-message').empty().hide();
+            }, 5000);
+        }
+        else {
+            $.ajax('../php/FUNCTIONS/addcateg.php', {
+                type: "POST",
+                data: { name : item, profimg: profimg},
+                statusCode: {
+                    404: function(response){
+                        alert('')
+                        setTimeout(function(){
+                            $('#div-message').empty().hide();
+                        }, 5000);
+                    }
+                },
+                success: function(data){
+                    alert('Success');
+                }
+            });
+        }
+
+    }
+
+ 
+
+</script>
+
+        </body>
+          </html>

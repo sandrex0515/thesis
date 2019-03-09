@@ -21,69 +21,6 @@
 <body  ng-controller="AppController" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter" style="margin: 0;">
   <div id="app">
     <div class="main-wrapper">
-      <div class="navbar-bg"></div>
-      
-      <div class="main-sidebar">
-        <aside id="sidebar-wrapper">
-         
-          <div class="sidebar-user">
-            <div class="sidebar-user-picture">
-              <img alt="image" src="../media/49161279_2166964706687471_7974348225228308480_n.jpg">
-            </div>
-            <div class="sidebar-user-details">
-              <div class="user-name">Sandrex Cabrales</div>
-              <div class="user-role">
-                Administrator
-              </div>
-            </div>
-          </div>
-          <ul class="sidebar-menu">
-            <li class="menu-header">Dashboard</li>
-            <li class="active">
-              <a href="#/"><i class="ion ion-speedometer"></i><span>Dashboard</span></a>
-            </li>
-
-            <li class="menu-header">Components</li>
-           
-           
-            <li>
-              <a href="#" class="has-dropdown"><i class="ion ion-ios-albums-outline"></i><span>Order</span></a>
-              <ul class="menu-dropdown">
-                <li><a href="#/process"><i class="ion ion-ios-circle-outline sample"></i>On-process</a></li>
-                <li><a href="#/fordelivery"><i class="ion ion-ios-circle-outline sample3"></i>For delivery</a></li>
-                <li><a href="#/delivered"><i class="ion ion-ios-circle-outline sample4"></i>Delivered</a></li>
-              </ul>
-            </li>
-         
-            
-            <li>
-              <a href="#" class="has-dropdown"><i class="ion ion-ios-albums-outline"></i><span>Product</span></a>
-              <ul class="menu-dropdown">
-                <li><a href="#/productbl"><i class="ion ion-ios-circle-outline sample"></i>Product Table</a></li>
-                <li><a href="#/stock"><i class="ion ion-ios-circle-outline sample3" ></i>Stock</a></li>
-              </ul>
-            </li>    
-            <li>
-              <a href="#" class="has-dropdown"><i class="ion ion-ios-albums-outline"></i><span>Product Analytics</span></a>
-              <ul class="menu-dropdown">
-                <li><a href="#"><i class="ion ion-ios-circle-outline"></i>Top Search Product</a></li>
-                <li><a href="#"><i class="ion ion-ios-circle-outline"></i>Top Selling Product</a></li>
-                <li><a href="#"><i class="ion ion-ios-circle-outline"></i>Low Sales Product</a></li>
-                
-              </ul>
-            </li>
-            
-            
-        
-            <li> 
-              <a href="#"><i class="ion ion-stats-bars"></i><span>Careers</span></a>
-            </li>
-            
-
-       
-          
-        </aside>
-      </div>
      
 
   <div class="main-content">
@@ -144,9 +81,24 @@
                   </div>
                   <br>
                   <div class="input-group">
+                    <input type="text" class="form-control col-lg-10" id="brand" placeholder="Product Name" ng-model="brand" required>
+                  <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="brand == null">
+                   Required!
+                  </p>
+                  <p class="text-success col-lg-2" ng-if="brand != null" large>
+                    <i class="ion ion-checkmark" style="zoom:2.0;" ></i>
+                  </p>
+                </div>  
+                    <br>   
+                  <div class="input-group">
+<script>
+ 
+  
+  </script>
+                    
                   <select class="form-control col-lg-10" id="category" placeholder="Category" ng-model="prodcateg" required>
-                      <option disabled>Category</option>
-                      <option>category 1</option>
+                      <option disabled></option>
+                      <option ng-repeat="(k,v) in dd track by $index"><p>{{v.name}}</p></option>
                   </select>
                   <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="prodcateg == null">
                     Required!
@@ -180,10 +132,10 @@
                     
                     <label class="custom-file-label" for="customFile" required>Choose File</label>
 
-                  <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="prodfile == null">
+                  <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="uploader == null">
                     Required!
                   </p>
-                  <p class="text-success col-lg-2" ng-if="prodfile != null" large>
+                  <p class="text-success col-lg-2" ng-if="uploader != null" large>
                     <i class="ion ion-checkmark" style="zoom:2.0;" ></i>
                   </p>
                   </div>
@@ -200,6 +152,7 @@
               </p>
               <p style="text-transform: capitalize;font-family: 'Bitter', serif;">{{proddescript}}</p>
               <p style="color:lightcoral;font-size: 32px;">{{prodprice | currency: "&#8369":0}}</p>
+              <p style="text-transform: capitalize;font-family: 'Bitter', serif;">{{brand}}</p>
               <p ng-if="prodstock != null">Stock:&nbsp;{{prodstock}}
               </p>
               <p style="text-transform: capitalize">{{prodcateg}} </p>
@@ -224,6 +177,7 @@
                       </button> -->
                     </div>
                     <br>
+                    <span id="cat"></span>
               <button class="btn btn-primary" ng-click="prodsubmit()" onclick="addprod()" type="submit"><i class="ion ion-checkmark"></i> Accept and Save Product</button>
               <button class="btn btn-primary" type="button" ng-click="reset()"><i class="ion ion-close"></i> Cancel</button>
           </div>
@@ -279,10 +233,13 @@
         <script src="../angular/console-sham.js"></script>
         <script src="../angular/angular-file-upload.min.js"></script>
         <script src="../angular/controllers.js"></script>
+        <script src="../angular/factory.js"></script>
 
 
 <script>
-
+//  $(document).ready(function(){
+  
+// });
 function addprod(){
         var profimg = $('#respond2').attr('src');
         console.log(profimg)
@@ -292,6 +249,7 @@ function addprod(){
         var price = $('#price').val();
         var category = $('#category').val();
         var stock = $('#stock').val();
+        var brand = $('#brand').val();
         
 
 
@@ -306,7 +264,7 @@ function addprod(){
         else {
             $.ajax('../php/FUNCTIONS/save.php', {
                 type: "POST",
-                data: { name : item, descript : descript, price: price, stock: stock, stock: stock, category: category, profimg: profimg},
+                data: { name : item, descript : descript, price: price, stock: stock, stock: stock, category: category, profimg: profimg,brand: brand},
                 statusCode: {
                     404: function(response){
                         alert('')
@@ -322,6 +280,8 @@ function addprod(){
         }
 
     }
+
+ 
 
 </script>
 

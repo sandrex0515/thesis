@@ -20,6 +20,16 @@ app.config(function ($routeProvider){
         controller: 'userController',
         templateUrl: './HTML/search.html'
     })
+    .when('/categories',
+    {
+        controller: 'userController',
+        templateUrl: './HTML/categories.html'
+    })
+    .when('/categoriessub',
+    {
+        controller: 'userController',
+        templateUrl: './HTML/categoriessub.html'
+    })
     
     .otherwise({redirecTo: '/' });
 });

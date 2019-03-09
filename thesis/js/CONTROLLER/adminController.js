@@ -231,50 +231,50 @@ function fetchdelivery2(){
         $scope.message = null;
     }
     $scope.prodsubmit = function(){
-        console.log($scope.prodfiles);
+        console.log(123);
 
-        $scope.prod.name = $scope.prodname;
-        $scope.prod.descript = $scope.proddescript;
-        $scope.prod.price = $scope.prodprice;
-        $scope.prod.stock = $scope.prodstock;
-        $scope.prod.category = $scope.prodcateg;
+    //     $scope.prod.name = $scope.prodname;
+    //     $scope.prod.descript = $scope.proddescript;
+    //     $scope.prod.price = $scope.prodprice;
+    //     $scope.prod.stock = $scope.prodstock;
+    //     $scope.prod.category = $scope.prodcateg;
 
-        if($scope.prod.name == null){
-                $scope.message = {nullmsg:'All fields are requed!'};
-                return false;
-        } 
-        if($scope.prod.descript == null){
-            $scope.message = {nullmsg:'All fields are requed!'};
-            return false;
-    } 
-        if($scope.prod.price == null){
-            $scope.message = {nullmsg:'All fields are requed!'};
-            return false;
-    } 
-        if($scope.prod.stock == null){
-            $scope.message = {nullmsg:'All fields are requed!'};
-            return false;
-    } 
-        if($scope.prod.category == null){
-            $scope.message = {nullmsg:'All fields are requed!'};
-            return false;
-    } 
+    //     if($scope.prod.name == null){
+    //             $scope.message = {nullmsg:'All fields are requed!'};
+    //             return false;
+    //     } 
+    //     if($scope.prod.descript == null){
+    //         $scope.message = {nullmsg:'All fields are requed!'};
+    //         return false;
+    // } 
+    //     if($scope.prod.price == null){
+    //         $scope.message = {nullmsg:'All fields are requed!'};
+    //         return false;
+    // } 
+    //     if($scope.prod.stock == null){
+    //         $scope.message = {nullmsg:'All fields are requed!'};
+    //         return false;
+    // } 
+    //     if($scope.prod.category == null){
+    //         $scope.message = {nullmsg:'All fields are requed!'};
+    //         return false;
+    // } 
 
-    var promise = adminFactory.addProd($scope.prod);
-        promise.then(function(data){
-                $scope.message = {successmsg:'Success'};
-                $scope.prodname = null;
-                $scope.proddescript = null;
-                $scope.prodcateg = null;
-                $scope.prodprice = null;
-                $scope.prodstock = null;
-                fetch();
-                fetchcount();
-            })
-            .then(null, function(data){
-                $scope.message = {msg:'Error Product Title Exist!'};
-            });
-    };
+    // var promise = adminFactory.addProd($scope.prod);
+    //     promise.then(function(data){
+    //             $scope.message = {successmsg:'Success'};
+    //             $scope.prodname = null;
+    //             $scope.proddescript = null;
+    //             $scope.prodcateg = null;
+    //             $scope.prodprice = null;
+    //             $scope.prodstock = null;
+    //             fetch();
+    //             fetchcount();
+    //         })
+    //         .then(null, function(data){
+    //             $scope.message = {msg:'Error Product Title Exist!'};
+    //         });
+    }
 
     $scope.proddel = function(value){
         $scope.stock_id = value;
@@ -286,7 +286,7 @@ function fetchdelivery2(){
                 
             });
          
-    };
+    }
     $scope.prodedit = function(v){
             $scope.modal = v;
             fetch();

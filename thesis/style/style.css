@@ -12,7 +12,7 @@ box-sizing: border-box;
     margin-top: 20px;
 }
 .upper{
-    background: linear-gradient(to left, #ffff66 52%, #00ff00 100%);
+    background: linear-gradient(to left, #547dee 52%, #0e0c8f 100%);
     width: 100%;
     float: right;
     margin: 0;
@@ -54,7 +54,8 @@ box-sizing: border-box;
     
 }
 #log{
-    padding-left: 300px;
+    padding-left: 600px;
+    color: #fff;
 }
 #blogin{
    border-left: #ffff66 solid 2px;
@@ -329,10 +330,13 @@ margin-left: 200px;
 }
 .head-top{
    padding-top: 60px;
-    background: linear-gradient(to left, #ffff00 52%, #66ff99 100%);
+   background: linear-gradient(to left, #5e6fa3 52%, #242363 100%);
+   color:#fff;
 }
 .head-top ul li{
     list-style: none; 
+    color:#fff;
+
    
 }
 .container-4{
@@ -430,7 +434,7 @@ float: left;
 }
 .logo img{
     position: absolute;
-top:10%;
+    top:10%;
     width: 300px;
 }
 

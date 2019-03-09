@@ -621,6 +621,79 @@ EOT;
 EOT;
             return ClassParent::get($sql);
         }
+        
+        public function getcat(){
+            $sql = <<<EOT
+            select * from categories
+            
+EOT;
+            return ClassParent::get($sql);
+        }
+
+        public function addcateg($data){
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+            $sql = <<<EOT
+
+                insert into categories(
+                    name,
+                    cat_path
+                    
+                    )
+                    values(
+                        '$this->name',
+                        '$this->profimg'
+                        )
+
+EOT;
+            return ClassParent::insert($sql);
+        }
+        public function addsubcateg($data){
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+            $sql = <<<EOT
+
+                insert into categories_item(
+                    cat_name,
+                    path,
+                    cat_subitem
+                    )
+                    values(
+                        '$this->name',
+                        '$this->profimg',
+                        '$this->category'
+                        )
+
+EOT;
+            return ClassParent::insert($sql);
+        }
+        public function fetchcateg(){
+            $sql = <<<EOT
+            select 
+            cat_id,
+            name,
+            date::timestamp(0),
+            cat_path
+            from categories
+            
+EOT;
+            return ClassParent::get($sql);
+        }
+
+        public function getsub($data){
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+            $sql = <<<EOT
+            select 
+            *
+            from categories_item where cat_subitem = '$this->name'
+            
+EOT;
+            return ClassParent::get($sql);
+        }
        
 }
 

@@ -20,10 +20,15 @@ app.controller('userController', function(
     $scope.quantity = 1;
     $scope.cart = {};
     $scope.holder = {};
+    $scope.hhh = {};
+    $scope.hh = {};
+  
     init();
     fetch();
     fetchsearch();
     cartfetch();
+    fetchcateg();
+    getsub();
     // $scope.newl = {};
 
     console.log($scope.newl);
@@ -97,6 +102,18 @@ app.controller('userController', function(
             })
     }
 
+    function getsub(){
+         var promise = userFactory.getsub($scope.hhh);
+             promise.then(function(data){
+                $scope.hh = data.data.result;
+                $scope.hh.status = true; 
+                console.log($scope.hh);
+             })
+             .then(null, function(data){
+                 $scope.hhh.status = false;
+             });
+     }
+
     function cartfetch(){
         $scope.holder.pk = $scope.pk;
         $scope.holder.sa = 9382;
@@ -130,6 +147,7 @@ app.controller('userController', function(
                 $scope.newl.count = 0;
             })
     }
+
  function fetch(){
         
         var promise = userFactory.fetch($scope.filter);
@@ -157,6 +175,21 @@ app.controller('userController', function(
     //       console.log(newl);
 
     // }
+
+    function fetchcateg(){
+        var promise = userFactory.fetchcateg();
+            promise.then(function(data){
+                $scope.fetchcateg = data.data.result;
+                $scope.fetchcateg.status = true;
+            })
+            .then(null, function(data){
+                $scope.fetchcateg.status = false;
+
+            });
+    }
+
+
+    
     $scope.deletecart = function(v){
         
         var promise = userFactory.delcart(v)
@@ -239,6 +272,12 @@ app.controller('userController', function(
         location.replace('./php/FUNCTIONS/temp.php?&searchString=' + urien + "&pk=" + $scope.pk);
 
     }
+
+    $scope.getsub = function(v){
+        $scope.hhh = v;
+        getsub();
+     }
+  
  
 
 
