@@ -624,7 +624,9 @@ EOT;
         
         public function getcat(){
             $sql = <<<EOT
-            select * from categories
+            select * from categories_item
+           
+            order by cat_name ASC
             
 EOT;
             return ClassParent::get($sql);
@@ -689,11 +691,29 @@ EOT;
             $sql = <<<EOT
             select 
             *
-            from categories_item where cat_subitem = '$this->name'
+            from categories_item
+            where cat_subitem = '$this->name'
             
 EOT;
             return ClassParent::get($sql);
         }
+        
+        public function getsub2($data){
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+            $sql = <<<EOT
+            select 
+            *
+            from categories_item
+            inner join item
+            on categories_item.cat_name = item.type
+            where cat_subitem = '$this->cat_subitem'
+            
+EOT;
+            return ClassParent::get($sql);
+        }
+
        
 }
 

@@ -94,13 +94,11 @@
         </div>
     <div class="upper">
         
-        <ul>
-        <li><p>Follow us on &nbsp;&nbsp;<i class="fa fa-facebook-square fa-2x" id="fb" aria-hidden="true"></i></p> 
+        <ul  style="color:#fff">
+        <li><p style="color:#fff">Follow us on &nbsp;&nbsp;<i class="fa fa-facebook-square fa-2x" id="fb" aria-hidden="true"></i></p> 
         </li>
-        <li><a href="#">Customer support</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">About us</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#" style="color:#fff">About us</a></li>
+        <li><a href="#" style="color:#fff">Contact</a></li>
         
         <li><a href="#" id="log" style="color:#ffff66;">a</a></li>
         <li></li>
@@ -109,7 +107,7 @@
                <a onclick="show()" style="text-transform: capitalize;  font-size: 22px;cursor:pointer;line-height: 50px">Hi, {{info.name}} <i class="fa fa-caret-down" aria-hidden="true"></i>
                </a>
                <div id="userprof">
-                       <ul style="list-style: none;float:left;">
+                       <ul style="list-style: none;float:left;color:#000">
                                <li data-toggle="modal" data-target="#ordhModal">Order History</li><br>
                                <li data-toggle="modal" data-target="#editModal">Account Information</li><br>
                                <li><i class="fa fa-power-off" aria-hidden="true"></i> Logout</li>
@@ -128,7 +126,7 @@
             <div class="logo">
                 <ul>
                 <li>  
-                    <img src="media/lazada.png" >
+                  <a href="#/"><img src="media/bionic (2).png"></a>
                 </li>
                 </ul>
                 <div class="box">
@@ -155,29 +153,22 @@
                 <br>
                       </div>
 
-                     <div class="noti">
-                         <p class="notif">0&nbsp;</p>
-                        </div>
-                          <i  data-toggle="modal" data-target="#cartModal" style="cursor:pointer;" class="fa fa-shopping-basket fa-3x" aria-hidden="true"></i>
+                      <div class="noti">
+                        <p class="notif" ng-if="!newl.status">0&nbsp;</p>
+                        <p class="notif" ng-if="newl.status">{{newl.count}} &nbsp;</p>
+                       </div>
+                          <i  data-toggle="modal" data-target="#cartModal" style="cursor:pointer;color:#fff" class="fa fa-shopping-basket fa-3x" aria-hidden="true"></i>
                   <div class="drp">
                           <ul> 
                           <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle nav-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle nav-dark" style="color:#fff" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   Categories
                                 </a>
                             </button>
                             
                        
                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="categories.html">All Categories</a>
-                                <a class="dropdown-item" href="#">Category1</a>
-                                <a class="dropdown-item" href="#">Category2</a>
-                                <a class="dropdown-item" href="#">Category3</a>
-                                <a class="dropdown-item" href="#">Category4</a>
-                                <a class="dropdown-item" href="#">Category5</a>
-                                <a class="dropdown-item" href="#">Category6</a>
-                                <a class="dropdown-item" href="#">Category7</a>
-                                <a class="dropdown-item" href="#">Category8</a>
+                            <a class="dropdown-item" href="#/categories">Wheels</a>
 
                                
                                 </li>
@@ -204,7 +195,7 @@
     </div>
     <div class="container-fluid leftSearch">
         <div class="row">
-            <div class="col-lg-3">
+            <!-- <div class="col-lg-3">
         
        <h5><b> Related Categories</b></h5>
        
@@ -250,7 +241,7 @@
                     <i class="fa fa-heart-o nofah" aria-hidden="true"></i> <i class="fa fa-heart-o nofah" aria-hidden="true"></i>
                     &nbsp;1/5        </h6></button>
 
-    </div>
+    </div> -->
     <div class="col-lg rightSearch">
        <div class="rightSearchSort">
             Sort by
@@ -292,126 +283,49 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">My cart</h5>
+          <h5 class="modal-title" id="exampleModalLabel">My Basket</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body" style="max-height: 450px;overflow-y:auto ">
-          <div class="row">
+     
+          <div class="row" ng-if="!newl.status">
+              <h4 style="padding-left:35%;padding-top:10%;padding-bottom:10%;font-size:24px">Your Basket is Empty</h4>
+ 
+      </div>
+
+          <div class="row" ng-repeat="(k,v) in newl track by $index" ng-if="newl.status">
             <div class="col-lg-2" style="border: none;outline: none">
               <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none">
             </div>
-            <div class="col-lg-6" style="font-size: 22px">
-              sample title
+            <div class="col-lg-4" style="font-size: 22px">
+              {{v.item}}
             </div>
             <div class="col-lg-2 text-danger" style="font-size: 22px">
-              &#8369;&nbsp;1,234
+             x {{v.quantity}}
             </div>
             <div class="col-lg-2 text-danger" style="font-size: 22px">
-                <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+              &nbsp;{{v.price * v.quantity | currency:"&#8369":0}}
+            </div>
+            <div class="col-lg-2 text-danger" style="font-size: 22px">
+                <button type="button" ng-click="deletecart(v)" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                 
                                   </div>
           </div>
-          <hr>
-          <div class="row">
-              <div class="col-lg-2" style="border: none;outline: none">
-                <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none">
-              </div>
-              <div class="col-lg-6" style="font-size: 22px">
-                sample title
-              </div>
-              <div class="col-lg-2 text-danger" style="font-size: 22px">
-                &#8369;&nbsp;1,234
-              </div>
-              <div class="col-lg-2 text-danger" style="font-size: 22px">
-                  <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                  
-                                    </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-lg-2" style="border: none;outline: none">
-                  <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none">
-                </div>
-                <div class="col-lg-6" style="font-size: 22px">
-                  sample title
-                </div>
-                <div class="col-lg-2 text-danger" style="font-size: 22px">
-                  &#8369;&nbsp;1,234
-                </div>
-                <div class="col-lg-2 text-danger" style="font-size: 22px">
-                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                    
-                                      </div>
-              </div>
-              <hr>
-              <div class="row">
-                  <div class="col-lg-2" style="border: none;outline: none">
-                    <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none">
-                  </div>
-                  <div class="col-lg-6" style="font-size: 22px">
-                    sample title
-                  </div>
-                  <div class="col-lg-2 text-danger" style="font-size: 22px">
-                    &#8369;&nbsp;1,234
-                  </div>
-                  <div class="col-lg-2 text-danger" style="font-size: 22px">
-                      <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-lg-2" style="border: none;outline: none">
-                      <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none">
-                    </div>
-                    <div class="col-lg-6" style="font-size: 22px">
-                      sample title
-                    </div>
-                    <div class="col-lg-2 text-danger" style="font-size: 22px">
-                      &#8369;&nbsp;1,234
-                    </div>
-                    <div class="col-lg-2 text-danger" style="font-size: 22px">
-                        <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                        
-                                          </div>
-                  </div>
-                  <hr>
-          <div class="row">
-              <div class="col-lg-2" style="border: none;outline: none">
-                <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none">
-              </div>
-              <div class="col-lg-6" style="font-size: 22px">
-                sample title
-              </div>
-              <div class="col-lg-2 text-danger" style="font-size: 22px">
-                &#8369;&nbsp;1,234
-              </div>
-              <div class="col-lg-2 text-danger" style="font-size: 22px">
-<button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-
-                </div>
-            
-            </div>
-    
-
-
-          <ul style="list-style: none;">
-                  <!-- <li ng-repeat="(k, v) in fetch track by $index">{{v}} </li> -->
-                  
-          </ul>
+     
+                
+                          
         </div>
         <div class="modal-footer">
-                <div class="col-lg-5 text-danger" style="font-size: 22px">
-                Total Price
-                </div>
-                <div class="col-lg-3 text-danger" style="font-size: 22px">
-                  &#8369;&nbsp;1,234
-                </div> 
-              <hr>
-              <br>
+            <div class="col-lg-2 text-danger" style="font-size: 22px">
+               Total
+              </div>
+          <div class="col-lg-2 text-danger" style="font-size: 22px">
+            &nbsp;{{v.price  | currency:"&#8369":0}}
+          </div>
               <div class="col-lg-4">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Order now</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#orModal" data-dismiss="modal">Order menu</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
         </div>
@@ -526,3 +440,424 @@ if(x.style.display === "none"){
                         });
                         $()
                 </script>
+                <script>
+                  function up(max) {
+                  document.getElementById("myNumber").value = parseInt(document.getElementById("myNumber").value) + 1;
+                  if (document.getElementById("myNumber").value >= parseInt(max)) {
+                      document.getElementById("myNumber").value = max;
+                  }
+                }
+                  function down(min) {
+                  document.getElementById("myNumber").value = parseInt(document.getElementById("myNumber").value) - 1;
+                  if (document.getElementById("myNumber").value <= parseInt(min)) {
+                      document.getElementById("myNumber").value = min;
+                  }
+                }
+                
+                      
+                              $(document).ready(function(){
+                                   
+                                  $("#search").keyup(function(){
+                                        var inputID = $(this);
+                              
+                              
+                                            if(inputID.val() == ""){
+                                              $("#searchDisplay").css("display", "none");
+                                      }else{
+                                              $("#searchDisplay").css("display", "block");
+                                      }
+                                      });
+                              
+                                      
+                                       
+                                      });
+                                      $()
+                              </script>
+                
+                <div class="modal fade" id="subcat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" style="max-width:1368px;" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Sub Category</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" style="max-height: 560px;overflow-y:auto;">
+                     <div class="row border">
+                
+                            <div class="col-sm-4 categ" style="padding-bottom: 60px;cursor:pointer; text-align: center;" ng-repeat="(k,v) in hh track by $index" ng-if="fetchcateg.status" ng-click="getsub2(v)"  data-toggle="modal" data-target="#subcat2">
+                           
+                
+                                <h3>{{v.cat_name}}</h3>
+                              <img class="img-thumbnail" src="{{v.path}}" style="width: 400px;height: 200px;outline:none;border:none;"><br><br>
+                        
+                      
+                            </div>
+                          </div>
+                            </div>
+                          </div>
+                          </div>
+                          </div>
+                
+                          <div class="modal fade" id="subcat2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-lg" style="max-width:1368px;" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Sub Category</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body" style="max-height: 560px;overflow-y:auto;">
+                               <div class="row border">
+                                      <div class="col-sm-4 categ" style="padding-bottom: 60px;cursor:pointer; text-align: center;" ng-repeat="(k,v) in hh2 track by $index" ng-if="fetchcateg.status" ng-click="getsub(v)"  data-toggle="modal" data-target="#ord">
+                                                            
+                                        
+                                          <h3>{{v.item}}</h3>
+                                        <img class="img-thumbnail" src="{{v.path}}" style="width: 400px;height: 200px;outline:none;border:none;"><br><br>
+                                  
+                                
+                                      </div>
+                                    </div>
+                                      </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                
+                                    <div class="modal fade" id="ord" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" style="max-width: 1280px;" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body" style="max-height: 500px;overflow-y:auto">
+                                            <div class="row">
+                                            <div class="col-lg-3" style="background:#f8f5f5">
+                                              <br>
+                                                <img src="{{t.path}}" class="img-thumbnail" style="border: none;outline: none"><br>
+                        
+                                              </div>  
+                                            <div class="col-lg-5" style="background: #f8f5f5">
+                                              <h4 style="font-size: 23px;text-transform: capitalize">{{t.item}}</h4><br>
+                                              <h4 style="font-size: 18px;text-transform: capitalize">{{t.description}}</h4>
+                                              <h3 class="text-danger" style="font-size: 32px;padding-top: 20px;">{{t.price | currency:"&#8369":0}}</h3>
+                        
+                        <center>
+                                              <div class="form-group" style="text-align: center">
+                                                <label>Quantity: </label>
+                                                <div class="input-group">
+                                                    <div class="input-group-btn">
+                                                        <button id="down" class="btn btn-default" ng-click="minus()"><span class="fa fa-minus"></span></button>
+                                                    </div>
+                                                    <input type="number" id="myNumber" style="width:90px;" ng-model="quantity" class="form-control input-number col-lg-4"/>
+                                                    <div class="input-group-btn">
+                                                        <button id="up" class="btn btn-default" ng-click="plus(t)" ng-keyup="plus($event,quantity)"><span  ng-model="quantity"  ng-change="show_fetch()" class="fa fa-plus" ></span></button>
+                                                    </div>
+                                                    <h3 class="text-danger" style="font-size: 24px;padding-top: 20px;">Total{{t.price * quantity | currency:"&#8369":0}}</h3>
+                                               
+                                                  </div>
+                                                  
+                                            </div>
+                                            <h3 class="text-danger" style="font-size: 24px;padding-top: -5px;">{{msg}}</h3>
+                                            <!-- <button type="button" class="btn btn-success">ORDER NOW</button> -->
+                                            <button type="button" class="btn btn-success" ng-click="cart(t)">ADD BASKET</button>
+                                          </center>
+                                     
+                        
+                                            </div>
+                                            <div class="col-lg-4" style="background:#f8f5f5">
+                                              <label><i class="fa fa-motorcycle" aria-hidden="true"></i> Delivery Address</label>
+                                              <h5 style="font-size: 18px;text-transform: none;">{{info.address}} </h5>
+                                              <label><i class="fa fa-money" aria-hidden="true"></i> Payment</label>
+                                              <h5 style="font-size: 18px;text-transform: none;"><i class="fa fa-calendar-o" aria-hidden="true"></i> Cash on Delivery</h5>
+                                              <label>Delivery Date</label>
+                                              <h5 style="font-size: 18px;text-transform: none;">Expected Delivery</h5>
+                                              <label><i class="fa fa-battery-empty" aria-hidden="true"></i> Warranty</label>
+                                              <h5 style="font-size: 18px;text-transform: none;">Defect</h5>
+                        
+                        
+                                            </div>
+                                            </div>
+                        
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                
+                                      
+                    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">My Basket</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body" style="max-height: 450px;overflow-y:auto ">
+                       
+                            <div class="row" ng-if="!newl.status">
+                                <h4 style="padding-left:35%;padding-top:10%;padding-bottom:10%;font-size:24px">Your Basket is Empty</h4>
+                   
+                        </div>
+                
+                            <div class="row" ng-repeat="(k,v) in newl track by $index" ng-if="newl.status">
+                              <div class="col-lg-2" style="border: none;outline: none">
+                                <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none">
+                              </div>
+                              <div class="col-lg-4" style="font-size: 22px">
+                                {{v.item}}
+                              </div>
+                              <div class="col-lg-2 text-danger" style="font-size: 22px">
+                               x {{v.quantity}}
+                              </div>
+                              <div class="col-lg-2 text-danger" style="font-size: 22px">
+                                &nbsp;{{v.price * v.quantity | currency:"&#8369":0}}
+                              </div>
+                              <div class="col-lg-2 text-danger" style="font-size: 22px">
+                                  <button type="button" ng-click="deletecart(v)" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                  
+                                                    </div>
+                            </div>
+                       
+                                  
+                                            
+                          </div>
+                          <div class="modal-footer">
+                              <div class="col-lg-2 text-danger" style="font-size: 22px">
+                                 Total
+                                </div>
+                            <div class="col-lg-2 text-danger" style="font-size: 22px">
+                              &nbsp;{{v.price  | currency:"&#8369":0}}
+                            </div>
+                                <div class="col-lg-4">
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#orModal" data-dismiss="modal">Order menu</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                              
+                              <div class="modal fade" id="ordhModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">My order history</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body" style="max-height: 450px;overflow-y:auto ">
+                                      <ul style="list-style: none;">
+                                              <li ng-repeat="(k, v) in fetch track by $index">{{v}} </li>
+                                      </ul>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                
+                              <div class="modal fade" id="orModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" style="max-width: 1280px;" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">Order</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body" style="max-height: 450px;overflow-y:auto ">
+                                    <div class="row">
+                                      <div class="col-lg-8">
+                                        <div class="row" ng-repeat="(k,v) in newl track by $index" ng-if="newl.status">
+                                          <div class="col-lg-2" style="border: none;outline: none">
+                                            <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none">
+                                          </div>
+                                          <div class="col-lg-4" style="font-size: 22px">
+                                            {{v.item}}
+                                          </div>
+                                          <div class="col-lg-2 text-danger" style="font-size: 22px">
+                                           x {{v.quantity}}
+                                          </div>
+                                          <div class="col-lg-2 text-danger" style="font-size: 22px">
+                                            &nbsp;{{v.price * v.quantity | currency:"&#8369":0}}
+                                          </div>
+                                          <div class="col-lg-2 text-danger" style="font-size: 22px">
+                                              <button type="button" ng-click="deletecart(v)" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                              
+                                                                </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg-4">
+                                        <label><i class="fa fa-motorcycle" aria-hidden="true"></i> Delivery Address</label>
+                                        <h5 style="font-size: 18px;text-transform: none;">{{info.address}} </h5>
+                                        <label><i class="fa fa-envelope" aria-hidden="true"></i> Email Address</label>
+                                        <h5 style="font-size: 18px;text-transform: none;">{{info.email}} </h5>
+                                        <label><i class="fa fa-address-book" aria-hidden="true"></i> Contact</label>
+                                        <h5 style="font-size: 18px;text-transform: none;">{{info.contact}} </h5>
+                                        <label><i class="fa fa-money" aria-hidden="true"></i> Payment</label>
+                                        <h5 style="font-size: 18px;text-transform: none;"> Cash on Delivery</h5>
+                                        <br>
+                                        <h4 class="text-success">Item QTY {{newl.count}}</h4>
+                                        <h3 class="text-danger" class="font-size: 40px;">Total &#8369;{{newl.total}}</h3>
+                                  
+                                      </div>
+                                    </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <button type="button" ng-click="ord(newl)" class="btn btn-primary" data-dismiss="modal">Order now</button>
+                
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                
+                              <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" style="max-width: 1280px;" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body" style="max-height: 500px;overflow-y:auto">
+                                    <div class="row">
+                                    <div class="col-lg-3" style="background:#f8f5f5">
+                                      <br>
+                                        <img src="{{t.path}}" class="img-thumbnail" style="border: none;outline: none"><br>
+                
+                                      </div>  
+                                    <div class="col-lg-5" style="background: #f8f5f5">
+                                      <h4 style="font-size: 23px;text-transform: capitalize">{{t.item}}</h4><br>
+                                      <h4 style="font-size: 18px;text-transform: capitalize">{{t.description}}</h4>
+                                      <h3 class="text-danger" style="font-size: 32px;padding-top: 20px;">{{t.price | currency:"&#8369":0}}</h3>
+                
+                <center>
+                                      <div class="form-group" style="text-align: center">
+                                        <label>Quantity: </label>
+                                        <div class="input-group">
+                                            <div class="input-group-btn">
+                                                <button id="down" class="btn btn-default" ng-click="minus()"><span class="fa fa-minus"></span></button>
+                                            </div>
+                                            <input type="number" id="myNumber" style="width:90px;" ng-model="quantity" class="form-control input-number col-lg-4"/>
+                                            <div class="input-group-btn">
+                                                <button id="up" class="btn btn-default" ng-click="plus(t)" ng-keyup="plus($event,quantity)"><span  ng-model="quantity"  ng-change="show_fetch()" class="fa fa-plus" ></span></button>
+                                            </div>
+                                            <h3 class="text-danger" style="font-size: 24px;padding-top: 20px;">Total{{t.price * quantity | currency:"&#8369":0}}</h3>
+                                       
+                                          </div>
+                                          
+                                    </div>
+                                    <h3 class="text-danger" style="font-size: 24px;padding-top: -5px;">{{msg}}</h3>
+                                    <!-- <button type="button" class="btn btn-success">ORDER NOW</button> -->
+                                    <button type="button" class="btn btn-success" ng-click="cart(t)">ADD BASKET</button>
+                                  </center>
+                             
+                
+                                    </div>
+                                    <div class="col-lg-4" style="background:#f8f5f5">
+                                      <label><i class="fa fa-motorcycle" aria-hidden="true"></i> Delivery Address</label>
+                                      <h5 style="font-size: 18px;text-transform: none;">{{info.address}} </h5>
+                                      <label><i class="fa fa-money" aria-hidden="true"></i> Payment</label>
+                                      <h5 style="font-size: 18px;text-transform: none;"><i class="fa fa-calendar-o" aria-hidden="true"></i> Cash on Delivery</h5>
+                                      <label>Delivery Date</label>
+                                      <h5 style="font-size: 18px;text-transform: none;">Expected Delivery</h5>
+                                      <label><i class="fa fa-battery-empty" aria-hidden="true"></i> Warranty</label>
+                                      <h5 style="font-size: 18px;text-transform: none;">Defect</h5>
+                
+                
+                                    </div>
+                                    </div>
+                
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                
+                              <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLabel">Account Information</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body" style="max-height: 450px;overflow-y:auto ">
+                                           <label>Name:</label>
+                                              <input class="form-control" type="text" ng-model="info.name" placeholder="name">
+                                              <br><label>Email:</label>
+                                              <input class="form-control" type="email" ng-model="info.email" placeholder="name">
+                                              <br><label>Contact:</label>
+                                              <input class="form-control" type="text" ng-model="info.contact" placeholder="contact">
+                                              <br><label>Address:</label>
+                                              <input class="form-control" type="text" ng-model="info.address" placeholder="name">
+                                            <br>
+                                              <button type="button" class="btn btn-primary" >Change Password</button>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                              <button type="button" class="btn btn-primary" >Save Changes</button>
+                    
+                                        </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                
+                
+                <script>
+                  function up(max) {
+                    document.getElementById("myNumber").value = parseInt(document.getElementById("myNumber").value) + 1;
+                    if (document.getElementById("myNumber").value >= parseInt(max)) {
+                        document.getElementById("myNumber").value = max;
+                    }
+                }
+                function down(min) {
+                    document.getElementById("myNumber").value = parseInt(document.getElementById("myNumber").value) - 1;
+                    if (document.getElementById("myNumber").value <= parseInt(min)) {
+                        document.getElementById("myNumber").value = min;
+                    }
+                }
+                
+                        function show(){
+                var x = document.getElementById("userprof");
+                
+                if(x.style.display === "none"){
+                        x.style.display = "block";
+                }else{
+                        x.style.display = "none";
+                }
+                }
+                                $(document).ready(function(){
+                                     
+                                      $("#search").keyup(function(){
+                                              var inputID = $(this);
+                                
+                                
+                                              if(inputID.val() == ""){
+                                                $("#searchDisplay").css("display", "none");
+                                        }else{
+                                                $("#searchDisplay").css("display", "block");
+                                        }
+                                        });
+                                
+                                        
+                                         
+                                        });
+                                        $()
+                                </script>

@@ -22,6 +22,8 @@ app.controller('userController', function(
     $scope.holder = {};
     $scope.hhh = {};
     $scope.hh = {};
+    $scope.hh2 = {};
+    $scope.hhh2 = {};
   
     init();
     fetch();
@@ -29,6 +31,9 @@ app.controller('userController', function(
     cartfetch();
     fetchcateg();
     getsub();
+    getsub2();
+
+
     // $scope.newl = {};
 
     console.log($scope.newl);
@@ -113,6 +118,18 @@ app.controller('userController', function(
                  $scope.hhh.status = false;
              });
      }
+
+     function getsub2(){
+        var promise = userFactory.getsub2($scope.hhh2);
+            promise.then(function(data){
+               $scope.hh2 = data.data.result;
+               $scope.hh2.status = true; 
+               console.log($scope.hh2);
+            })
+            .then(null, function(data){
+                $scope.hh2.status = false;
+            });
+    }
 
     function cartfetch(){
         $scope.holder.pk = $scope.pk;
@@ -276,7 +293,16 @@ app.controller('userController', function(
     $scope.getsub = function(v){
         $scope.hhh = v;
         getsub();
+
+        console.log($scope.hhh);
      }
+     $scope.getsub2 = function(v){
+        $scope.hhh2 = v;
+        getsub2();
+
+        console.log($scope.hhh2);
+     }
+    
   
  
 

@@ -80,7 +80,7 @@
                   </p>
                   </div>
                   <br>
-                  <div class="input-group">
+                  <!-- <div class="input-group">
                     <input type="text" class="form-control col-lg-10" id="brand" placeholder="Product Name" ng-model="brand" required>
                   <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="brand == null">
                    Required!
@@ -88,7 +88,7 @@
                   <p class="text-success col-lg-2" ng-if="brand != null" large>
                     <i class="ion ion-checkmark" style="zoom:2.0;" ></i>
                   </p>
-                </div>  
+                </div>   -->
                     <br>   
                   <div class="input-group">
 <script>
@@ -98,7 +98,7 @@
                     
                   <select class="form-control col-lg-10" id="category" placeholder="Category" ng-model="prodcateg" required>
                       <option disabled></option>
-                      <option ng-repeat="(k,v) in dd track by $index"><p>{{v.name}}</p></option>
+                      <option ng-repeat="(k,v) in dd track by $index"><p>{{v.cat_name}}</p></option>
                   </select>
                   <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="prodcateg == null">
                     Required!
