@@ -59,7 +59,7 @@ box-sizing: border-box;
     color: #fff;
 }
 #blogin{
-   border-left: #ffff66 solid 2px;
+   border-left: #5e6fa3 solid 0.1px;
 }
 .messenger{
   margin:0;
@@ -784,7 +784,7 @@ background: #FFF;
 
     }
     #searchDisplay li:hover{
-        background: #66ff99;
+        background: #908ef1;
         border-radius: 10px;
     }
 

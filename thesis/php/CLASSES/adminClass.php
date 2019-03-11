@@ -317,9 +317,8 @@ EOT;
             on item.item_id = stock.stock_id
             inner join itempic
             on item.item_id = itempic.pic_id
-           
             where item = (select search from temp where pk = $this->pk)
-                
+            
 EOT;
             return ClassParent::get($sql);
         }
@@ -712,6 +711,13 @@ EOT;
             
 EOT;
             return ClassParent::get($sql);
+        }
+
+        public function sumT($data){
+            $sql = <<<EOT
+            select sum (quantity * (select price from item where item_id = 7384034)) from pending;
+EOT;
+        return ClassParent::get($sql);
         }
 
        

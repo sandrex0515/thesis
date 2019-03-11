@@ -125,7 +125,7 @@
                   <li ><p style="color:#fff">Follow us on &nbsp;&nbsp;<i class="fa fa-facebook-square fa-2x" id="fb" aria-hidden="true"></i></p> 
                   </li>
          
-                  <li><a href="#" style="color:#fff">About us</a></li>
+                  <li><a href="HTML/about.html" style="color: #fff">About us</a></li>
                   <li><a href="#" style="color:#fff">Contact</a></li>
                   
                   <li><a href="#" id="log" style="color:rgb(68, 68, 175);"> . </a></li>
@@ -159,7 +159,7 @@
                           </li>
                           </ul>
                           <div class="box">
-                                  <div class="container-4">
+                                  <div class="container-4" style="color:#000">
                                     <input type="search" ng-model="filter.searchString" ng-change="show_fetch()" ng-keyup="$event.keyCode == 13 && searchres(fetch)"  id="search" placeholder="Search for products..." />
                                     <button type="submit" class="icon"><i class="fa fa-search"></i></button>
               
@@ -168,9 +168,9 @@
                                 </div>
           
                                 
-                                <div id="searchDisplay" style="cursor:pointer">
+                                <div id="searchDisplay" style="cursor:pointer;color:#000">
                                   <ul>
-                                          <a ng-click="searchres(v)" href="#/search"  ng-repeat="(k, v) in fetch track by $index"  ng-if="fetch.status"> <li class="displayHov"><h6 style="text-decoration: none;" >{{v.item}}</h6></li>
+                                          <a ng-click="searchres(v)" href="#/search"  ng-repeat="(k, v) in fetch track by $index"  ng-if="fetch.status"> <li class="displayHov"><h6 style="text-decoration: none;color:#000" >{{v.item}}</h6></li>
                                           </a>
           
           
@@ -236,9 +236,9 @@
               
              
               
-          <div class="container-fluid maxWidth">
+          <!-- <div class="container-fluid maxWidth">
                           <div class="messenger" id="msgMs"><i class="fa fa-comments fa-5x" aria-hidden="true"></i><p>0&nbsp;</p>
-                          </div>
+                          </div> -->
         <br>
         <div class="container" style="background: #fff;text-align: center">
             <div class="row" style="padding:5px;">
@@ -338,7 +338,7 @@
                   </div>
                   <div class="modal-body" style="max-height: 560px;overflow-y:auto;">
                <div class="row border">
-                      <div class="col-sm-4 categ" style="padding-bottom: 60px;cursor:pointer; text-align: center;" ng-repeat="(k,v) in hh2 track by $index" ng-if="fetchcateg.status" ng-click="getsub(v)"  data-toggle="modal" data-target="#ord">
+                      <div class="col-sm-4 categ" style="padding-bottom: 60px;cursor:pointer; text-align: center;" ng-repeat="(k,v) in hh2 track by $index" ng-if="fetchcateg.status" ng-click="getsub3(v)"  data-toggle="modal" data-target="#ord">
                                             
                         
                           <h3>{{v.item}}</h3>
@@ -365,13 +365,13 @@
                             <div class="row">
                             <div class="col-lg-3" style="background:#f8f5f5">
                               <br>
-                                <img src="{{t.path}}" class="img-thumbnail" style="border: none;outline: none"><br>
+                                <img src="{{hhh3.path}}" class="img-thumbnail" style="border: none;outline: none"><br>
         
                               </div>  
                             <div class="col-lg-5" style="background: #f8f5f5">
-                              <h4 style="font-size: 23px;text-transform: capitalize">{{t.item}}</h4><br>
+                              <h4 style="font-size: 23px;text-transform: capitalize">{{hhh3.item}}</h4><br>
                               <h4 style="font-size: 18px;text-transform: capitalize">{{t.description}}</h4>
-                              <h3 class="text-danger" style="font-size: 32px;padding-top: 20px;">{{t.price | currency:"&#8369":0}}</h3>
+                              <h3 class="text-danger" style="font-size: 32px;padding-top: 20px;">{{hhh3.price | currency:"&#8369":0}}</h3>
         
         <center>
                               <div class="form-group" style="text-align: center">
@@ -384,14 +384,14 @@
                                     <div class="input-group-btn">
                                         <button id="up" class="btn btn-default" ng-click="plus(t)" ng-keyup="plus($event,quantity)"><span  ng-model="quantity"  ng-change="show_fetch()" class="fa fa-plus" ></span></button>
                                     </div>
-                                    <h3 class="text-danger" style="font-size: 24px;padding-top: 20px;">Total{{t.price * quantity | currency:"&#8369":0}}</h3>
+                                    <h3 class="text-danger" style="font-size: 24px;padding-top: 20px;">Total{{hhh3.price * quantity | currency:"&#8369":0}}</h3>
                                
                                   </div>
                                   
                             </div>
                             <h3 class="text-danger" style="font-size: 24px;padding-top: -5px;">{{msg}}</h3>
                             <!-- <button type="button" class="btn btn-success">ORDER NOW</button> -->
-                            <button type="button" class="btn btn-success" ng-click="cart(t)">ADD BASKET</button>
+                            <button type="button" class="btn btn-success" ng-click="cart2(hhh3)">ADD BASKET</button>
                           </center>
                      
         
@@ -437,7 +437,7 @@
 
             <div class="row" ng-repeat="(k,v) in newl track by $index" ng-if="newl.status">
               <div class="col-lg-2" style="border: none;outline: none">
-                <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none">
+                <img src="{{v.path}}" class="img-thumbnail" style="border: none;outline: none">
               </div>
               <div class="col-lg-4" style="font-size: 22px">
                 {{v.item}}
@@ -445,7 +445,7 @@
               <div class="col-lg-2 text-danger" style="font-size: 22px">
                x {{v.quantity}}
               </div>
-              <div class="col-lg-2 text-danger" style="font-size: 22px">
+              <div class="col-lg-2 text-danger" style="font-size: 22px" ng-init="v.tttotal = v.tttotal + v.tttotal">
                 &nbsp;{{v.price * v.quantity | currency:"&#8369":0}}
               </div>
               <div class="col-lg-2 text-danger" style="font-size: 22px">
@@ -458,20 +458,22 @@
                             
           </div>
           <div class="modal-footer">
-              <div class="col-lg-2 text-danger" style="font-size: 22px">
-                 Total
+              <div class="col-lg-2 text-danger" style="font-size: 22px" ng-if="newl.status">
+                 Total {{v}}
                 </div>
-            <div class="col-lg-2 text-danger" style="font-size: 22px">
+            <div class="col-lg-2 text-danger" style="font-size: 22px" ng-if="newl.status">
               &nbsp;{{v.price  | currency:"&#8369":0}}
             </div>
-                <div class="col-lg-4">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#orModal" data-dismiss="modal">Order menu</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <div class="col-lg-4" ng-if="newl.status">
+              <button type="button" ng-if="newl.status" class="btn btn-primary" data-toggle="modal" data-target="#orModal" data-dismiss="modal">Order menu</button>
+            <button type="button"  ng-if="newl.status" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
           </div>
         </div>
       </div>
     </div>
+
+    
               
               <div class="modal fade" id="ordhModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
@@ -483,10 +485,25 @@
                       </button>
                     </div>
                     <div class="modal-body" style="max-height: 450px;overflow-y:auto ">
-                      <ul style="list-style: none;">
-                              <li ng-repeat="(k, v) in fetch track by $index">{{v}} </li>
-                      </ul>
-                    </div>
+                        <div class="row" ng-repeat="(k,v) in newl track by $index" ng-if="newl.status">
+                            <div class="col-lg-2" style="border: none;outline: none">
+                              <img src="{{v.path}}" class="img-thumbnail" style="border: none;outline: none">
+                            </div>
+                            <div class="col-lg-4" style="font-size: 22px">
+                              {{v.item}}
+                            </div>
+                            <div class="col-lg-2 text-danger" style="font-size: 22px">
+                             x {{v.quantity}}
+                            </div>
+                            <div class="col-lg-2 text-danger" style="font-size: 22px" ng-init="v.tttotal = v.tttotal + v.tttotal">
+                              &nbsp;{{v.price * v.quantity | currency:"&#8369":0}}
+                            </div>
+                            <!-- <div class="col-lg-2 text-danger" style="font-size: 22px">
+                                <button type="button" ng-click="deletecart(v)" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                
+                                                  </div> -- >
+                          </div>
+                     
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
@@ -508,7 +525,7 @@
                       <div class="col-lg-8">
                         <div class="row" ng-repeat="(k,v) in newl track by $index" ng-if="newl.status">
                           <div class="col-lg-2" style="border: none;outline: none">
-                            <img src="media/lazada.png" class="img-thumbnail" style="border: none;outline: none">
+                            <img src="{{v.path}}" class="img-thumbnail" style="border: none;outline: none">
                           </div>
                           <div class="col-lg-4" style="font-size: 22px">
                             {{v.item}}
@@ -541,7 +558,7 @@
                       </div>
                     </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer" >
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                       <button type="button" ng-click="ord(newl)" class="btn btn-primary" data-dismiss="modal">Order now</button>
 

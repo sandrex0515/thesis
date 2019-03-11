@@ -13,6 +13,7 @@ app.controller('adminController', function(
     $scope.pk = {};
     $scope.prodfiles = {};
     $scope.prodfiles.file = "";
+    $scope.pending = {};
     $scope.currentPage = 0;
     $scope.pageSize = 10;
     $scope.data = [];
@@ -94,7 +95,7 @@ app.controller('adminController', function(
 
         $scope.pending = data.data.result;
         $scope.pending.status = true;
-
+        $scope.pending.count = data.data.result.length;
         })
         .then(null, function(data){
             $scope.pending.status = false;

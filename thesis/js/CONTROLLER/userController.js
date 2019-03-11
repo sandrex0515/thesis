@@ -68,6 +68,7 @@ app.controller('userController', function(
             
                 $scope.searchfetch = data.data.result;
                 $scope.searchfetch.search = data.data.result[0].search;
+                console.log(data.data.result);
               
                 numberWithCommas(count);
                 $scope.searchfetch.count = count;
@@ -138,8 +139,11 @@ app.controller('userController', function(
             promise.then(function (data){
                 
                 $scope.newl = data.data.result;
-               
-                for(var total = 0; total < data.data.result.length;total++);
+                $scope.newl.ttotal = data.data.result.price;
+
+                for(var total = 0; total < data.data.result.length;total++){
+                    $scope.newl.ttotal = data.data.result[total].price++;
+                }
                 // $scope.newl.total =  $scope.newl.price.reduce((partial_sum, a) => partial_sum + a);
                 $scope.newl.count = total;
 
@@ -213,6 +217,8 @@ app.controller('userController', function(
             promise.then(function(data){
                 alert('Item Has been removed');
                 cartfetch();
+                
+
             })
             .then(null, function(data){
                 //
@@ -249,6 +255,7 @@ app.controller('userController', function(
         }
                 promise.then(function(data){
                     alert('Succes');
+                    cartfetch();
                 })
                 .then(null, function(data){
                     alert('error');
@@ -276,17 +283,38 @@ app.controller('userController', function(
             })
 
     }
-    $scope.searchres = function(){
+    $scope.cart2 = function(hhh3){
+        $scope.cart.item_id = hhh3.item_id;
+        $scope.cart.pk =  $scope.pk;
+        $scope.cart.quantity = $scope.quantity;
+
+        if($scope.cart.quantity === 0){
+            $scope.msg = 'Add Atleast 1 Quantity';
+            return false;
+        }
         
+        var promise = userFactory.cart($scope.cart);
+            promise.then(function(data){
+                alert('Item added to cart');
+                fetchsearch();
+                cartfetch();
+            })
+            .then(null, function(data){
+                alert('Error connection error');
+            })
+
+    }
+    $scope.searchres = function(v){
         // var url = "http://" + $window.location.host + "/sites/thesis/#/search?&" + 'searchString=' + $scope.filter.searchString;
         // $log.log(url);
 
         // $window.self.location = url;
         // window.location = window.location.href.replace("../php/FUNCTIONS/temp.php?");
         // window.History.pushState({urlPath: 'http://localhost/sites/thesis/#/search'});
+        $scope.filter.searchString = v.item;
         var uri = $scope.filter.searchString;
-        var urien = $window.encodeURIComponent(uri);
-        location.replace('./php/FUNCTIONS/temp.php?&searchString=' + urien + "&pk=" + $scope.pk);
+      
+        location.replace('./php/FUNCTIONS/temp.php?&searchString=' + uri + "&pk=" + $scope.pk);
 
     }
 
@@ -302,12 +330,25 @@ app.controller('userController', function(
 
         console.log($scope.hhh2);
      }
+     $scope.getsub3 = function(v){
+         $scope.hhh3 = v;
+         console.log($scope.hhh3);
+     }
     
   
- 
+ $scope.pks = function(){
+    var filters = {
+        'pk': $scope.pk,
+        'sa' : 'sada'
+    };
+    var promise = userFactory.logout(filters);
+        promise.then(function(data){
 
-
-
-
+        })
+        .then(null, function(data){
+            alert('Bye See you next time');
+            window.location.href = 'index.html';
+        })
+ }
 
 });

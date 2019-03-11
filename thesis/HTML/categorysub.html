@@ -34,11 +34,11 @@
              
               
   
-              <div class="col-lg-6">
-                    <div class="input-group">
-                    <select class="form-control col-lg-10" id="category" placeholder="Category" ng-model="prodcateg" required>
+              <div class="col-lg-6" style="color:#000">
+                    <div class="input-group" style="color:#000">
+                    <select class="form-control col-lg-10" style="color:#000" id="category" placeholder="Category" ng-model="prodcateg" required>
                             <option disabled></option>
-                            <option ng-repeat="(k,v) in dd track by $index"><p>{{v.name}}</p></option>
+                            <option ng-repeat="(k,v) in dd track by $index"><p>{{v.cat_name}}</p></option>
                         </select>
                         
                     </div>
@@ -73,9 +73,9 @@
                   <p class="text-danger col-lg-2" style="padding: 10px 10px" ng-if="uploader == null">
                     Required!
                   </p>
-                  <p class="text-success col-lg-2" ng-if="uploader != null" large>
+                  <!-- <p class="text-success col-lg-2" ng-if="uploader != null" large>
                     <i class="ion ion-checkmark" style="zoom:2.0;" ></i>
-                  </p>
+                  </p> -->
                   </div>
 
   

@@ -48,7 +48,7 @@
     <option>Male</option>
     <option>Female</option>
   </select>
-  <div class="custom-file" style="margin-top: 3px;">
+  <!-- <div class="custom-file" style="margin-top: 3px;">
     <input type="file" class="custom-file-input col-lg-10" nv-file-select="" uploader="uploader" required>
    
     <div class="progress" style="padding-top: 10px; height: 45px; width: 90%;margin-left: 5%;margin-top: 10px;">
@@ -62,7 +62,7 @@
     </button>
     
     <label class="custom-file-label" for="customFile" required>Choose File</label>
-</div><br>
+</div><br> -->
   <div id="div-message" class="text-danger" align="center"></div>
 <br>
   <button type="submit" id="login" onclick="register()"class="btn btn-primary">Register</button>
@@ -219,7 +219,8 @@ $(document).ready(function(){
                     }
                 },
                 success: function(data){
-                    window.location = window.location.href.replace('loginLoader.html');
+                    alert('Welcome you may now login');
+              window.location.href = 'loginLoader.html';
                 }
             });
         }

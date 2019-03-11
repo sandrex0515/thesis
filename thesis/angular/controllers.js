@@ -33,6 +33,7 @@ angular
                     // }
         
                     $scope.dd = data.result;
+                    console.log($scope.dd);
 
                     
               
