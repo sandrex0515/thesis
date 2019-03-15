@@ -173,15 +173,16 @@ EOT;
 EOT;
             return ClassParent::get($sql);
         }
-        public function recommend(){
+        public function recommend($p){
+            
             $sql = <<<EOT
-            insert into recommend
+            insert into recom
             (
-                item_id
+                rec_id
             )
             values
             (
-                $this->item_id
+                $p
             )
 EOT;
             return ClassParent::insert($sql);
@@ -358,7 +359,6 @@ EOT;
                     inner join itempic
                     on itempic.pic_id = item.item_id
                     where pk = $this->pk
-                    order by cdate desc
                     
 EOT;
             return ClassParent::get($sql);
@@ -713,12 +713,45 @@ EOT;
             return ClassParent::get($sql);
         }
 
+        public function getsub3($data){
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+            $sql = <<<EOT
+            select 
+            *
+            from categories_item
+            inner join item
+            on categories_item.cat_name = item.type
+            where cat_name = '$this->cat_name'
+            
+EOT;
+            return ClassParent::get($sql);
+        }
+
         public function sumT($data){
             $sql = <<<EOT
             select sum (quantity * (select price from item where item_id = 7384034)) from pending;
 EOT;
         return ClassParent::get($sql);
         }
+
+        public function swiper(){
+           
+            $sql = <<<EOT
+            select 
+            *
+            from recom
+            inner join item
+            on recom.rec_id = item.item_id
+            inner join itempic
+            on recom.rec_id = item.item_id
+            
+            
+EOT;
+            return ClassParent::get($sql);
+        }
+
 
        
 }

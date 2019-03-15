@@ -32,7 +32,8 @@ app.controller('userController', function(
     fetchcateg();
     getsub();
     getsub2();
-
+    getsub3();
+    swiper();
 
     // $scope.newl = {};
 
@@ -45,6 +46,16 @@ app.controller('userController', function(
         fetchsearch();
         cartfetch();
  
+    }
+
+    function swiper(){
+        var promise = userFactory.swiper();
+            promise.then(function(data){
+                $scope.swiper = data.data.result;
+            })
+            .then(null, function(data){
+                // alert('error');
+            });
     }
     
     function numberWithCommas(count) {
@@ -131,10 +142,22 @@ app.controller('userController', function(
                 $scope.hh2.status = false;
             });
     }
+    function getsub3(){
+        var promise = userFactory.getsub3($scope.hhh3);
+            promise.then(function(data){
+               $scope.hh2 = data.data.result;
+               $scope.hh2.status = true; 
+               console.log($scope.hh2);
+            })
+            .then(null, function(data){
+                $scope.hh2.status = false;
+            });
+    }
 
     function cartfetch(){
         $scope.holder.pk = $scope.pk;
         $scope.holder.sa = 9382;
+        console.log($scope.pk);
         var promise = userFactory.cartfetch($scope.holder);
             promise.then(function (data){
                 
@@ -320,18 +343,24 @@ app.controller('userController', function(
 
     $scope.getsub = function(v){
         $scope.hhh = v;
+        getsub3();
+        getsub2();
         getsub();
-
         console.log($scope.hhh);
      }
      $scope.getsub2 = function(v){
         $scope.hhh2 = v;
+        getsub3();
         getsub2();
+        getsub();
 
         console.log($scope.hhh2);
      }
      $scope.getsub3 = function(v){
          $scope.hhh3 = v;
+         getsub3();
+         getsub2();
+         getsub();
          console.log($scope.hhh3);
      }
     

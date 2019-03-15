@@ -41,8 +41,8 @@
                 </div>
         
                   <div class="row">
-                        <div class="col-lg-3 prodlist" style="background:#fff;padding: 20px 20px;height: 250px;text-align: center;" ng-repeat="(key, value) in fetch track by $index">
-                                <img src="../../media/slide.jpg" class="img-thumbnail" width="auto" height="200px" alt="img">
+                        <div class="col-lg-3 prodlist" style="background:#fff;padding: 20px 20px;height: 250px;text-align: center;margin-bottom:210px;" ng-repeat="(key, value) in fetch track by $index">
+                                <img src="../../{{value.path}}" class="img-thumbnail" width="auto" height="200px" alt="img">
                                 <p>Item:&nbsp;{{value.item}} </p>
                                 <p>Stocks:&nbsp;{{value.quantity}}</p>
                                 <button type="button" data-toggle="modal" data-target="#editModal" class="btn btn-primary" ng-click="prodedit(value)" title="Edit"><ion-icon name="create"></ion-icon></button>

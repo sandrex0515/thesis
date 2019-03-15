@@ -53,7 +53,7 @@
                     <div class="row">
                         <h3 ng-if="!pending.status" style="padding-left: 30%">No data found</h3>
                         <div class="col-lg-3 prodlist" ng-repeat="(k,v) in pending track by $index" ng-if="pending.status" style="background:#fff;padding: 20px 20px;height: 350px;text-align: center;" >
-                                <img src="../../media/slide.jpg" class="img-thumbnail" width="auto" height="200px" alt="img">
+                                <img src="../../{{v.path}} " class="img-thumbnail" width="auto" height="200px" alt="img">
                                 <p>Name:&nbsp;{{v.name}} </p>
                                 <p>Date:&nbsp;{{v.ord_date}} </p>
                                 <p>Address:&nbsp;{{v.address}}</p>
@@ -64,7 +64,9 @@
                     </div>
         </div>
         <br>
-        <nav aria-label="Page navigation example">
+        <br>
+        <br>
+        <!-- <nav aria-label="Page navigation example">
                 <ul class="pagination" style="justify-content:center">
                   <li class="page-item">
                     <a class="page-link" href="#" aria-label="Previous">
@@ -80,7 +82,7 @@
                     </a>
                   </li>
                 </ul>
-              </nav>
+              </nav> -->
         </section>
         </div>
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

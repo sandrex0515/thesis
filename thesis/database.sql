@@ -135,6 +135,10 @@ create table checked(
     contact varchar(255) NOT NULL
 );
    
+   create table recom(
+       date timestamp default now(), 
+        rec_id varchar
+   );
 
 create table delivered(
     name varchar(255) NOT NULL,

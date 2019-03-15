@@ -72,8 +72,8 @@
         </div>
 
           <div class="row">
-                <div class="col-lg-3 prodlist" style="background:#fff;padding: 20px 20px;height: 350px;text-align: center;" ng-repeat="(key, value) in fetch track by $index" ng-if="fetch.status">
-                        <img src="../../media/slide.jpg" class="img-thumbnail" width="auto" height="200px" alt="img">
+                <div class="col-lg-3 prodlist" style="background:#fff;padding: 10px 20px;height: 350px;text-align: center;margin-bottom: 190px;" ng-repeat="(key, value) in fetch track by $index" ng-if="fetch.status">
+                        <img src="../../{{value.path}}" class="img-thumbnail" width="auto" height="200px" alt="img">
                         <p>Item:&nbsp;{{value.item}} </p>
                         <p>Category:&nbsp;{{value.type}} </p>
                         <p>Price:&nbsp;{{value.price | currency:"&#8369":0}} </p>
@@ -82,6 +82,7 @@
                         <button type="button" class="btn btn-primary" ng-click="recommend(value)" title="Add to recommend"><ion-icon name="flag"></ion-icon>                        </button> 
                         <button type="button" data-toggle="modal" data-target="#editModal" class="btn btn-primary" ng-click="prodedit(value)" title="Edit"><ion-icon name="create"></ion-icon></button>
                         <button type="button" class="btn btn-primary" ng-click="proddel(value)" title="Delete"><ion-icon name="trash"></ion-icon></button>
+                
                       </div>
 </div>
 <br>

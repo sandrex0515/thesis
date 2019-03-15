@@ -57,7 +57,7 @@
                   <div class="row">
                   <h3 ng-if="!fetchdelivery.status" style="padding-left: 37%">No data found</h3>
                         <div class="col-lg-3 prodlist" ng-repeat="(k,v) in fetchdelivery track by $index" ng-if="fetchdelivery.status" style="background:#fff;padding: 20px 20px;height: 350px;text-align: center;">
-                                <img src="../../media/slide.jpg" class="img-thumbnail" width="auto" height="200px" alt="img">
+                                <img src="../../{{v.path}} " class="img-thumbnail" width="auto" height="200px" alt="img">
                                 <p>Name:&nbsp;{{v.name}} </p>
                                 <p>Date:&nbsp;{{v.delivery_date}} </p>
                                 <p>Address:&nbsp;{{v.address}}</p>

@@ -1,0 +1,305 @@
+<body style="background:#f7f7f7;">
+    <div id="messengerBox">
+            <div class="container">
+                   <div class="msgHead" id="msgHead"><p class="pp">Lazada <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i></p>
+                   </div>
+                   <div class="rightMsg">Hi im sandrex<br><p class="rightMsgTime"><i class="fa fa-check" aria-hidden="true"></i>
+                    20:08</p>
+                    &nbsp;&nbsp;&nbsp;
+                    <img src="media/49161279_2166964706687471_7974348225228308480_n.jpg" class="img-thumbnail msgPic">
+                    </div>
+                   
+                   
+                   <div class="leftMsg"> Hello<br><p class="rightMsgTime"><i class="fa fa-check" aria-hidden="true"></i>
+                    20:09</p>                     
+                    &nbsp;&nbsp;&nbsp;
+                    <img src="media/lazada.png" class="img-thumbnail msgPic">
+                   </div>  <div class="rightMsg">Hi im sandrex<br><p class="rightMsgTime"><i class="fa fa-check" aria-hidden="true"></i>
+                    20:08</p>
+                    &nbsp;&nbsp;&nbsp;
+                    <img src="media/49161279_2166964706687471_7974348225228308480_n.jpg" class="img-thumbnail msgPic">
+                    </div>
+                   
+                   
+                   <div class="leftMsg"> Hello<br><p class="rightMsgTime"><i class="fa fa-check" aria-hidden="true"></i>
+                    20:09</p>                     
+                    &nbsp;&nbsp;&nbsp;
+                    <img src="media/lazada.png" class="img-thumbnail msgPic">
+                   </div>  <div class="rightMsg">Hi im sandrex<br><p class="rightMsgTime"><i class="fa fa-check" aria-hidden="true"></i>
+                    20:08</p>
+                    &nbsp;&nbsp;&nbsp;
+                    <img src="media/49161279_2166964706687471_7974348225228308480_n.jpg" class="img-thumbnail msgPic">
+                    </div>
+                   
+                   
+                   <div class="leftMsg"> Hello<br><p class="rightMsgTime"><i class="fa fa-check" aria-hidden="true"></i>
+                    20:09</p>                     
+                    &nbsp;&nbsp;&nbsp;
+                    <img src="media/lazada.png" class="img-thumbnail msgPic">
+                   </div> 
+
+                 <div class="msgMessage">
+            <textarea class="form-control" rows="3" id="msgCom" placeholder="Type a message..."></textarea>
+          <div id="emojiContClose" style="display:none;"> <i class="fa fa-times-circle fa-1x" aria-hidden="true" style="float:right;"></i></div> 
+          <div class="container emojiCont" id="emojiCont"><br>
+                            <i class="em em-grinning"></i>
+                            <i class="em em-grin"></i>
+                            <i class="em em-smiley"></i>
+                            <i class="em em-hushed"></i>
+                            <i class="em em-hugging_face"></i>
+                            <i class="em em-persevere"></i>
+                            <i class="em em-angry"></i>
+                            <i class="em em-rage"></i>
+                            <i class="em em--1"></i>
+                            <i class="em em-anguished"></i>
+                            <i class="em em-astonished"></i>
+                            <i class="em em-blush"></i>
+                            <i class="em em-cry"></i>
+                            <i class="em em-disappointed_relieved"></i>
+                            <i class="em em-disappointed"></i>
+                            <i class="em em-dizzy_face"></i>
+                            <i class="em em-drooling_face"></i>
+                            <i class="em em-expressionless"></i>
+                            <i class="em em-face_with_thermometer"></i>
+                            <i class="em em-fearful"></i>
+                            <i class="em em-face_with_raised_eyebrow"></i>
+                            <i class="em em-full_moon_with_face"></i>
+                            <i class="em em-sweat_smile"></i>
+                            <i class="em em-unamused"></i>
+                            <i class="em em-white_frowning_face"></i>
+                            <i class="em em-wink"></i>
+                            <i class="em em-worried"></i>
+                            <i class="em em-zipper_mouth_face"></i>
+                            <i class="em em-zombie"></i>
+                            <i class="em em-woman-facepalming"></i>
+                            <i class="em em-wave"></i>
+                            <i class="em em-tired_face"></i>
+                            <i class="em em-smiley_cat"></i>
+                            <i class="em em-scream_cat"></i>
+                            <i class="em em-raised_hand_with_fingers_splayed"></i>
+            </div>
+            
+            <div class="msgOption">
+            <ul>
+     <li>       <i class="fa fa-file-image-o fa-1x" aria-hidden="true"></i></li>
+    <li>     <i class="fa fa-smile-o fa-1x" aria-hidden="true"  id="emoji"></i> </li>
+        <li>    <i class="em em---1"></i> </li>
+</ul>
+    </div>
+<br><br>
+        </div>        
+                  
+            </div>
+    </div>
+<div class="upper">
+    
+    <ul style="color: #fff">
+    <li><a href="https://www.facebook.com/BionicWheels" target="_blank"> <p style="color: #fff">Follow us on &nbsp;&nbsp;<i class="fa fa-facebook-square fa-2x" id="fb" aria-hidden="true"></i></p> </a>
+    </li>
+  
+    <li><a href="HTML/about.html" style="color: #fff">About us</a></li>
+    <li><a href="#" style="color: #fff">Contact</a></li>
+    
+    <li><a href="#" id="log" style="color:rgb(68, 68, 175);"> . </a></li>
+    <li></li>
+    <div ng-if="info.status">
+           
+           <a onclick="show()" style="text-transform: capitalize;  font-size: 22px;cursor:pointer;line-height: 50px">Hi {{info.name}} <i class="fa fa-caret-down" aria-hidden="true"></i>
+           </a>
+           <div id="userprof">
+                   <ul style="list-style: none;float:left;color:#000">
+                           <li data-toggle="modal" data-target="#ordhModal">Order History</li><br>
+                           <li data-toggle="modal" data-target="#editModal">Account Information</li><br>
+                           <li ng-click="pks()"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</li>
+                   </ul>
+
+           </div>
+    </div>
+    <div ng-if="!info.status">
+    <li id="blogin"><a href="HTML/loginLoader.html" ><i class="fa fa-sign-in" aria-hidden="true" ></i>&nbsp;Login</a></li>
+    <li><a href="HTML/registerloader.html" ><i class="fa fa-sign-in" aria-hidden="true" ></i>&nbsp;Register</a></li>
+</div>        
+</ul>
+    </div>
+    <div class="head-top" >
+      
+        <div class="logo">
+            <ul>
+            <li>  
+                <a href="#/"><img src="media/bionic (2).png"  ></a>
+               
+            </li>
+            </ul>
+            <div class="box">
+                    <div class="container-4">
+                      <input type="search" ng-model="filter.searchString" ng-change="show_fetch()" ng-keyup="$event.keyCode == 13 && searchres(fetch)"  id="search" placeholder="Search for products..." />
+                      <button type="submit" class="icon"><i class="fa fa-search"></i></button>
+
+                    </div>
+                    
+                  </div>
+
+                  
+                  <div id="searchDisplay" style="cursor:pointer">
+                    <ul>
+                            <a ng-click="searchres(v)" ng-repeat="(k, v) in fetch track by $index"  ng-if="fetch.status"> <li class="displayHov"><h6 style="text-decoration: none;" >{{v.item}}</h6></li>
+                            </a>
+
+
+                    </ul>
+                    <center style="padding: 5px 0px;">
+                    <h5 class="float:none;text-decoration:none;margin-top: -30%" ng-if="!fetch.status">No item found</h5>
+                    <a href="#" style="text-align:center" ng-if="fetch.status">Show all results</a>
+            </center>
+            <br>
+                  </div>
+
+                 <div class="noti">
+                     <p class="notif" ng-if="!newl.status">0&nbsp;</p>
+                     <p class="notif" ng-if="newl.status">{{newl.count}} &nbsp;</p>
+                    </div>
+                      <i data-toggle="modal" data-target="#cartModal" style="cursor:pointer; color:#fff" class="fa fa-shopping-basket fa-3x" aria-hidden="true"></i>
+              <div class="drp">
+                      <ul> 
+                      <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle nav-dark" style="color: #fff" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Categories
+                            </a>
+                        </button>
+                        
+                   
+                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                         
+                        <a class="dropdown-item" href="#/categories">Wheels</a>
+                            <!-- <a class="dropdown-item" href="categories.html">All Categories</a> -->                                      
+                            <!-- <a class="dropdown-item" href="#">57 Motorsport</a>
+                            
+                            
+                            
+
+                              
+                              <a class="dropdown-item" href="#">Black Feet</a>
+                            <a class="dropdown-item" href="#">Daytona</a>
+                            <a class="dropdown-item" href="#">Garcia</a>
+                            <a class="dropdown-item" href="#">Gramlights</a>
+                            <a class="dropdown-item" href="#">Hfullcross</a>
+                            <a class="dropdown-item" href="#">Homura</a>
+                            <a class="dropdown-item" href="#">Sebring</a>
+                            <a class="dropdown-item" href="#">Versus</a>
+                            <a class="dropdown-item" href="#">Volkracing</a>
+                            <a class="dropdown-item" href="#">Waltz</a> -->
+
+
+
+
+                           
+                            </li>
+                      </li >    <li class="nav-item dropdown" style="padding-top: 10px;"> <a id="a-submenu" href="#">WHEEL ALIGNMENT</a>
+                       </li>   
+                        <li class="nav-item dropdown" style="padding-top: 10px;">  <a id="a-submenu" href="#">BREAK REPAIR</a>
+                         </li>  <li class="nav-item dropdown" style="padding-top: 10px;"> <a id="a-submenu" href="#">AUTO MAINTENANCE</a>
+                            </li> 
+                          </ul>
+
+                    </div>
+                      <br><br>
+
+        </div>
+        
+    </div>
+    <br>   <br>   <br>   <br>
+
+    <div class="container-fluid">
+
+     <div class="row">
+        <div class="col-lg-4">
+            <img src="./media/narrow-road_resized.jpg" class="img-thumbnail wow fadeIn" data-wow-duration="2s" data-wow-delay="0.5s">
+        </div>
+        <div class="col-lg-8" >
+            <h2 class="wow fadeIn" data-wow-duration="2s" data-wow-delay="1.5s">TIRE ALIGNMENT THAT KEEPS YOU ON THE STRAIGHT AND NARROW.</h2>
+            <hr class="wow fadeIn" data-wow-duration="2s" data-wow-delay="1.5s">
+            <br>
+            <p class="wow fadeIn" data-wow-duration="2s" data-wow-delay="2.2s" style="float: none;line-height: 25px;text-transform: none;font-size: 16px;" class="blockquote text-dark text-justify">
+                    TIRE ALIGNMENT THAT KEEPS YOU ON THE STRAIGHT AND NARROW.
+                    When your tire alignment is off, your ability to drive safely is compromised. 
+                    Sometimes unaligned wheels can be 
+                    obvious – your car pulls to one side of the road or your steering wheel 
+                    has a vibration in it from balancing issues. In some cases, 
+                    it can be subtle and the driver won't even notice. 
+                    That's why regular tire alignment checkups are a must-do. 
+                    The better maintenance you keep, the longer your car will run healthily. 
+                    If your car alignment feels off – or if it's simply been 
+                    a while – come see us at BionicWheels and our alignment 
+                    experts will take a look.
+                    
+                    When your wheels are aligned, your car handles better. 
+                    Wheel alignment from Firestone Complete Auto Care means long lasting, 
+                    optimal performance. Our technicians know how to keep your car running straight and smooth.
+                </p>
+        </div>
+     </div>
+<br><br><br>
+<hr>
+
+     <div class="row">
+            <div class="col-lg-12 wow fadeIn" data-wow-duration="2s" data-wow-delay="1s">
+
+        <h1 class="text-center">CAR ALIGNMENT SERVICES</h1>
+        <hr>        
+    </div>
+            
+        <div class="col-lg-8 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="1s" >
+                <p style="float: none;line-height: 25px;text-transform: none;font-size: 16px;" class="blockquote text-dark text-justify">
+                        Bionicwheels offers different limited warranties on our wheel alignments to match our customer's unique needs. From a 12-month limited warranty to a lifetime limited warranty, Firestone Complete Auto Care has options to suit you. Just want to check in and make sure your car alignment is balanced? Get peace of mind with our alignment check.
+
+
+            </p>
+            <br>
+<hr>
+<h2>WHEEL ALIGNMENT CHECK </h2>
+<ul style="padding: 15px;font-size: 18px;">
+    <li>Inspect vehicle suspension and steering systems, including tire air pressure and tire condition
+        </li>
+        <li>Vehicle placed on an alignment rack, where laser sensors are mounted and measure the current alignment settings
+            </li>
+            <li>Print initial tire alignment readings
+                </li>
+</ul>
+<br>
+<hr>
+<h2>WHEEL ALIGNMENT: STANDARD    </h2>
+<ul style="padding: 15px;font-size: 18px;"> 
+    <li>Inspect suspension and steering systems, including air pressure and tire condition
+        </li>
+    <li>Vehicle placed on alignment rack, where sensors are mounted and compensated
+        </li>
+
+    <li>Print initial tire alignment readings.
+        </li>
+
+    <li>Camber, caster and toe angles are adjusted according to manufacturer specifications
+        </li>
+
+    <li>Print final tire alignment readings.
+        </li>
+
+    <li>Test drive the vehicle
+        </li>
+
+</ul>
+        </div>
+        <div class="col-lg-4  wow fadeInRight" data-wow-duration="2s" data-wow-delay="1s" >
+                <img src="./media/Winton Autos tyre safety wheel alignment uneven.jpg" class="img-thumbnail">
+
+        </div>
+     </div>
+    </div>
+
+
+
+
+
+
+
+    </body>
+    </html>

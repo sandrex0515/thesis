@@ -30,6 +30,11 @@ app.config(function ($routeProvider){
         controller: 'userController',
         templateUrl: './HTML/categoriessub.html'
     })
+    .when('/alignment',
+    {
+        controller: 'userController',
+        templateUrl: './HTML/alignment.html'
+    })
     
     .otherwise({redirecTo: '/' });
 });

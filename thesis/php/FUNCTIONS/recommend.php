@@ -11,8 +11,8 @@ $class = new addpod(
         $_POST['quantity']
       
 );
-
-$data = $class->recommend();
+$p = $_POST['item_id'];
+$data = $class->recommend($p);
 header("HTTP/1.1 404 Error");
 if($data['status']){
     header("HTTP/1.1 200 Ok");
