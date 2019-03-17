@@ -35,6 +35,16 @@ app.config(function ($routeProvider){
         controller: 'userController',
         templateUrl: './HTML/alignment.html'
     })
+    .when('/breakrepair',
+    {
+        controller: 'userController',
+        templateUrl: './HTML/break.html'
+    })
+    .when('/automaintenance',
+    {
+        controller: 'userController',
+        templateUrl: './HTML/automaintenance.html'
+    })
     
     .otherwise({redirecTo: '/' });
 });

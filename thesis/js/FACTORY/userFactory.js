@@ -111,6 +111,51 @@ app.factory('userFactory', function($http){
         });
         return promise;
     };
+    factory.categclick = function(data){
+        var promise = $http({
+            url: 'php/FUNCTIONS/categclick.php',
+            method: 'POST',
+            headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
+            transformRequest: function(obj){
+                var str = [];
+                for(var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+                },
+                data: data  
+        });
+        return promise;
+    };
+    factory.subsub = function(data){
+        var promise = $http({
+            url: 'php/FUNCTIONS/subsub.php',
+            method: 'POST',
+            headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
+            transformRequest: function(obj){
+                var str = [];
+                for(var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+                },
+                data: data  
+        });
+        return promise;
+    };
+    factory.fetchrecom = function(data){
+        var promise = $http({
+            url: 'php/FUNCTIONS/fetchrecom.php',
+            method: 'POST',
+            headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
+            transformRequest: function(obj){
+                var str = [];
+                for(var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+                },
+                data: data  
+        });
+        return promise;
+    };
     factory.getsub = function(data){
         var promise = $http({
             url: 'php/FUNCTIONS/getsub.php',
@@ -160,6 +205,21 @@ app.factory('userFactory', function($http){
     factory.swiper = function(data){
         var promise = $http({
             url: 'php/FUNCTIONS/swiper.php',
+            method: 'POST',
+            headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
+            transformRequest: function(obj){
+                var str = [];
+                for(var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+                },
+                data: data  
+        });
+        return promise;
+    };
+    factory.getcateg = function(data){
+        var promise = $http({
+            url: 'php/FUNCTIONS/getcat.php',
             method: 'POST',
             headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
             transformRequest: function(obj){

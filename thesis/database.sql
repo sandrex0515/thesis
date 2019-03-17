@@ -171,13 +171,33 @@ create table sales(
     sales numeric,
     year numeric
 );
+
+
+create table analytics(id serial primary key, 
+year varchar, 
+January varchar,
+ February varchar, 
+ March varchar, 
+ April varchar, 
+ May varchar, 
+ June varchar, 
+ July varchar, 
+ August varchar, 
+ September varchar, 
+ October varchar, 
+ November varchar, 
+ December varchar
+ );
+alter table analytics owner to sandrex;
+
 create table recommend(
 item_id int references item(item_id), 
 date timestamp with time zone default now()
 );  
 alter table recommend drop column item_id;
 alter table recommend add column item_id;
-
+alter table recommend drop column item_id;
+alter table recommend add column rec_id numeric unique;
 
 create table search(
     id numeric, 

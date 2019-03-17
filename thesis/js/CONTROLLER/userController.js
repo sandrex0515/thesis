@@ -24,7 +24,12 @@ app.controller('userController', function(
     $scope.hh = {};
     $scope.hh2 = {};
     $scope.hhh2 = {};
-  
+    $scope.categresult = {};
+    $scope.categresult1 = {};
+    $scope.true = {};  
+    $scope.subsubs = {};
+    $scope.sub2x = {};
+    $scope.fetchrecom = {};
     init();
     fetch();
     fetchsearch();
@@ -34,7 +39,9 @@ app.controller('userController', function(
     getsub2();
     getsub3();
     swiper();
-
+    categfetch();
+    subsub();
+    fetchrecom();
     // $scope.newl = {};
 
     console.log($scope.newl);
@@ -136,7 +143,6 @@ app.controller('userController', function(
             promise.then(function(data){
                $scope.hh2 = data.data.result;
                $scope.hh2.status = true; 
-               console.log($scope.hh2);
             })
             .then(null, function(data){
                 $scope.hh2.status = false;
@@ -157,7 +163,6 @@ app.controller('userController', function(
     function cartfetch(){
         $scope.holder.pk = $scope.pk;
         $scope.holder.sa = 9382;
-        console.log($scope.pk);
         var promise = userFactory.cartfetch($scope.holder);
             promise.then(function (data){
                 
@@ -191,6 +196,7 @@ app.controller('userController', function(
                 $scope.newl.count = 0;
             })
     }
+
 
  function fetch(){
         
@@ -231,9 +237,36 @@ app.controller('userController', function(
 
             });
     }
+   
+     $scope.categclick = function(v){
+       
+                $scope.categresult = v;
+                categfetch();
+     }
+     function categfetch(){
+        var promise = userFactory.categclick($scope.categresult);
+            promise.then(function(data){
+            $scope.categresult1 = data.data.result;
+            $scope.categresult1.status = true;
+            console.log($scope.categresult);
+        })
+        .then(null, function(data){
+            $scope.categresult1.status = false;
+        });
+     }
+     function fetchrecom(){
+         var promise = userFactory.fetchrecom();
+             promise.then(function(data){
+                 $scope.fetchrecom = data.data.result;
+                 $scope.fetchrecom.status = true;
+                 console.log($scope.fetchrecom);
+             })
+             .then(null, function(data){
+                $scope.fetchrecom.status = false;s
+             });
+     }
 
-
-    
+     
     $scope.deletecart = function(v){
         
         var promise = userFactory.delcart(v)
@@ -247,6 +280,21 @@ app.controller('userController', function(
                 //
             });
       
+    }
+    $scope.subsub = function(v){
+        $scope.subsubs = v;
+        subsub();
+    }
+    function subsub(){
+        var promise = userFactory.subsub($scope.subsubs);
+        promise.then(function(data){
+            $scope.sub2x = data.data.result;
+            $scope.sub2x.status = true;
+            console.log($scope.sub2x);
+        })
+        .then(null, function(data){
+            $scope.sub2x.status = false;
+        })
     }
     $scope.topsearch = function(v){
         console.log(v);

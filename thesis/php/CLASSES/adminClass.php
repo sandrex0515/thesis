@@ -176,7 +176,7 @@ EOT;
         public function recommend($p){
             
             $sql = <<<EOT
-            insert into recom
+            insert into recommend
             (
                 rec_id
             )
@@ -463,6 +463,7 @@ EOT;
                     $this->quantity
                     )
                 )
+
                 delete from pending where 
                 pending_id = $this->pending_id
 EOT;
@@ -544,7 +545,12 @@ EOT;
                     update stock set quantity = 
                     (select quantity from stock where stock_id = $this->delivery_pic) - 1 
                     where stock_id = $this->delivery_pic
-                    )
+                ), c as(
+            
+              update analytics set $this->n = 
+              (select $this->n::numeric from analytics where year = '$this->d') + 
+              ($this->price * $this->quantity) where year = '$this->d'
+                )
 
                 delete from delivery where 
                 d_id = $this->d_id
@@ -623,9 +629,9 @@ EOT;
         
         public function getcat(){
             $sql = <<<EOT
-            select * from categories_item
+            select * from categories
            
-            order by cat_name ASC
+            order by name ASC
             
 EOT;
             return ClassParent::get($sql);
@@ -752,6 +758,95 @@ EOT;
             return ClassParent::get($sql);
         }
 
+        public function categclick($data){
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+
+            $sql = <<<EOT
+                select * from categories_item
+                where cat_subitem = '$this->name'
+EOT;
+            return ClassParent::get($sql);
+        }
+
+        public function subsub($data){
+            foreach($data as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+
+            $sql = <<<EOT
+            select 
+            *
+            from item
+            inner join itempic
+            on item.item_id = itempic.pic_id
+            inner join stock
+            on item.item_id = stock.stock_id
+            where type = '$this->cat_name'
+EOT;
+            return ClassParent::get($sql);
+        }
+        public function fetchrecom(){
+            $sql = <<<EOT
+                select * from recommend
+                inner join item
+                on recommend.rec_id = item.item_id
+                inner join itempic
+                on recommend.rec_id = itempic.pic_id
+                order by recommend.date DESC limit 12;
+EOT;
+            return ClassParent::get($sql);
+        }
+
+        public function analytics($datas){
+            foreach($datas as $k=>$v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+            $sql = <<<EOT
+            select 
+            january,
+            february,
+            march,
+            april,
+            may,
+            june,
+            july,
+            august,
+            september,
+            october,
+            november,
+            december,
+            (select $this->n from analytics where year = '$this->d') as getmonth,
+            (select $this->nn from analytics where year = '$this->d') as getlastmonth
+            from analytics
+            where year = '$this->d'
+EOT;
+            return ClassParent::get($sql);
+        }
+        public function analytics2($datas){
+            foreach($datas as $k => $v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+            $sql = <<<EOT
+            select 
+            january::numeric,
+            february::numeric,
+            march::numeric,
+            april::numeric,
+            may::numeric,
+            june::numeric,
+            july::numeric,
+            august::numeric,
+            september::numeric,
+            october::numeric,
+            november::numeric,
+            december::numeric
+            from analytics where year = '$this->dd' 
+
+EOT;
+            return ClassParent::get($sql);
+        }
 
        
 }

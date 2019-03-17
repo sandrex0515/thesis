@@ -18,12 +18,15 @@ app.controller('adminController', function(
     $scope.pageSize = 10;
     $scope.data = [];
     $scope.q = '';
+
     fetch();
     fetchcount();
     pending();
     fetchdelivery();
     fetchdelivered();
-
+    function show(){
+        analytics();
+    }
     $scope.show_fetch = function(){
         fetch();
         fetchcount();   
@@ -39,6 +42,7 @@ app.controller('adminController', function(
         fetchdelivered2();
 
     }
+    
     function fetch(){
         
         var promise = adminFactory.fetch($scope.filter);
@@ -49,6 +53,7 @@ app.controller('adminController', function(
             $scope.fetch = data.data.result;
             $scope.fetch.status = true;
             console.log($scope.fetch);
+            
 
             })
             .then(null, function(data){
@@ -192,6 +197,7 @@ function fetchdelivery2(){
 
         });
 }
+    
 
     $scope.csv = function(){
         window.open('../../php/FUNCTIONS/csv.php', '_blank');
@@ -281,6 +287,7 @@ function fetchdelivery2(){
         $scope.stock_id = value;
         var promise = adminFactory.delprod($scope.stock_id);
             promise.then(function(data){
+                alert('Item has been removed');
                 fetch();
             })
             .then(null, function(data){
@@ -354,10 +361,10 @@ function fetchdelivery2(){
         $scope.val = value;
         var promise = adminFactory.recommend($scope.val);
             promise.then(function(data){
-                alert('success');
+                alert('Item has been added to recommended');
             })
             .then(null, function(data){
-                alert('error');
+                alert('Error Item duplicate');
             });
     }
     $scope.cancel = function(v){
@@ -374,8 +381,32 @@ function fetchdelivery2(){
             });
     }
     $scope.delivery = function(v){
+        var month = new Array();
+        month[0] = "January";
+        month[1] = "February";
+        month[2] = "March";
+        month[3] = "April";
+        month[4] = "May";
+        month[5] = "June";
+        month[6] = "July";
+        month[7] = "August";
+        month[8] = "September";
+        month[9] = "October";
+        month[10] = "November";
+        month[11] = "December";
+      
+        var d = new Date();
+        var n = month[d.getMonth()];
+        console.log(n);
+        v.n = n;
+        var dd = new Date();
+        v.d = dd.getFullYear();
+        
         var promise = adminFactory.delivery(v);
             promise.then(function(data){
+                
+
+
                 alert("Success item Delivered'");
                 fetch();
                  fetchcount();   

@@ -6,7 +6,7 @@ app.config(function ($routeProvider){
 
     .when('/',
     {
-        controller: 'adminController',
+        controller: 'analytics',
         templateUrl: '../../HTML/dashboard.html'
     })
     .when('/addproduct',

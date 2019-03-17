@@ -1,0 +1,613 @@
+<style>
+        @import url('https://fonts.googleapis.com/css?family=Abel|ZCOOL+XiaoWei');
+        
+        
+        </style>
+        <body style="background:#f7f7f7;">
+            <div id="messengerBox">
+                    <div class="container">
+                           <div class="msgHead" id="msgHead"><p class="pp">Lazada <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i></p>
+                           </div>
+                           <div class="rightMsg">Hi im sandrex<br><p class="rightMsgTime"><i class="fa fa-check" aria-hidden="true"></i>
+                            20:08</p>
+                            &nbsp;&nbsp;&nbsp;
+                            <img src="media/49161279_2166964706687471_7974348225228308480_n.jpg" class="img-thumbnail msgPic">
+                            </div>
+                           
+                           
+                           <div class="leftMsg"> Hello<br><p class="rightMsgTime"><i class="fa fa-check" aria-hidden="true"></i>
+                            20:09</p>                     
+                            &nbsp;&nbsp;&nbsp;
+                            <img src="media/lazada.png" class="img-thumbnail msgPic">
+                           </div>  <div class="rightMsg">Hi im sandrex<br><p class="rightMsgTime"><i class="fa fa-check" aria-hidden="true"></i>
+                            20:08</p>
+                            &nbsp;&nbsp;&nbsp;
+                            <img src="media/49161279_2166964706687471_7974348225228308480_n.jpg" class="img-thumbnail msgPic">
+                            </div>
+                           
+                           
+                           <div class="leftMsg"> Hello<br><p class="rightMsgTime"><i class="fa fa-check" aria-hidden="true"></i>
+                            20:09</p>                     
+                            &nbsp;&nbsp;&nbsp;
+                            <img src="media/lazada.png" class="img-thumbnail msgPic">
+                           </div>  <div class="rightMsg">Hi im sandrex<br><p class="rightMsgTime"><i class="fa fa-check" aria-hidden="true"></i>
+                            20:08</p>
+                            &nbsp;&nbsp;&nbsp;
+                            <img src="media/49161279_2166964706687471_7974348225228308480_n.jpg" class="img-thumbnail msgPic">
+                            </div>
+                           
+                           
+                           <div class="leftMsg"> Hello<br><p class="rightMsgTime"><i class="fa fa-check" aria-hidden="true"></i>
+                            20:09</p>                     
+                            &nbsp;&nbsp;&nbsp;
+                            <img src="media/lazada.png" class="img-thumbnail msgPic">
+                           </div> 
+        
+                         <div class="msgMessage">
+                    <textarea class="form-control" rows="3" id="msgCom" placeholder="Type a message..."></textarea>
+                  <div id="emojiContClose" style="display:none;"> <i class="fa fa-times-circle fa-1x" aria-hidden="true" style="float:right;"></i></div> 
+                  <div class="container emojiCont" id="emojiCont"><br>
+                                    <i class="em em-grinning"></i>
+                                    <i class="em em-grin"></i>
+                                    <i class="em em-smiley"></i>
+                                    <i class="em em-hushed"></i>
+                                    <i class="em em-hugging_face"></i>
+                                    <i class="em em-persevere"></i>
+                                    <i class="em em-angry"></i>
+                                    <i class="em em-rage"></i>
+                                    <i class="em em--1"></i>
+                                    <i class="em em-anguished"></i>
+                                    <i class="em em-astonished"></i>
+                                    <i class="em em-blush"></i>
+                                    <i class="em em-cry"></i>
+                                    <i class="em em-disappointed_relieved"></i>
+                                    <i class="em em-disappointed"></i>
+                                    <i class="em em-dizzy_face"></i>
+                                    <i class="em em-drooling_face"></i>
+                                    <i class="em em-expressionless"></i>
+                                    <i class="em em-face_with_thermometer"></i>
+                                    <i class="em em-fearful"></i>
+                                    <i class="em em-face_with_raised_eyebrow"></i>
+                                    <i class="em em-full_moon_with_face"></i>
+                                    <i class="em em-sweat_smile"></i>
+                                    <i class="em em-unamused"></i>
+                                    <i class="em em-white_frowning_face"></i>
+                                    <i class="em em-wink"></i>
+                                    <i class="em em-worried"></i>
+                                    <i class="em em-zipper_mouth_face"></i>
+                                    <i class="em em-zombie"></i>
+                                    <i class="em em-woman-facepalming"></i>
+                                    <i class="em em-wave"></i>
+                                    <i class="em em-tired_face"></i>
+                                    <i class="em em-smiley_cat"></i>
+                                    <i class="em em-scream_cat"></i>
+                                    <i class="em em-raised_hand_with_fingers_splayed"></i>
+                    </div>
+                    
+                    <div class="msgOption">
+                    <ul>
+             <li>       <i class="fa fa-file-image-o fa-1x" aria-hidden="true"></i></li>
+            <li>     <i class="fa fa-smile-o fa-1x" aria-hidden="true"  id="emoji"></i> </li>
+                <li>    <i class="em em---1"></i> </li>
+        </ul>
+            </div>
+        <br><br>
+                </div>        
+                          
+                    </div>
+            </div>
+        <div class="upper">
+            
+            <ul style="color: #fff">
+            <li><a href="https://www.facebook.com/BionicWheels" target="_blank"> <p style="color: #fff">Follow us on &nbsp;&nbsp;<i class="fa fa-facebook-square fa-2x" id="fb" aria-hidden="true"></i></p> </a>
+            </li>
+          
+            <li><a href="HTML/about.html" style="color: #fff">About us</a></li>
+            <li><a href="#" style="color: #fff">Contact</a></li>
+            
+            <li><a href="#" id="log" style="color:rgb(68, 68, 175);"> . </a></li>
+            <li></li>
+            <div ng-if="info.status">
+                   
+                   <a onclick="show()" style="text-transform: capitalize;  font-size: 22px;cursor:pointer;line-height: 50px">Hi {{info.name}} <i class="fa fa-caret-down" aria-hidden="true"></i>
+                   </a>
+                   <div id="userprof">
+                           <ul style="list-style: none;float:left;color:#000">
+                                   <li data-toggle="modal" data-target="#ordhModal">Order History</li><br>
+                                   <li data-toggle="modal" data-target="#editModal">Account Information</li><br>
+                                   <li ng-click="pks()"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</li>
+                           </ul>
+        
+                   </div>
+            </div>
+            <div ng-if="!info.status">
+            <li id="blogin"><a href="HTML/loginLoader.html" ><i class="fa fa-sign-in" aria-hidden="true" ></i>&nbsp;Login</a></li>
+            <li><a href="HTML/registerloader.html" ><i class="fa fa-sign-in" aria-hidden="true" ></i>&nbsp;Register</a></li>
+        </div>        
+        </ul>
+            </div>
+            <div class="head-top" >
+              
+                <div class="logo">
+                    <ul>
+                    <li>  
+                        <a href="#/"><img src="media/bionic (2).png"  ></a>
+                       
+                    </li>
+                    </ul>
+                    <div class="box">
+                            <div class="container-4">
+                              <input type="search" ng-model="filter.searchString" ng-change="show_fetch()" ng-keyup="$event.keyCode == 13 && searchres(fetch)"  id="search" placeholder="Search for products..." />
+                              <button type="submit" class="icon"><i class="fa fa-search"></i></button>
+        
+                            </div>
+                            
+                          </div>
+        
+                          
+                          <div id="searchDisplay" style="cursor:pointer">
+                            <ul>
+                                    <a ng-click="searchres(v)" ng-repeat="(k, v) in fetch track by $index"  ng-if="fetch.status"> <li class="displayHov"><h6 style="text-decoration: none;" >{{v.item}}</h6></li>
+                                    </a>
+        
+        
+                            </ul>
+                            <center style="padding: 5px 0px;">
+                            <h5 class="float:none;text-decoration:none;margin-top: -30%" ng-if="!fetch.status">No item found</h5>
+                            <a href="#" style="text-align:center" ng-if="fetch.status">Show all results</a>
+                    </center>
+                    <br>
+                          </div>
+        
+                         <div class="noti">
+                             <p class="notif" ng-if="!newl.status">0&nbsp;</p>
+                             <p class="notif" ng-if="newl.status">{{newl.count}} &nbsp;</p>
+                            </div>
+                              <i data-toggle="modal" data-target="#cartModal" style="cursor:pointer; color:#fff" class="fa fa-shopping-basket fa-3x" aria-hidden="true"></i>
+                      <div class="drp">
+                              <ul> 
+                              <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle nav-dark" style="color: #fff" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Categories
+                                    </a>
+                                </button>
+                                
+                           
+                               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                 
+                                    <a class="dropdown-item" href="#/categories" ng-repeat="(k,v) in fetchcateg track by $index">{{v.name}}</a>                                    <!-- <a class="dropdown-item" href="categories.html">All Categories</a> -->                                      
+                                    <!-- <a class="dropdown-item" href="#">57 Motorsport</a>
+                                    
+                                    
+                                    
+        
+                                      
+                                      <a class="dropdown-item" href="#">Black Feet</a>
+                                    <a class="dropdown-item" href="#">Daytona</a>
+                                    <a class="dropdown-item" href="#">Garcia</a>
+                                    <a class="dropdown-item" href="#">Gramlights</a>
+                                    <a class="dropdown-item" href="#">Hfullcross</a>
+                                    <a class="dropdown-item" href="#">Homura</a>
+                                    <a class="dropdown-item" href="#">Sebring</a>
+                                    <a class="dropdown-item" href="#">Versus</a>
+                                    <a class="dropdown-item" href="#">Volkracing</a>
+                                    <a class="dropdown-item" href="#">Waltz</a> -->
+        
+        
+        
+        
+                                   
+                                    </li>
+                              </li >    <li class="nav-item dropdown" style="padding-top: 10px;"> <a id="a-submenu" href="#/alignment">WHEEL ALIGNMENT</a>
+                               </li>   
+                                <li class="nav-item dropdown" style="padding-top: 10px;">  <a id="a-submenu" href="#/breakrepair">BREAK REPAIR</a>
+                                 </li>  <li class="nav-item dropdown" style="padding-top: 10px;"> <a id="a-submenu" href="#/automaintenance">AUTO MAINTENANCE</a>
+                                    </li> 
+                                  </ul>
+        
+                            </div>
+                              <br><br>
+        
+                </div>
+                
+            </div>
+            <br>   <br>   <br>   <br>
+        
+            <div class="container">
+        
+            <div class="row">
+                <div class="col-lg-5 wow fadeIn" data-wow-duration="2s" data-wow-delay="0.5s">
+                    <img src="./media/regular-car-maintenance.jpg" class="img-thumbnail">
+                </div>
+                <div class="col-lg-7 wow fadeIn" data-wow-duration="2s" data-wow-delay="1.5s">
+                       <h1>CAR MAINTENANCE
+                        HERE'S TO YOUR CAR'S HEALTH
+                    </h1> 
+                    <br>
+                    <h3>
+                            Make every mile count. Keep your car running smoothly with regular services and check ups at 
+                        Bionicwheels.
+
+
+                    </h3>
+                </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-12 wow fadeIn" data-wow-duration="2s" data-wow-delay="2s">
+                            <h2>
+                                    VEHICLE MAINTENANCE SERVICES AT BIONICWHEELS
+
+                            </h2>
+                            <br>
+                            <h5>
+                                    Car maintenance is always easier when you trust the technician under the hood. Well, we make it our business to know our customers and their cars, and we treat them like we would our own friends and our own vehicles. Come in for any of the auto maintenance services you see below and get quick, convenient service performed by seriously friendly technicians, at some seriously friendly prices.
+                            </h5>
+                    </div>
+                 <div class="col-lg-12 wow fadeIn" data-wow-duration="2s" data-wow-delay="0.5s">
+                        <hr>
+
+                        <h2>
+                                OIL CHANGE
+
+
+                        </h2>
+                        <br>
+                        <h5>
+                                If you want to give your car the longest life possible, 
+                                regular oil changes are a must. Motor oil keeps the engine 
+                                lubricated and working at maximum efficiency, while decreasing 
+                                the intense heat generated as your car runs. Check your owner’s 
+                                manual to see how often you should get your oil changed or consult 
+                                with a technician. If you don’t remember when your last oil change was, 
+                                it’s better to be safe than sorry! Make an appointment at Bionicwheels 
+                                for an affordable oil change today.
+                        </h5>
+                </div>
+  
+             <div class="col-lg-12 wow fadeIn" data-wow-duration="2s" data-wow-delay="0.5s">
+                    <h2>
+                            <hr>
+                            TUNE UP SERVICE
+
+
+                    </h2>
+                    <br>
+                    <h5>
+                            Your vehicle’s engine consists of hundreds of complex components. 
+                            To ensure your engine is running most efficiently and effectively, 
+                            these parts need to be in good working order. 
+                            Check your owner’s manual to see the recommended tune up schedule.
+                             If you’re not getting your usual gas mileage, experiencing noticeable power loss, or experiencing other strange symptoms, it’s definitely time for a tune up.
+
+                    </h5>
+            </div>
+
+         <div class="col-lg-12 wow fadeIn" data-wow-duration="2s" data-wow-delay="0.5s">
+                <h2>
+                        <hr>
+                        A/C SERVICE
+
+
+                </h2>
+                <br>
+                <h5>
+                        You shouldn’t be sweating bullets driving from Point A to Point B. 
+                        Our A/C performance check service includes a visual inspection, performance test, 
+                        system state of charge test, system control test, and performance leak test. 
+                        Let the experts at Bionicwheels ensure your ride is a cool, comfortable one!
+
+                </h5>
+        </div>
+
+     <div class="col-lg-12 wow fadeIn" data-wow-duration="2s" data-wow-delay="0.5s">
+            <h2>
+                    <hr>
+                    RADIATOR SERVICE
+
+
+            </h2>
+            <br>
+            <h5>
+                    Did you know that the combustion chamber inside your vehicle’s engine can reach 4,500 degrees Fahrenheit? That’s HOT. Your radiator is in charge of cooling down your engine so that things don’t overheat and cause an engine breakdown. Because the radiator has such an important job, it’s equally important to get it serviced regularly! Consult your owner’s manual to see the recommended time or mileage intervals between radiator services.
+
+            </h5>
+    </div>
+
+ <div class="col-lg-12 wow fadeIn" data-wow-duration="2s" data-wow-delay="0.5s">
+        <h2>
+                <hr>
+                VEHICLE INSPECTION
+
+
+        </h2>
+        <br>
+        <h5>
+                Peace of mind is priceless, and our vehicle inspections offer just that. With every visit to Bioniwheels, you’ll get a free vehicle inspection that looks at your tires, suspension, lights, fluid levels, wipers, belts, battery, hoses, and more. If your car needs more attention, a Complete Vehicle Inspection can be done. By getting regular inspections, you can stop a problem before it starts!
+
+        </h5>
+</div>
+
+                    
+                </div>
+       
+             <br><br><br>
+             
+            </div>
+        
+            <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">My Basket</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" style="max-height: 450px;overflow-y:auto ">
+                     
+                          <div class="row" ng-if="!newl.status">
+                              <h4 style="padding-left:35%;padding-top:10%;padding-bottom:10%;font-size:24px">Your Basket is Empty</h4>
+                 
+                      </div>
+              
+                          <div class="row" ng-repeat="(k,v) in newl track by $index" ng-if="newl.status">
+                            <div class="col-lg-2" style="border: none;outline: none">
+                              <img src="{{v.path}} " class="img-thumbnail" style="border: none;outline: none">
+                            </div>
+                            <div class="col-lg-4" style="font-size: 22px">
+                              {{v.item}}
+                            </div>
+                            <div class="col-lg-2 text-danger" style="font-size: 22px">
+                             x {{v.quantity}}
+                            </div>
+                            <div class="col-lg-2 text-danger" style="font-size: 22px">
+                              &nbsp;{{v.price * v.quantity | currency:"&#8369":0}}
+                            </div>
+                            <div class="col-lg-2 text-danger" style="font-size: 22px">
+                                <button type="button" ng-click="deletecart(v)" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                
+                                                  </div>
+                          </div>
+                     
+                                
+                                          
+                        </div>
+                        
+                        <div class="modal-footer" ng-if="newl.status">
+                            <div class="col-lg-2 text-danger" style="font-size: 22px">
+                               Total
+                              </div>
+                          <div class="col-lg-2 text-danger" style="font-size: 22px">
+                            &nbsp;{{v.price  | currency:"&#8369":0}}
+                          </div>
+                              <div class="col-lg-4">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#orModal" data-dismiss="modal">Order menu</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                            
+                            <div class="modal fade" id="ordhModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">My order history</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body" style="max-height: 450px;overflow-y:auto ">
+                                    <ul style="list-style: none;">
+                                            <li ng-repeat="(k, v) in fetch track by $index">{{v}} </li>
+                                    </ul>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+              
+                            <div class="modal fade" id="orModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-lg" style="max-width: 1280px;" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Order</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body" style="max-height: 450px;overflow-y:auto ">
+                                  <div class="row">
+                                    <div class="col-lg-8">
+                                      <div class="row" ng-repeat="(k,v) in newl track by $index" ng-if="newl.status">
+                                        <div class="col-lg-2" style="border: none;outline: none">
+                                          <img src="{{v.path}}" class="img-thumbnail" style="border: none;outline: none">
+                                        </div>
+                                        <div class="col-lg-4" style="font-size: 22px">
+                                          {{v.item}}
+                                        </div>
+                                        <div class="col-lg-2 text-danger" style="font-size: 22px">
+                                         x {{v.quantity}}
+                                        </div>
+                                        <div class="col-lg-2 text-danger" style="font-size: 22px">
+                                          &nbsp;{{v.price * v.quantity | currency:"&#8369":0}}
+                                        </div>
+                                        <div class="col-lg-2 text-danger" style="font-size: 22px">
+                                            <button type="button" ng-click="deletecart(v)" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                            
+                                                              </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                      <label><i class="fa fa-motorcycle" aria-hidden="true"></i> Delivery Address</label>
+                                      <h5 style="font-size: 18px;text-transform: none;">{{info.address}} </h5>
+                                      <label><i class="fa fa-envelope" aria-hidden="true"></i> Email Address</label>
+                                      <h5 style="font-size: 18px;text-transform: none;">{{info.email}} </h5>
+                                      <label><i class="fa fa-address-book" aria-hidden="true"></i> Contact</label>
+                                      <h5 style="font-size: 18px;text-transform: none;">{{info.contact}} </h5>
+                                      <label><i class="fa fa-money" aria-hidden="true"></i> Payment</label>
+                                      <h5 style="font-size: 18px;text-transform: none;"> Cash on Delivery</h5>
+                                      <br>
+                                      <h4 class="text-success">Item QTY {{newl.count}}</h4>
+                                      <h3 class="text-danger" class="font-size: 40px;">Total &#8369;{{newl.total}}</h3>
+                                
+                                    </div>
+                                  </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" ng-click="ord(newl)" class="btn btn-primary" data-dismiss="modal">Order now</button>
+              
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+              
+                            <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" style="max-width: 1280px;" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body" style="max-height: 500px;overflow-y:auto">
+                                    <div class="row">
+                                    <div class="col-lg-3" style="background:#f8f5f5">
+                                      <br>
+                                        <img src="{{t.path}}" class="img-thumbnail" style="border: none;outline: none"><br>
+                
+                                      </div>  
+                                    <div class="col-lg-5" style="background: #f8f5f5">
+                                      <h4 style="font-size: 23px;text-transform: capitalize">{{t.item}}</h4><br>
+                                      <h4 style="font-size: 18px;text-transform: capitalize">{{t.description}}</h4>
+                                      <h3 class="text-danger" style="font-size: 32px;padding-top: 20px;">{{t.price | currency:"&#8369":0}}</h3>
+                <center>
+                                      <div class="form-group" style="text-align: center">
+                                        <label>Quantity: </label>
+                                        <div class="input-group">
+                                            <div class="input-group-btn">
+                                                <button id="down" class="btn btn-default" ng-click="minus()"><span class="fa fa-minus"></span></button>
+                                            </div>
+                                            <input type="number" id="myNumber" style="width:90px;" ng-model="quantity" class="form-control input-number col-lg-4"/>
+                                            <div class="input-group-btn">
+                                                <button id="up" class="btn btn-default" ng-click="plus(t)" ng-keyup="plus($event,quantity)"><span  ng-model="quantity"  ng-change="show_fetch()" class="fa fa-plus" ></span></button>
+                                            </div>
+                                            <h3 class="text-danger" style="font-size: 24px;padding-top: 20px;">Total{{t.price * quantity | currency:"&#8369":0}}</h3>
+                                       
+                                          </div>
+                                          
+                                    </div>
+                                    <h3 class="text-danger" style="font-size: 24px;padding-top: -5px;">{{msg}}</h3>
+                                    <!-- <button type="button" class="btn btn-success">ORDER NOW</button> -->
+                                    <button type="button" class="btn btn-success" ng-click="cart(t)">ADD BASKET</button>
+                                  </center>
+                             
+                
+                                    </div>
+                                    <div class="col-lg-4" style="background:#f8f5f5">
+                                      <label><i class="fa fa-motorcycle" aria-hidden="true"></i> Delivery Address</label>
+                                      <h5 style="font-size: 18px;text-transform: none;">{{info.address}} </h5>
+                                      <label><i class="fa fa-money" aria-hidden="true"></i> Payment</label>
+                                      <h5 style="font-size: 18px;text-transform: none;"><i class="fa fa-calendar-o" aria-hidden="true"></i> Cash on Delivery</h5>
+                                      <label>Delivery Date</label>
+                                      <h5 style="font-size: 18px;text-transform: none;">March 11 - March 20 2019</h5>
+                                      <label><i class="fa fa-battery-empty" aria-hidden="true"></i> Warranty </label>
+                                      <h5 style="font-size: 18px;text-transform: none;">Defect 6 Months Return</h5>
+                
+                
+                                    </div>
+                                    </div>
+                
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+              
+                            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Account Information</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body" style="max-height: 450px;overflow-y:auto ">
+                                         <label>Name:</label>
+                                            <input class="form-control" type="text" ng-model="info.name" placeholder="name">
+                                            <br><label>Email:</label>
+                                            <input class="form-control" type="email" ng-model="info.email" placeholder="name">
+                                            <br><label>Contact:</label>
+                                            <input class="form-control" type="text" ng-model="info.contact" placeholder="contact">
+                                            <br><label>Address:</label>
+                                            <input class="form-control" type="text" ng-model="info.address" placeholder="name">
+                                          <br>
+                                            <button type="button" class="btn btn-primary" >Change Password</button>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary" >Save Changes</button>
+                  
+                                      </div>
+                                        </div>
+                                      </div>
+                                    </div>
+              
+              
+              <script>
+                function up(max) {
+                  document.getElementById("myNumber").value = parseInt(document.getElementById("myNumber").value) + 1;
+                  if (document.getElementById("myNumber").value >= parseInt(max)) {
+                      document.getElementById("myNumber").value = max;
+                  }
+              }
+              function down(min) {
+                  document.getElementById("myNumber").value = parseInt(document.getElementById("myNumber").value) - 1;
+                  if (document.getElementById("myNumber").value <= parseInt(min)) {
+                      document.getElementById("myNumber").value = min;
+                  }
+              }
+              
+                      function show(){
+              var x = document.getElementById("userprof");
+              
+              if(x.style.display === "none"){
+                      x.style.display = "block";
+              }else{
+                      x.style.display = "none";
+              }
+              }
+                              $(document).ready(function(){
+                                   
+                                    $("#search").keyup(function(){
+                                            var inputID = $(this);
+                              
+                              
+                                            if(inputID.val() == ""){
+                                              $("#searchDisplay").css("display", "none");
+                                      }else{
+                                              $("#searchDisplay").css("display", "block");
+                                      }
+                                      });
+                              
+                                      
+                                       
+                                      });
+                                      $()
+                              </script>
+        
+        
+        
+        
+        
+            </body>
+            </html>

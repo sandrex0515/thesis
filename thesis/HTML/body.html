@@ -144,8 +144,7 @@ input[type=number]::-webkit-outer-spin-button {
                 </li>
               
                 <li><a href="HTML/about.html" style="color: #fff">About us</a></li>
-                <li><a href="#" style="color: #fff">Contact</a></li>
-                
+                <li><a href="HTML/contact.html" style="color: #fff">Contact</a></li>
                 <li><a href="#" id="log" style="color:rgb(68, 68, 175);"> . </a></li>
                 <li></li>
                 <div ng-if="info.status">
@@ -216,7 +215,7 @@ input[type=number]::-webkit-outer-spin-button {
                                
                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                      
-                                    <a class="dropdown-item" href="#/categories">Wheels</a>
+                                    <a class="dropdown-item" style="cursor:pointer;" ng-repeat="(k,v) in fetchcateg track by $index" ng-click="categclick(v)">{{v.name}}</a>
                                         <!-- <a class="dropdown-item" href="categories.html">All Categories</a> -->                                      
                                         <!-- <a class="dropdown-item" href="#">57 Motorsport</a>
                                         
@@ -242,8 +241,8 @@ input[type=number]::-webkit-outer-spin-button {
                                         </li>
                                   </li >    <li class="nav-item dropdown" style="padding-top: 10px;"> <a id="a-submenu" href="#/alignment">WHEEL ALIGNMENT</a>
                                    </li>   
-                                    <li class="nav-item dropdown" style="padding-top: 10px;">  <a id="a-submenu" href="#">BREAK REPAIR</a>
-                                     </li>  <li class="nav-item dropdown" style="padding-top: 10px;"> <a id="a-submenu" href="#">AUTO MAINTENANCE</a>
+                                    <li class="nav-item dropdown" style="padding-top: 10px;">  <a id="a-submenu" href="#/breakrepair">BREAK REPAIR</a>
+                                     </li>  <li class="nav-item dropdown" style="padding-top: 10px;"> <a id="a-submenu" href="#/automaintenance">AUTO MAINTENANCE</a>
                                         </li> 
                                       </ul>
         
@@ -279,13 +278,29 @@ input[type=number]::-webkit-outer-spin-button {
             
     </div>
           </div> -->
-   
+          <br>
+          <div class="container" style="background: #fff;text-align: center" ng-if="categresult1.status">
+              <div class="row" style="padding:5px;">
+
+          <div class="col-sm-4 categ" style="padding-bottom: 60px;cursor:pointer;" ng-repeat="(k,v) in categresult1 track by $index" ng-if="fetchcateg.status" ng-click="subsub(v)"  data-toggle="modal" data-target="#subcat">
+             
+  
+            <h3>{{v.cat_name}}</h3>
+          <img class="img-thumbnail" src="{{v.path}}" style="width: 400px;height: 200px;outline:none;border:none;"><br><br>
     
-                    <div class="container-fluid today">
+  
+        </div>
+  
+          </div>
+  
+              
+              </div>
+   <br>
+                    <div class="container-fluid today" style="margin-top:-10px;">
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
-                              <div class="swiper-slide"  ng-repeat="(k,v) in fetch track by $index" ng-click="top(v)" data-toggle="modal" data-target="#orderModal" >
-                                  <img src="{{v.path}}" class="img-thumbnail" style="width:90%;height:400px">
+                              <div class="swiper-slide"  ng-repeat="(k,v) in fetchrecom track by $index" ng-click="top(v)" data-toggle="modal" data-target="#orderModal" >
+                                  <img src="{{v.path}}" class="img-thumbnail" style="width:90%;height:490px">
                                 </div>
                         
     
@@ -300,7 +315,7 @@ input[type=number]::-webkit-outer-spin-button {
     
                   <br><br>
     </div>
-    
+    <br><br>
     <!-- <div class="container-fluid topSearch">
       <ul> 
         <li ng-repeat="(k, v) in fetch track by $index" ng-click="top(v)" data-toggle="modal" data-target="#orderModal">
@@ -317,8 +332,7 @@ input[type=number]::-webkit-outer-spin-button {
     <div class="content">
 
         <div class="row">
-          <!-- Product -->
-          <div class="col-xs-6 col-md-3" ng-repeat="(k,v) in fetch track by $index" ng-click="top(v)" data-toggle="modal" data-target="#orderModal">
+          <div class="col-xs-6 col-md-3" ng-repeat="(k,v) in fetchrecom track by $index" ng-click="top(v)" data-toggle="modal" data-target="#orderModal">
             <div class="product-container">
               <div class="product-image">
                 <img src="{{v.path}}" class="img-thumbnail" style="width:100%;height:180px">
@@ -328,10 +342,7 @@ input[type=number]::-webkit-outer-spin-button {
               </div>
             </div>
           </div>
-          <!-- Product -->
-    
-     
-          <!-- Product -->
+       
         </div>
       </div>
     </div>
@@ -562,6 +573,38 @@ input[type=number]::-webkit-outer-spin-button {
                           </div>
                         </div>
                       </div>
+                      
+<div class="modal fade" id="subcat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="max-width:1368px;" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="max-height: 560px;overflow-y:auto;">
+    
+          <div class="content">
+
+              <div class="row">
+                <div class="col-xs-6 col-md-3" ng-repeat="(k,v) in sub2x track by $index" ng-click="top(v)" data-toggle="modal" data-target="#orderModal" data-dismiss="modal">
+                  <div class="product-container">
+                    <div class="product-image">
+                      <img src="{{v.path}}" class="img-thumbnail" style="width:100%;height:180px">
+                    </div>
+                    <div class="product-description">
+                      <p style="float:none; padding:5px; font-size:18px;" class="text-danger"><strong class="text-dark">{{v.item}}</strong> <br /> {{v.price  | currency:"&#8369;":0}} </p>
+                    </div>
+                  </div>
+                </div>
+             
+              </div>
+            </div>
+            </div>
+          </div>
+          </div>
+          </div>
 
 
 <script>
