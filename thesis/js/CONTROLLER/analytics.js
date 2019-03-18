@@ -9,11 +9,24 @@ $scope.dataresult = {};
 $scope.sum = {};
 $scope.value = {};
 $scope.getlastyear = {};
+$scope.year = {};
+$scope.todaysales = {};
 analytics();
 analytics2();
-
+analytics3();
+todaysales();
 pending();
+showmodal();
+    function showmodal(){
+        var promise = adminFactory.showmodal();
+            promise.then(function(data){
 
+
+            })
+            .then(null, function(data){
+              $('#showmodal').modal('show'); 
+            });
+    }
     function analytics2(){
 
         var month = new Array();
@@ -61,6 +74,16 @@ pending();
 
             });
     }
+    function analytics3(){
+      var promise = adminFactory.analytics3();
+          promise.then(function(data){
+            $scope.analytics3 = data.data.result;
+          })
+          .then(null, function(data){
+
+          });
+    }
+
     function analytics(){
         var month = new Array();
         month[0] = "January";
@@ -206,8 +229,33 @@ pending();
                                                 });
                                         }
 
+function todaysales(){
+  var promise = adminFactory.todaysales();
+      promise.then(function(data){
+        $scope.todaysales = data.data.result[0];
+        console.log($scope.todaysales);
+      })
+      .then(null, function(data){
+
+      })
+}
+
 $scope.prod = function(){
 console.log($scope.prodcateg);
+}
+$scope.settoday = function(){
+  var dd = new Date();
+  $scope.year.yd = dd.getFullYear();
+  $scope.year.sales = 0;
+  var promise = adminFactory.settoday($scope.year);
+      promise.then(function(data){
+        $('#showmodal').modal('hide'); 
+        alert('Success');
+        showmodal();
+      })
+      .then(null, function(data){
+
+      });
 }
                                         
 });

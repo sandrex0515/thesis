@@ -171,7 +171,10 @@ create table sales(
     sales numeric,
     year numeric
 );
-
+alter table sales add column sales_date timestamp default now();
+alter table sales owner to sandrex;
+alter table sales drop column sales_date;
+alter table sales add column sales_date timestamp default now() unique;
 
 create table analytics(id serial primary key, 
 year varchar, 

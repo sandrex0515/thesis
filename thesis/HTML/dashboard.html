@@ -115,7 +115,7 @@
               <div class="statistic-details mt-sm-4">
                 <div class="statistic-details-item">
                   <small class="text-muted"><span class="text-primary"><i class="ion-arrow-up-b"></i></span> 7%</small>
-                  <div class="detail-value">&#8369;243</div>
+                  <div class="detail-value">{{todaysales.sales | currency:"&#8369;":0 }} </div>
                   <div class="detail-name">Today's Sales</div>
                 </div>
             
@@ -142,4 +142,28 @@
 <script>
        
         </script>
+
+
+<div class="modal fade" id="showmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        </button>
+      </div>
+      <div class="modal-body text-center">    
+        <br><br><br>
+        <div class="container text-danger">
+        <h2>Warning you need to set today's Sales click the button "Set Today's Sales"</h2>
+      </div>
+      <br><br><br>
+  
+    </div>
+      <div class="modal-footer">
+          <button type="button" ng-click="settoday()" class="btn btn-primary">Set Today's Sales</button>
+        <button type="button" ng-click="" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
         

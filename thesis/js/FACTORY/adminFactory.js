@@ -184,6 +184,66 @@ app.factory('adminFactory', function($http){
         });
         return promise;
     };
+    factory.analytics3 = function(data){
+        var promise = $http({
+            url: '../../php/FUNCTIONS/analytics3.php',
+            method: 'POST',
+            headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
+            transformRequest: function(obj){
+                var str = [];
+                for(var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+                },
+                data: data  
+        });
+        return promise;
+    };
+    factory.showmodal = function(data){
+        var promise = $http({
+            url: '../../php/FUNCTIONS/showmodal.php',
+            method: 'POST',
+            headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
+            transformRequest: function(obj){
+                var str = [];
+                for(var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+                },
+                data: data  
+        });
+        return promise;
+    };
+    factory.settoday = function(data){
+        var promise = $http({
+            url: '../../php/FUNCTIONS/settoday.php',
+            method: 'POST',
+            headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
+            transformRequest: function(obj){
+                var str = [];
+                for(var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+                },
+                data: data  
+        });
+        return promise;
+    };
+    factory.todaysales = function(data){
+        var promise = $http({
+            url: '../../php/FUNCTIONS/todaysales.php',
+            method: 'POST',
+            headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
+            transformRequest: function(obj){
+                var str = [];
+                for(var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+                },
+                data: data  
+        });
+        return promise;
+    };
     factory.editprod = function(data){
         var promise = $http({
             url: '../../php/FUNCTIONS/edit_prod.php',

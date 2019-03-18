@@ -550,6 +550,8 @@ EOT;
               update analytics set $this->n = 
               (select $this->n::numeric from analytics where year = '$this->d') + 
               ($this->price * $this->quantity) where year = '$this->d'
+                ), d as (
+                    update sales set sales = sales + $this->price * $this->quantity where sales_date = current_date
                 )
 
                 delete from delivery where 
@@ -847,7 +849,43 @@ EOT;
 EOT;
             return ClassParent::get($sql);
         }
+        public function analytics3(){
+            $sql = <<<EOT
+            select * from analytics;
+EOT;
+            return ClassParent::get($sql);
+        }
 
+        public function showmodal(){
+            $sql = <<<EOT
+                select * from sales where sales_date = current_date;
+EOT;
+            return ClassParent::get($sql);
+        }
+        public function settoday($data){
+            foreach($data as $k => $v){
+                $this->$k = pg_escape_string(strip_tags(trim($v)));
+            }
+            $sql = <<<EOT
+                insert into sales(
+                    sales,
+                    year,
+                    sales_date
+                )
+                values(
+                    $this->sales,
+                    $this->yd,
+                    current_date
+                )
+EOT;
+            return ClassParent::insert($sql);
+        }
+        public function todaysales(){
+            $sql = <<<EOT
+            select * from sales where sales_date = current_date;
+EOT;
+            return CLassParent::get($sql);
+        }
        
 }
 
